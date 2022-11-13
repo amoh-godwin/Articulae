@@ -373,3 +373,250 @@ Component {
 
 
 ```
+
+When you run it, you should see
+
+![](D:\GitHub\Articulae\mds\images\tool_bar_waterfall.PNG)
+
+
+
+Create a new file name it Controlbar
+
+controlbar.qml
+
+```qml
+import QtQuick
+import QtQuick.Controls.Universal
+import QtQuick.Layouts
+
+
+ToolBar {
+    id: toolbar
+    width: parent.width
+    height: 48
+
+    background: Rectangle {
+        color: "#90202020"
+    }
+
+}
+
+```
+
+Now replace it in the `indivi.qml`
+
+Indiv.qml
+
+```qml
+...
+
+Component {
+
+    Rectangle {
+        anchors.fill: parent
+        color: "transparent"
+
+        Rectangle {
+            id: viewerParent
+            ...
+
+            Image {
+                id: viewer
+                ...
+            }
+
+        }
+
+        ControlBar {
+        }
+
+    }
+
+}
+
+
+```
+
+When you run it, you should see
+
+![](D:\GitHub\Articulae\mds\images\tool_bar_waterfall.PNG)
+
+We shall improve on the toolbar later
+
+
+
+Lets add the navigation button
+
+Ind.qml
+
+```qml
+...
+
+Component {
+
+    Rectangle {
+        anchors.fill: parent
+        color: "transparent"
+
+        Rectangle {
+            id: viewerParent
+            ...
+
+            Image {
+                id: viewer
+            }
+
+        }
+
+        ControlBar {
+        }
+
+        RowLayout {
+            anchors.verticalCenter: parent.verticalCenter
+            width: parent.width
+            height: 48
+
+            Button {
+                text: "<"
+                Layout.alignment: Qt.AlignLeft
+                Layout.preferredWidth: 18
+            }
+
+            Button {
+                text: ">"
+                Layout.alignment: Qt.AlignRight
+                Layout.preferredWidth: 18
+            }
+
+        }
+
+    }
+
+}
+
+
+```
+
+When you run this you should see
+
+![](D:\GitHub\Articulae\mds\images\nav_buttons.PNG)
+
+Next
+
+
+
+addmik the zoom buttons
+
+```qml
+...
+
+Component {
+
+    Rectangle {
+        anchors.fill: parent
+        color: "transparent"
+
+        Rectangle {
+            id: viewerParent
+            ...
+
+            Image {
+                id: viewer
+            }
+
+        }
+
+        ControlBar {
+        }
+
+        RowLayout {
+            ...
+        }
+
+        RowLayout {
+            anchors.bottom: parent.bottom
+            anchors.right: parent.right
+            anchors.margins: 12
+            width: 132
+            height: 30
+            spacing: 0
+
+            Button {
+                Layout.fillWidth: true
+                Layout.fillHeight: true
+                text: "[]"
+            }
+            Button {
+                Layout.fillWidth: true
+                Layout.fillHeight: true
+                text: "-"
+            }
+            Button {
+                Layout.fillWidth: true
+                Layout.fillHeight: true
+                text: "+"
+            }
+        }
+
+    }
+
+}
+
+
+```
+
+When you run it, you should see
+
+![](D:\GitHub\Articulae\mds\images\zoom_buttons.PNG)
+
+Next improve on the toolbar.
+
+
+
+You can see that the items are in a row. So we put in a rowlayout
+
+control.qml
+
+```qml
+...
+
+
+ToolBar {
+    id: toolbar
+    width: parent.width
+    height: 48
+
+
+    RowLayout {
+        anchors.fill: parent
+        spacing: 0
+
+        Rectangle {
+            Layout.fillWidth: true
+            Layout.fillHeight: true
+            color: "transparent"
+
+            ToolButton {
+                id: ctrl
+                text: "View all photos"
+                width: 148
+                height: 48
+            }
+
+        }
+
+    }
+
+
+    background: Rectangle {
+        ...
+    }
+
+}
+
+
+```
+
+When you run it
+
+![](D:\GitHub\Articulae\mds\images\toolbar_btn.PNG)
