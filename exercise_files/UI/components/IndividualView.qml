@@ -27,15 +27,51 @@ Component {
 
         }
 
-        ToolBar {
-            id: toolbar
+        ControlBar {
+        }
+
+        RowLayout {
+            anchors.verticalCenter: parent.verticalCenter
             width: parent.width
             height: 48
 
-            background: Rectangle {
-                color: "#90202020"
+            Button {
+                text: "<"
+                Layout.alignment: Qt.AlignLeft
+                Layout.preferredWidth: 18
             }
 
+            Button {
+                text: ">"
+                Layout.alignment: Qt.AlignRight
+                Layout.preferredWidth: 18
+            }
+
+        }
+
+        RowLayout {
+            anchors.bottom: parent.bottom
+            anchors.right: parent.right
+            anchors.margins: 12
+            width: 132
+            height: 30
+            spacing: 0
+
+            Button {
+                Layout.fillWidth: true
+                Layout.fillHeight: true
+                text: "[]"
+            }
+            Button {
+                Layout.fillWidth: true
+                Layout.fillHeight: true
+                text: "-"
+            }
+            Button {
+                Layout.fillWidth: true
+                Layout.fillHeight: true
+                text: "+"
+            }
         }
 
     }
