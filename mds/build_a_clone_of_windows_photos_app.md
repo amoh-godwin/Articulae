@@ -332,3 +332,44 @@ You should see, something like this, depending on your image
 
 
 The sourcewidth and sourceheight we have specified are the very dimensions of the image we have used, please put in the corresponding dimensions for the image you chose to use.
+
+
+
+Now lets block our toolbar
+
+```qml
+...
+
+Component {
+
+    Rectangle {
+        anchors.fill: parent
+        color: "transparent"
+
+        Rectangle {
+            id: viewerParent
+            ...
+
+            Image {
+                ...
+            }
+
+        }
+
+        ToolBar {
+            id: toolbar
+            width: parent.width
+            height: 48
+
+            background: Rectangle {
+                color: "#90202020"
+            }
+
+        }
+
+    }
+
+}
+
+
+```
