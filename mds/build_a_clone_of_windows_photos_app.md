@@ -188,9 +188,10 @@ ApplicationWindow {
         initialItem: individual
     }
 
-    Comp.IndividualView {id: individual }
+    Comp.IndividualView {id: individual}
 
 }
+
 
 ```
 
@@ -203,3 +204,131 @@ The main changes were, we imported the folder that contains and namespaced it.
 `initialItem: individual`
 
 Now if you run it you would see aa blue window now.
+
+![](D:\GitHub\Articulae\mds\images\blue_window.PNG)
+
+From hereon you will be seeing three dots (...) in the code, to represent code that has already been presented previously. E.g. the previous code could have been written as:
+
+main.qml
+
+```qml
+import QtQuick
+...
+import "./components" as Comp
+
+
+ApplicationWindow {
+    ...
+    height: 600
+
+    Universal.theme: Universal.Dark
+
+    StackView {
+        id: mainStack
+        ...
+        initialItem: individual
+    }
+
+    Comp.IndividualView {id: individual}
+
+}
+```
+
+Compare the above with the previous code, and see how easier it is to follow along.
+
+ This is so we can focus on the newly added code better
+
+
+
+For a picture like this
+
+![](C:\Users\workgroup\Pictures\Saved%20Pictures\pexels-pixabay-358457.jpg)
+
+In the individual coomponent
+
+components/Individual.qml
+
+```qml
+import QtQuick
+import QtQuick.Controls.Universal
+import QtQuick.Layouts
+
+Component {
+
+    Rectangle {
+        anchors.fill: parent
+        color: "transparent"
+
+        Rectangle {
+            id: viewerParent
+            anchors.fill: parent
+            color: "transparent"
+            clip: true
+
+            Image {
+                id: viewer
+                anchors.centerIn: parent
+                width: parent.width
+                height: parent.height
+                source: "file:///C:/Users/workgroup/Pictures/Saved Pictures/pexels-pixabay-358457.jpg"
+            }
+
+        }
+
+    }
+
+}
+```
+
+If you are using a fullpath and not a relative epath. Prefix with 'file:///' so Qt can differenctiate between online 'https://' from local files.
+
+When you run it this is what you get.
+
+![](D:\GitHub\Articulae\mds\images\no_aspect_ratio_waterfall.PNG) 
+
+
+
+Do not close it yet.
+
+
+
+Then add a sourcesize and aspect ratio properties to the Image type
+
+```qml
+...
+
+Component {
+
+    Rectangle {
+        ...
+
+        Rectangle {
+            id: viewerParent
+            ...
+
+            Image {
+                id: viewer
+                ...
+                height: parent.height
+                sourceSize.width: 1333
+                sourceSize.height: 2000
+                fillMode: Image.PreserveAspectFit
+                source: "file:///C:/Users/workgroup/Pictures/Saved Pictures/pexels-pixabay-358457.jpg"
+            }
+
+        }
+
+    }
+
+}
+```
+
+Now click the run button in Ninja-Preview again to load a different Window.
+
+You should see, something like this, depending on your image
+
+![](D:\GitHub\Articulae\mds\images\aspect_ratio_waterfall.PNG)
+
+
+
+The sourcewidth and sourceheight we have specified are the very dimensions of the image we have used, please put in the corresponding dimensions for the image you chose to use.
