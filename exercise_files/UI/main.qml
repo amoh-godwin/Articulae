@@ -20,6 +20,6 @@ ApplicationWindow {
         initialItem: individual
     }
 
-    Comp.IndividualView {id: individual }
+    Comp.IndividualView {id: individual}
 
 }
