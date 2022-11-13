@@ -27,6 +27,17 @@ Component {
 
         }
 
+        ToolBar {
+            id: toolbar
+            width: parent.width
+            height: 48
+
+            background: Rectangle {
+                color: "#90202020"
+            }
+
+        }
+
     }
 
 }
