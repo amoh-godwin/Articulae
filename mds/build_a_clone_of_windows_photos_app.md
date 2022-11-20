@@ -620,3 +620,715 @@ ToolBar {
 When you run it
 
 ![](D:\GitHub\Articulae\mds\images\toolbar_btn.PNG)
+
+
+
+Lets add the menu at the end of the row..
+
+contrl.qml
+
+```qml
+...
+
+ToolBar {
+    id: toolbar
+    ...
+
+
+    RowLayout {
+        anchors.fill: parent
+        spacing: 0
+
+        Rectangle {
+            ...
+
+            ToolButton {
+                ...
+            }
+
+        }
+
+        MenuBar {
+            Layout.preferredWidth: 46
+            Layout.fillHeight: true
+
+            Menu {
+                title: "..."
+
+                onAboutToShow: {
+                    toolbar.height = 64
+                }
+                onAboutToHide: {
+                    toolbar.height = 48
+                }
+
+                Action{
+                    text: "Open with"
+                }
+                Action {
+                    text: "Copy"
+                }
+                Action {
+                    text: "Print"
+                }
+                Action {
+                    text: "Set as"
+                }
+                MenuSeparator {}
+                Action {
+                    text: "File info"
+                }
+            }
+
+
+        }
+
+    }
+
+
+    background: Rectangle {
+        ...
+    }
+
+}
+
+
+```
+
+The `AboutToShow` increases the height.
+
+![](D:\GitHub\Articulae\mds\images\toolbar_menubar.PNG)
+
+Lets add the buttons found in between the two
+
+Create a new file and name it CustToolButton.qml inside
+
+custtoolbutton.qml
+
+```qml
+import QtQuick
+import QtQuick.Controls.Universal
+import QtQuick.Layouts
+
+
+ToolButton {
+    id: ctrl
+
+    property string tip: ""
+
+    Layout.fillHeight: true
+
+    ToolTip {
+        z: 10
+        y: 0
+        parent: parent
+        visible: parent.hovered
+        text: parent.tip
+        delay: 1000
+    }
+
+}
+
+```
+
+Then import it inside
+
+control.qml
+
+```qml
+...
+
+
+ToolBar {
+    id: toolbar
+    ...
+
+
+    RowLayout {
+        anchors.fill: parent
+        spacing: 0
+
+        Rectangle {
+            ...
+
+            ToolButton {
+                id: ctrl
+                text: "View all photos"
+                width: 148
+                height: 48
+            }
+
+        }
+
+        CustToolButton {
+            text: "share"
+            tip: "share"
+        }
+
+        MenuBar {
+            ...
+        }
+
+    }
+
+
+
+
+    background: Rectangle {
+        ...
+    }
+
+}
+
+
+```
+
+When you run it you should see.
+
+![](D:\GitHub\Articulae\mds\images\cust_btn_bar.PNG)
+
+
+
+Now block the rest
+
+control.qml
+
+```qml
+...
+
+
+ToolBar {
+    id: toolbar
+    ...
+
+
+    RowLayout {
+        anchors.fill: parent
+        spacing: 0
+
+        Rectangle {
+            ...
+
+        }
+
+        CustToolButton {
+            text: "share"
+            tip: "share"
+        }
+
+        CustToolButton {
+            text: "slideshow"
+            tip: "slideshow"
+        }
+
+        CustToolButton {
+            text: "Edit"
+            tip: "Edit"
+        }
+        CustToolButton {
+            text: "Rotate"
+            tip: "Rotate"
+        }
+        CustToolButton {
+            text: "Delete"
+            tip: "Delete"
+        }
+
+        MenuBar {
+            ...
+        }
+
+    }
+
+
+
+
+    background: Rectangle {
+        ...
+    }
+
+}
+
+
+```
+
+
+
+![](D:\GitHub\Articulae\mds\images\tool_bar_allbtns.PNG)
+
+Now lets improve on the custtoolbar
+
+
+
+Now lets add the description at the button of the end
+
+```qml
+...
+
+
+ToolButton {
+    id: ctrl
+
+    property string description: ""
+    property string tip: ""
+
+    Layout.fillHeight: true
+
+    contentItem: ColumnLayout {
+        width: parent.wdith
+        height: parent.height
+        spacing: 0
+        Text {
+            topPadding: 8
+            Layout.fillWidth: true
+            Layout.preferredHeight: 48
+            text: ctrl.text
+            color: "white"
+            horizontalAlignment: Text.AlignHCenter
+        }
+
+        Text {
+            Layout.topMargin: -12
+            Layout.fillWidth: true
+            Layout.fillHeight: true
+            text: ctrl.description
+            color: "white"
+            horizontalAlignment: Text.AlignHCenter
+            visible: ctrl.height > 48
+        }
+    }
+
+    ToolTip {
+        ...
+    }
+
+}
+
+
+```
+
+Now the descript won't show if the height is less than 48 based on the code: `visible: ctrl.height > 48`
+
+Now assign the descriptions
+
+control.qml
+
+```qml
+...
+
+
+ToolBar {
+    id: toolbar
+    ...
+
+
+    RowLayout {
+        anchors.fill: parent
+        spacing: 0
+
+        Rectangle {
+            ...
+
+        }
+
+        CustToolButton {
+            text: "share"
+            description: "share"
+            tip: "share"
+        }
+
+        CustToolButton {
+            text: "slideshow"
+            description: "slideshow"
+            tip: "slideshow"
+        }
+
+        CustToolButton {
+            text: "Edit"
+            description: "Edit"
+            tip: "Edit"
+        }
+        CustToolButton {
+            text: "Rotate"
+            description: "Rotate"
+            tip: "Rotate"
+        }
+        CustToolButton {
+            text: "Delete"
+            description: "Delete"
+            tip: "Delete"
+        }
+
+        MenuBar {
+            ...
+        }
+
+    }
+
+    ...
+
+}
+
+
+```
+
+
+
+Almost all the buttons will have icons. Glphs.
+
+Load the glyphs as icons
+
+main.qml
+
+```qml
+import QtQuick
+...
+import "./components" as Comp
+
+
+ApplicationWindow {
+    id: mainWindow
+    ...
+
+    Universal.theme: Universal.Dark
+
+    FontLoader {id: segoe_mdl2; source: "./components/segoe-mdl2-assets.ttf" }
+
+    StackView {
+        ...
+    }
+
+    ...
+
+}
+```
+
+We can access the glyphs from within our application once it has been loaded by the main entry file
+
+Now use as the glyph for the custtoolbar
+
+custtoolb.qml
+
+```qml
+...
+
+
+ToolButton {
+    id: ctrl
+    ...
+
+    contentItem: ColumnLayout {
+        ...
+        Text {
+            ...
+            text: ctrl.text
+            font.family: segoe_mdl2.name
+            font.pixelSize: 20
+            color: "white"
+            horizontalAlignment: Text.AlignHCenter
+        }
+
+        Text {
+            Layout.topMargin: -12
+            ...
+        }
+    }
+
+    ...
+
+}
+
+
+```
+
+Glyphs uses unicode, so whatever we put as text will become an icon. Lets place these icons then
+
+```qml
+...
+
+
+ToolBar {
+    id: toolbar
+    ...
+
+
+    RowLayout {
+        ...
+
+        Rectangle {
+            ...
+
+        }
+
+        CustToolButton {
+            text: "\ue72d"
+            description: "share"
+            tip: "share"
+        }
+
+        CustToolButton {
+            text: "\ue786"
+            description: "slideshow"
+            tip: "slideshow"
+        }
+
+        CustToolButton {
+            text: "\ue70f"
+            description: "Edit"
+            tip: "Edit"
+        }
+        CustToolButton {
+            text: "\ue7ad"
+            description: "Rotate"
+            tip: "Rotate"
+        }
+        CustToolButton {
+            text: "\ue74d"
+            description: "Delete"
+            tip: "Delete"
+        }
+
+        MenuBar {
+            ...
+        }
+
+    }
+
+
+
+
+    background: Rectangle {
+        ...
+    }
+
+}
+
+
+```
+
+When you run
+
+![](D:\GitHub\Articulae\mds\images\glyph_toolbar.PNG)
+
+Next lets add glyph for the menubar Icon
+
+
+
+control.qml
+
+```qml
+...
+
+
+ToolBar {
+    ...
+
+
+    RowLayout {
+        ...
+
+        Rectangle {
+            ...
+
+        }
+
+        ...
+
+        MenuBar {
+            font.pixelSize: 20
+            font.family: segoe_mdl2.name
+            Layout.preferredWidth: 46
+            Layout.fillHeight: true
+
+            Menu {
+                ...
+            }
+
+
+        }
+
+    }
+
+    ...
+
+}
+
+
+```
+
+Next we use the glyphs for the navigation icons. But lets create a specific compo for it so we can use it later on
+
+Create a new file CustNavButton
+
+custnavbutton.qml
+
+```qml
+import QtQuick
+import QtQuick.Controls.Universal
+import QtQuick.Layouts
+
+Button {
+    text: ">"
+
+    background: Rectangle {
+        implicitHeight: 36
+        color: parent.hovered ? Qt.rgba(255, 255, 255, 0.7): Qt.rgba(255, 255, 255, 0.5)
+    }
+
+    contentItem: Text {
+        verticalAlignment: Text.AlignVCenter
+        horizontalAlignment: Text.AlignHCenter
+        text: parent.text
+        font.family: segoe_mdl2.name
+        font.pixelSize: 15
+    }
+}
+
+
+```
+
+You can see that we have used mdl2 icons for the text.
+
+Next use it in the indivi
+
+individual.qml
+
+```qml
+...
+
+Component {
+
+    Rectangle {
+        anchors.fill: parent
+        color: "transparent"
+
+        Rectangle {
+            ...
+        }
+
+        ControlBar {
+        }
+
+        RowLayout {
+            anchors.verticalCenter: parent.verticalCenter
+            width: parent.width
+            height: 48
+
+            CustNavButton {
+                text: "\uE76B"
+                Layout.alignment: Qt.AlignLeft
+                Layout.preferredWidth: 18
+            }
+
+            CustNavButton {
+                text: "\uE76C"
+                Layout.alignment: Qt.AlignRight
+                Layout.preferredWidth: 18
+            }
+
+        }
+
+        RowLayout {
+            ...
+        }
+
+    }
+
+}
+
+
+```
+
+When you run it, you should see
+
+![](D:\GitHub\Articulae\mds\images\nav_icons.PNG)
+
+Next the button for the zoom controls
+
+Lets create a new file and call it zoombutton.qml
+
+Zoombuton.qml
+
+```qml
+import QtQuick
+import QtQuick.Controls.Universal
+
+Button {
+    background: Rectangle {
+        implicitWidth: 24
+        implicitHeight: 30
+        color: parent.hovered ? Qt.rgba(255, 255, 255, 0.5) : Qt.rgba(0, 0, 0, 0.7)
+    }
+
+    contentItem: Text {
+        text: parent.text
+        font.family: segoe_mdl2.name
+        font.pixelSize: 16
+        verticalAlignment: Text.AlignVCenter
+        horizontalAlignment: Text.AlignHCenter
+        color: "white"
+        renderType: Text.NativeRendering
+    }
+
+}
+
+```
+
+Now put it into the individual.qml
+
+individual.qml
+
+```qml
+...
+
+Component {
+
+    Rectangle {
+        ...
+
+        Rectangle {
+            id: viewerParent
+            ...
+
+        }
+
+        ControlBar {
+        }
+
+        RowLayout {
+            ...
+        }
+
+        RowLayout {
+            anchors.bottom: parent.bottom
+            anchors.right: parent.right
+            anchors.margins: 12
+            width: 132
+            height: 30
+            spacing: 0
+
+            ZoomButton {
+                Layout.fillWidth: true
+                Layout.fillHeight: true
+                text: "\uEA4B"
+            }
+            ZoomButton {
+                Layout.fillWidth: true
+                Layout.fillHeight: true
+                text: "\uE949"
+            }
+            ZoomButton {
+                Layout.fillWidth: true
+                Layout.fillHeight: true
+                text: "\uE948"
+            }
+        }
+
+    }
+
+}
+
+
+```
+
+![](D:\GitHub\Articulae\mds\images\real_zoom_buttons.PNG)
