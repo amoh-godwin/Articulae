@@ -22,7 +22,7 @@ Component {
                 sourceSize.width: 1333
                 sourceSize.height: 2000
                 fillMode: Image.PreserveAspectFit
-                source: "file:///C:/Users/workgroup/Pictures/Saved Pictures/pexels-pixabay-358457.jpg"
+                source: "file:///C:/Users/workgroup/Pictures/Saved Pictures/pexels-araz-yurtseven-12531788.jpg"
             }
 
         }
@@ -35,14 +35,14 @@ Component {
             width: parent.width
             height: 48
 
-            Button {
-                text: "<"
+            CustNavButton {
+                text: "\uE76B"
                 Layout.alignment: Qt.AlignLeft
                 Layout.preferredWidth: 18
             }
 
-            Button {
-                text: ">"
+            CustNavButton {
+                text: "\uE76C"
                 Layout.alignment: Qt.AlignRight
                 Layout.preferredWidth: 18
             }
@@ -57,20 +57,20 @@ Component {
             height: 30
             spacing: 0
 
-            Button {
+            ZoomButton {
                 Layout.fillWidth: true
                 Layout.fillHeight: true
-                text: "[]"
+                text: "\uEA4B"
             }
-            Button {
+            ZoomButton {
                 Layout.fillWidth: true
                 Layout.fillHeight: true
-                text: "-"
+                text: "\uE949"
             }
-            Button {
+            ZoomButton {
                 Layout.fillWidth: true
                 Layout.fillHeight: true
-                text: "+"
+                text: "\uE948"
             }
         }
 
