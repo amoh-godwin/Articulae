@@ -27,7 +27,74 @@ ToolBar {
 
         }
 
+        CustToolButton {
+            text: "\ue72d"
+            description: "share"
+            tip: "share"
+        }
+
+        CustToolButton {
+            text: "\ue786"
+            description: "slideshow"
+            tip: "slideshow"
+        }
+
+        CustToolButton {
+            text: "\ue70f"
+            description: "Edit"
+            tip: "Edit"
+        }
+        CustToolButton {
+            text: "\ue7ad"
+            description: "Rotate"
+            tip: "Rotate"
+        }
+        CustToolButton {
+            text: "\ue74d"
+            description: "Delete"
+            tip: "Delete"
+        }
+
+        MenuBar {
+            font.pixelSize: 20
+            font.family: segoe_mdl2.name
+            Layout.preferredWidth: 46
+            Layout.fillHeight: true
+
+            Menu {
+                title: "..."
+
+                onAboutToShow: {
+                    toolbar.height = 64
+                }
+                onAboutToHide: {
+                    toolbar.height = 48
+                }
+
+                Action{
+                    text: "Open with"
+                }
+                Action {
+                    text: "Copy"
+                }
+                Action {
+                    text: "Print"
+                }
+                Action {
+                    text: "Set as"
+                }
+                MenuSeparator {}
+                Action {
+                    text: "File info"
+                }
+            }
+
+
+        }
+
     }
+
+
 
 
     background: Rectangle {
