@@ -12,6 +12,8 @@ ApplicationWindow {
 
     Universal.theme: Universal.Dark
 
+    FontLoader {id: segoe_mdl2; source: "./components/segoe-mdl2-assets.ttf" }
+
     StackView {
         id: mainStack
         anchors.centerIn: parent
