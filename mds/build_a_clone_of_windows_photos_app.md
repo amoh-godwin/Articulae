@@ -2,22 +2,11 @@
 
 Lets start
 
-
-
 In developing our app, there are two approaches we can take. 1) Top-Down approach where we and 2) bottom-up
-
-
-
-
-
 
 We will be using the Top-down approach, because it is more real world like. Before you create a functionality for a button, the button should be there in the UI. In our case before you get an image to show, you should know where you want to show it and the window size you want to show it in, and so on. So it will be good to start with the UI first and then later connect the Python to it as a backend.
 
-
-
 For our UI we will be using QML. Javascript-like styling language.
-
-
 
 Lets setup our project folders however
 
@@ -28,8 +17,6 @@ Create another UI folder
 Create a main.py file
 
 Create a main.qml file inside the UI folder.
-
-
 
 Now open the main.qml file and add our window code
 
@@ -58,21 +45,13 @@ ApplicationWindow {
 
 3. Click the green play button to run the file
 
-
-
 ![](D:\GitHub\Articulae\mds\images\ninja_preview_run.PNG)
-
-
 
 You should see a basic window with
 
 [Image]
 
-
-
 Since we have already imported our s niversal styling which makes our controls look like that of the windows Universal style, we can set a dark theme
-
-
 
 ```qml
 import QtQuick
@@ -89,7 +68,6 @@ ApplicationWindow {
     Universal.theme: Universal.Dark
 
 }
-
 ```
 
 Now you should see
@@ -98,17 +76,11 @@ Now you should see
 
 Now you can see that the only thing that doesn't look like a the windows photos app is the title bar, which we will handle
 
-
-
 Now you can see that everything else draws on top of the image viewer.
 
 The photos app allows multiple view type. For the sake of brevity, which shall focus on only the
 
-
-
 So lets start by adding a stack view which we would have used even if we implemented the other view.
-
-
 
 ```qml
 import QtQuick
@@ -132,7 +104,6 @@ ApplicationWindow {
     }
 
 }
-
 ```
 
 Now you don't really see anythong
@@ -140,8 +111,6 @@ Now you don't really see anythong
 It chooses between components to display. Lets create a component that it can use.
 
 Remember that the filename
-
-
 
 > components/IndividualView.qml
 
@@ -158,7 +127,6 @@ Component {
     }
 
 }
-
 ```
 
 Add it to the `main.qml` file
@@ -191,13 +159,9 @@ ApplicationWindow {
     Comp.IndividualView {id: individual}
 
 }
-
-
 ```
 
 The main changes were, we imported the folder that contains and namespaced it.
-
-
 
 `import "./components" as Comp`, then we call the component ( components don't draw on default) and give it an id and then assigns it.
 
@@ -237,8 +201,6 @@ ApplicationWindow {
 Compare the above with the previous code, and see how easier it is to follow along.
 
  This is so we can focus on the newly added code better
-
-
 
 For a picture like this
 
@@ -286,11 +248,7 @@ When you run it this is what you get.
 
 ![](D:\GitHub\Articulae\mds\images\no_aspect_ratio_waterfall.PNG) 
 
-
-
 Do not close it yet.
-
-
 
 Then add a sourcesize and aspect ratio properties to the Image type
 
@@ -329,11 +287,7 @@ You should see, something like this, depending on your image
 
 ![](D:\GitHub\Articulae\mds\images\aspect_ratio_waterfall.PNG)
 
-
-
 The sourcewidth and sourceheight we have specified are the very dimensions of the image we have used, please put in the corresponding dimensions for the image you chose to use.
-
-
 
 Now lets block our toolbar
 
@@ -370,15 +324,11 @@ Component {
     }
 
 }
-
-
 ```
 
 When you run it, you should see
 
 ![](D:\GitHub\Articulae\mds\images\tool_bar_waterfall.PNG)
-
-
 
 Create a new file name it Controlbar
 
@@ -400,7 +350,6 @@ ToolBar {
     }
 
 }
-
 ```
 
 Now replace it in the `indivi.qml`
@@ -433,8 +382,6 @@ Component {
     }
 
 }
-
-
 ```
 
 When you run it, you should see
@@ -442,8 +389,6 @@ When you run it, you should see
 ![](D:\GitHub\Articulae\mds\images\tool_bar_waterfall.PNG)
 
 We shall improve on the toolbar later
-
-
 
 Lets add the navigation button
 
@@ -493,8 +438,6 @@ Component {
     }
 
 }
-
-
 ```
 
 When you run this you should see
@@ -502,8 +445,6 @@ When you run this you should see
 ![](D:\GitHub\Articulae\mds\images\nav_buttons.PNG)
 
 Next
-
-
 
 addmik the zoom buttons
 
@@ -561,8 +502,6 @@ Component {
     }
 
 }
-
-
 ```
 
 When you run it, you should see
@@ -570,8 +509,6 @@ When you run it, you should see
 ![](D:\GitHub\Articulae\mds\images\zoom_buttons.PNG)
 
 Next improve on the toolbar.
-
-
 
 You can see that the items are in a row. So we put in a rowlayout
 
@@ -613,15 +550,11 @@ ToolBar {
     }
 
 }
-
-
 ```
 
 When you run it
 
 ![](D:\GitHub\Articulae\mds\images\toolbar_btn.PNG)
-
-
 
 Lets add the menu at the end of the row..
 
@@ -691,8 +624,6 @@ ToolBar {
     }
 
 }
-
-
 ```
 
 The `AboutToShow` increases the height.
@@ -728,7 +659,6 @@ ToolButton {
     }
 
 }
-
 ```
 
 Then import it inside
@@ -779,15 +709,11 @@ ToolBar {
     }
 
 }
-
-
 ```
 
 When you run it you should see.
 
 ![](D:\GitHub\Articulae\mds\images\cust_btn_bar.PNG)
-
-
 
 Now block the rest
 
@@ -848,17 +774,11 @@ ToolBar {
     }
 
 }
-
-
 ```
-
-
 
 ![](D:\GitHub\Articulae\mds\images\tool_bar_allbtns.PNG)
 
 Now lets improve on the custtoolbar
-
-
 
 Now lets add the description at the button of the end
 
@@ -903,8 +823,6 @@ ToolButton {
     }
 
 }
-
-
 ```
 
 Now the descript won't show if the height is less than 48 based on the code: `visible: ctrl.height > 48`
@@ -968,11 +886,7 @@ ToolBar {
     ...
 
 }
-
-
 ```
-
-
 
 Almost all the buttons will have icons. Glphs.
 
@@ -1037,8 +951,6 @@ ToolButton {
     ...
 
 }
-
-
 ```
 
 Glyphs uses unicode, so whatever we put as text will become an icon. Lets place these icons then
@@ -1102,8 +1014,6 @@ ToolBar {
     }
 
 }
-
-
 ```
 
 When you run
@@ -1111,8 +1021,6 @@ When you run
 ![](D:\GitHub\Articulae\mds\images\glyph_toolbar.PNG)
 
 Next lets add glyph for the menubar Icon
-
-
 
 control.qml
 
@@ -1152,8 +1060,6 @@ ToolBar {
     ...
 
 }
-
-
 ```
 
 Next we use the glyphs for the navigation icons. But lets create a specific compo for it so we can use it later on
@@ -1183,8 +1089,6 @@ Button {
         font.pixelSize: 15
     }
 }
-
-
 ```
 
 You can see that we have used mdl2 icons for the text.
@@ -1235,8 +1139,6 @@ Component {
     }
 
 }
-
-
 ```
 
 When you run it, you should see
@@ -1271,7 +1173,6 @@ Button {
     }
 
 }
-
 ```
 
 Now put it into the individual.qml
@@ -1327,8 +1228,107 @@ Component {
     }
 
 }
-
-
 ```
 
 ![](D:\GitHub\Articulae\mds\images\real_zoom_buttons.PNG)
+
+Next lets do
+
+| icon for view all photos
+
+controlbar.qml
+
+```qml
+...
+
+
+ToolBar {
+    id: toolbar
+    ...
+
+
+    RowLayout {
+        ...
+
+        Rectangle {
+            ...
+
+            ToolButton {
+                id: ctrl
+                text: "View all photos"
+                width: 148
+                height: 48
+
+                contentItem: RowLayout {
+                    anchors.left:parent.left
+                    anchors.right: parent.right
+                    anchors.leftMargin: 12
+                    anchors.rightMargin: 12
+
+                    Text {
+                        text: "\uEB9F"
+                        font.family: segoe_mdl2.name
+                        font.pixelSize: 16
+                        color: "white"
+                        renderType: Text.NativeRendering
+
+                    }
+
+                    Text {
+                        text: ctrl.text
+                        color: "white"
+                        font.pixelSize: 16
+                    }
+                }
+
+            }
+
+        }
+
+        CustToolButton {
+            ...
+        }
+
+        CustToolButton {
+            ...
+        }
+
+        CustToolButton {
+            ...
+        }
+        CustToolButton {
+            ...
+        }
+        CustToolButton {
+            ...
+        }
+
+        MenuBar {
+            ...
+        }
+
+    }
+
+
+
+
+    background: Rectangle {
+        ...
+    }
+
+}
+```
+
+![](D:\GitHub\Articulae\mds\images\view_all_photos_icon.PNG)
+
+| Remove the title bar
+
+| Use title for title
+
+| all UI done
+
+Create backed
+
+| Connect the python
+
+|
