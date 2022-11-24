@@ -9,6 +9,7 @@ ApplicationWindow {
     visible: true
     width: 800
     height: 600
+    flags: Qt.FramelessWindowHint | Qt.Window
 
     Universal.theme: Universal.Dark
 
