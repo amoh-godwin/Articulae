@@ -1323,6 +1323,37 @@ ToolBar {
 
 | Remove the title bar
 
+main.qml
+
+```qml
+...
+import "./components" as Comp
+
+
+ApplicationWindow {
+    ...
+    height: 600
+    flags: Qt.FramelessWindowHint | Qt.Window
+
+    Universal.theme: Universal.Dark
+
+    FontLoader {id: segoe_mdl2; source: "./components/segoe-mdl2-assets.ttf" }
+
+    StackView {
+        ...
+    }
+
+    ...
+
+}
+
+
+```
+
+
+
+
+
 | Use title for title
 
 | all UI done
