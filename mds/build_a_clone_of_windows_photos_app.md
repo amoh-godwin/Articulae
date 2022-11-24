@@ -1352,6 +1352,14 @@ ApplicationWindow {
 
 
 
+You should see
+
+![](D:\GitHub\Articulae\mds\images\frameless.PNG)
+
+ You can close it by
+
+![](D:\GitHub\Articulae\mds\images\frameless_close.PNG)
+
 
 
 | Use title for title
