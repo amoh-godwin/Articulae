@@ -23,6 +23,29 @@ ToolBar {
                 text: "View all photos"
                 width: 148
                 height: 48
+
+                contentItem: RowLayout {
+                    anchors.left:parent.left
+                    anchors.right: parent.right
+                    anchors.leftMargin: 12
+                    anchors.rightMargin: 12
+
+                    Text {
+                        text: "\uEB9F"
+                        font.family: segoe_mdl2.name
+                        font.pixelSize: 16
+                        color: "white"
+                        renderType: Text.NativeRendering
+
+                    }
+
+                    Text {
+                        text: ctrl.text
+                        color: "white"
+                        font.pixelSize: 16
+                    }
+                }
+
             }
 
         }
