@@ -8,13 +8,41 @@ We will be using the Top-down approach, because it is more real world like. Befo
 
 For our UI we will be using QML. Javascript-like styling language.
 
-Lets setup our project folders however
 
-Create a folder
 
-Create another UI folder
+## Installations
 
-Create a main.py file
+### Install PyQt6 or PySide6
+
+There are two different types of Qt for Python. PyQt6 and PySide6. You can choose whichever one you want. i recommend PyQt6, because it makes installation easier. Whereas with PySide6, on occasions, you might have to tweak it to get it to work.
+
+To install Open your Command Prompt or Terminal, and write the following.
+
+```shell
+$ pip install PyQt6
+```
+
+and if you prefer PySide6
+
+```shell
+$ pip install PySide6
+```
+
+The last thing you will need to get is Ninja-Preview.
+
+This is just a previewer of the UI files before we connect it to python, since we will be focusing on the UI before handling functionality with Python.
+
+
+
+## Project Folder
+
+Lets setup our project folders
+
+Create a folder that will have all of your project files. You can call it whatever you want, eg: PhotosClone.
+
+Create a main.py file it it.
+
+Create another folder in it, and call it 'UI', this will have specifically the UI files.
 
 Create a main.qml file inside the UI folder.
 
