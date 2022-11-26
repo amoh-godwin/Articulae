@@ -17,6 +17,8 @@ ApplicationWindow {
     property int orig_x: 0
     property int orig_y: 0
 
+    property QtObject backend
+
     Universal.theme: Universal.Dark
 
     FontLoader {id: segoe_mdl2; source: "./components/segoe-mdl2-assets.ttf" }
@@ -107,6 +109,27 @@ ApplicationWindow {
         border.width: portrait ? 1 : 0
         border.color: "gold"
         color: "transparent"
+    }
+
+    Connections {
+        target: backend
+
+        function onFirstImage(title, img, index, w, h, total) {
+            title_str = title + " - Photos"
+            currImageSource = img
+            currIndex = index
+            imgWidth = w
+            imgHeight = h
+            imgTotal = total
+        }
+
+        function onUpdateImage(title, img, index, w, h) {
+            title_str = title + " - Photos"
+            currImageSource = img
+            currIndex = index
+            imgWidth = w
+            imgHeight = h
+        }
     }
 
 }
