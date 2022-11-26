@@ -19,10 +19,10 @@ Component {
                 anchors.centerIn: parent
                 width: parent.width
                 height: parent.height
-                sourceSize.width: 1333
-                sourceSize.height: 2000
+                sourceSize.width: imgWidth
+                sourceSize.height: imgHeight
                 fillMode: Image.PreserveAspectFit
-                source: "file:///C:/Users/workgroup/Pictures/Saved Pictures/pexels-araz-yurtseven-12531788.jpg"
+                source: currImageSource
             }
 
         }
@@ -39,12 +39,16 @@ Component {
                 text: "\uE76B"
                 Layout.alignment: Qt.AlignLeft
                 Layout.preferredWidth: 18
+                onClicked: backend.get_image_at_index(currIndex - 1)
+                visible: currIndex > 0
             }
 
             CustNavButton {
                 text: "\uE76C"
                 Layout.alignment: Qt.AlignRight
                 Layout.preferredWidth: 18
+                onClicked: backend.get_image_at_index(currIndex + 1)
+                visible: currIndex < imgTotal - 1
             }
 
         }
