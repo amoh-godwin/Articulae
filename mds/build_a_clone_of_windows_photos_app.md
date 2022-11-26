@@ -1346,11 +1346,7 @@ ApplicationWindow {
     ...
 
 }
-
-
 ```
-
-
 
 You should see
 
@@ -1360,9 +1356,405 @@ You should see
 
 ![](D:\GitHub\Articulae\mds\images\frameless_close.PNG)
 
+| Add a bar
 
+main.qml
+
+```qml
+...
+
+
+ApplicationWindow {
+    ...
+    flags: Qt.FramelessWindowHint | Qt.Window
+
+    Universal.theme: Universal.Dark
+
+    FontLoader {id: segoe_mdl2; source: "./components/segoe-mdl2-assets.ttf" }
+
+    header: Rectangle {
+        width: parent.width
+        height: 30
+        color: "transparent"
+    }
+
+    StackView {
+        ...
+    }
+
+    ...
+
+}
+
+
+```
+
+[Image]
+
+| Use a draggable
+
+main.qml
+
+```qml
+...
+
+
+ApplicationWindow {
+    id: mainWindow
+    ...
+    flags: Qt.FramelessWindowHint | Qt.Window
+
+    property int orig_x: 0
+    property int orig_y: 0
+
+    Universal.theme: Universal.Dark
+
+    FontLoader {id: segoe_mdl2; source: "./components/segoe-mdl2-assets.ttf" }
+
+    header: Rectangle {
+        width: parent.width
+        height: 30
+        color: "transparent"
+
+        MouseArea {
+            anchors.fill: parent
+            hoverEnabled: true
+
+            onPressed: {
+                orig_x = mouseX
+                orig_y = mouseY
+            }
+
+            onPositionChanged: {
+                if(!containsPress) {
+                    return;
+                }
+                var dx = mouse.x - orig_x
+                var dy = mouse.y - orig_y
+                var newx = mainWindow.x + dx
+                var newy = mainWindow.y + dy
+                mainWindow.setX(newx);
+                mainWindow.setY(newy);
+            }
+
+            onReleased: {
+                orig_x = mouseX
+                orig_y = mouseY
+            }
+
+        }
+
+    }
+
+    StackView {
+        ...
+    }
+
+    ...
+
+}
+
+
+```
+
+![](D:\GitHub\Articulae\mds\images\movable.PNG)
+
+| Add the close buttons
+
+Create a new file  name it closebutton.qml
+
+closebutton.qml
+
+```qml
+import QtQuick
+import QtQuick.Controls.Universal
+import QtQuick.Layouts
+
+Button {
+
+    background: Rectangle {
+        implicitWidth: 46
+        implicitHeight: 28
+        color: parent.hovered ? Qt.rgba(255, 255, 255, 0.1): "transparent"
+    }
+
+    contentItem: Text {
+        verticalAlignment: Text.AlignVCenter
+        horizontalAlignment: Text.AlignHCenter
+        text: parent.text
+        font.family: segoe_icon.name
+        font.pixelSize: 10
+        color: "white"
+    }
+}
+
+```
+
+Now use it in the main.qml
+
+main.qml
+
+```qml
+...
+
+
+ApplicationWindow {
+    id: mainWindow
+    visible: true
+    width: 800
+    height: 600
+    flags: Qt.FramelessWindowHint | Qt.Window
+
+    property int orig_x: 0
+    property int orig_y: 0
+
+    Universal.theme: Universal.Dark
+
+    FontLoader {id: segoe_mdl2; source: "./components/segoe-mdl2-assets.ttf" }
+
+    header: Rectangle {
+        width: parent.width
+        height: 30
+        color: "transparent"
+
+        MouseArea {
+            ...
+        }
+
+        RowLayout {
+            anchors.fill: parent
+            anchors.leftMargin: 12
+            spacing: 0
+
+            Rectangle {
+                Layout.fillWidth: true
+                Layout.fillHeight: true
+                color: "transparent"
+            }
+
+            Comp.CloseButton {
+                text: "\ue921"
+                onClicked: mainWindow.showMinimized()
+            }
+
+            Comp.CloseButton {
+                text: "\ue922"
+                onClicked: mainWindow.showMaximized()
+            }
+
+            Comp.CloseButton {
+                text: "\ue8bb"
+                onClicked: mainWindow.close()
+            }
+
+        }
+
+    }
+
+    StackView {
+        ...
+    }
+
+    ...
+
+}
+
+
+```
+
+above
+
+![](D:\GitHub\Articulae\mds\images\closebuttons.PNG)
 
 | Use title for title
+
+We will be using titles now
+
+main.qml
+
+```qml
+...
+
+
+ApplicationWindow {
+    ...
+    flags: Qt.FramelessWindowHint | Qt.Window
+
+    property string title_str: "Photos"
+
+    property int orig_x: 0
+    property int orig_y: 0
+
+    ...
+
+    header: Rectangle {
+        ...
+
+        MouseArea {
+            ...
+        }
+
+        RowLayout {
+            anchors.fill: parent
+            anchors.leftMargin: 12
+            spacing: 0
+
+            Text {
+                text: title_str
+                font.pixelSize: 12
+                font.bold: true
+                color: "white"
+            }
+
+            Rectangle {
+                ...
+            }
+
+            Comp.CloseButton {
+                ...
+            }
+
+            ...
+
+        }
+
+    }
+
+    StackView {
+        ...
+    }
+
+    ...
+
+}
+
+
+```
+
+ll
+
+![](D:\GitHub\Articulae\mds\images\title_str.PNG)
+
+Add portrait code to control maximise and minimise
+
+main.qml
+
+```qml
+...
+
+
+ApplicationWindow {
+    ...
+
+    property string title_str: "Photos"
+    property bool portrait: width < 803
+
+    property int orig_x: 0
+    ...    
+
+    header: Rectangle {
+        ...
+
+        MouseArea {
+            ...
+
+        }
+
+        RowLayout {
+            anchors.fill: parent
+            anchors.leftMargin: 12
+            spacing: 0
+
+            Text {
+                ...
+            }
+
+            Rectangle {
+                ...
+            }
+
+            Comp.CloseButton {
+                text: "\ue921"
+                onClicked: mainWindow.showMinimized()
+            }
+
+            Comp.CloseButton {
+                text: portrait ? "\ue922" : "\uE923"
+                onClicked: portrait ? mainWindow.showMaximized() : mainWindow.showNormal()
+            }
+
+            Comp.CloseButton {
+                text: "\ue8bb"
+                onClicked: mainWindow.close()
+            }
+
+        }
+
+    }
+
+    StackView {
+        ...
+    }
+
+    ...
+
+}
+
+
+```
+
+Add a border
+
+```qml
+...
+
+
+ApplicationWindow {
+    ...
+
+    property string title_str: "Photos"
+    property bool portrait: width < 803
+
+    ...
+
+    header: Rectangle {
+        width: parent.width - 2
+        height: 30
+        color: "transparent"
+
+        MouseArea {
+            ...
+
+        }
+
+        RowLayout {
+            ...
+        }
+
+    }
+
+    StackView {
+        id: mainStack
+        anchors.centerIn: parent
+        width: parent.width - 2
+        height: parent.height -2
+        initialItem: individual
+    }
+
+    Comp.IndividualView {id: individual}
+
+    background: Rectangle {
+        width: parent.width
+        height: parent.height
+        border.width: portrait ? 1 : 0
+        border.color: "gold"
+        color: "transparent"
+    }
+
+}
+
+
+```
 
 | all UI done
 
