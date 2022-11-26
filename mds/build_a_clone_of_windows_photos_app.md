@@ -53,6 +53,10 @@ You should see a basic window with
 
 Since we have already imported our s niversal styling which makes our controls look like that of the windows Universal style, we can set a dark theme
 
+
+
+> main.qml
+
 ```qml
 import QtQuick
 import QtQuick.Controls.Universal
@@ -81,6 +85,8 @@ Now you can see that everything else draws on top of the image viewer.
 The photos app allows multiple view type. For the sake of brevity, which shall focus on only the
 
 So lets start by adding a stack view which we would have used even if we implemented the other view.
+
+> main.qml
 
 ```qml
 import QtQuick
@@ -1969,7 +1975,7 @@ class Backend(QObject):
             if '//' in img_name:
                 name = img_name
 
-            self.firstImage.emit(title, name, self.curr_index, w, h, total)
+            print(title, name, self.curr_index, w, h, total)
 
 
 
@@ -1979,6 +1985,348 @@ Call the startup method
 
 main.py
 
+```python
+...
+back_end = Backend()
+engine.load('./UI/main.qml')
+engine.rootObjects()[0].setProperty('backend', back_end)
+back_end.start_up(sys.argv)
+engine.quit.connect(app.quit)
 
+sys.exit(app.exec())
+
+
+```
+
+Usin the command prompt or ter
+
+![](D:\GitHub\Articulae\mds\images\Cmd_filepath.PNG)
+
+After running, among the warnings,
+
+![](D:\GitHub\Articulae\mds\images\print.PNG)
+
+Make the connections for them in Qml
+
+Usings signals
+
+func.py
+
+```python
+...
+from PIL import Image
+from PyQt6.QtCore import QObject, pyqtSignal as Signal
+
+
+class Backend(QObject):
+
+    def __init__(self, parent=None):
+        ...
+        self.curr_index = 0
+
+    firstImage = Signal(str, str, int , int, int, int)
+
+    def get_image_sizes(self):
+        ...
+
+    ...
+
+    def start_up(self, argv: List):
+        if len(argv) > 1:
+            ...
+
+            if '//' in img_name:
+                name = img_name
+
+            self.firstImage.emit(title, name, self.curr_index, w, h, total)
+
+
+
+```
+
+main.qml
+
+```qml
+...
+
+
+ApplicationWindow {
+    ...
+
+    property QtObject backend
+
+    property string currImageSource: ""
+    property int currIndex: -1
+    property int imgWidth
+    property int imgHeight
+    property int imgTotal
+
+    Universal.theme: Universal.Dark
+
+    FontLoader {id: segoe_mdl2; source: "./components/segoe-mdl2-assets.ttf" }
+
+    header: Rectangle {
+        ...
+
+    }
+
+    StackView {
+        ...
+    }
+
+    Comp.IndividualView {id: individual}
+
+    background: Rectangle {
+        ...
+    }
+
+    Connections {
+        target: backend
+
+        function onFirstImage(title, img, index, w, h, total) {
+            title_str = title + " - Photos"
+            currImageSource = img
+            currIndex = index
+            imgWidth = w
+            imgHeight = h
+            imgTotal = total
+        }
+
+    }
+
+}
+
+
+```
+
+individulCop.qml
+
+```qml
+...
+
+Component {
+
+    Rectangle {
+        anchors.fill: parent
+        color: "transparent"
+
+        Rectangle {
+            ...
+
+            Image {
+                id: viewer
+                anchors.centerIn: parent
+                width: parent.width
+                height: parent.height
+                sourceSize.width: imgWidth
+                sourceSize.height: imgHeight
+                fillMode: Image.PreserveAspectFit
+                source: currImageSource
+            }
+
+        }
+
+        ControlBar {
+        }
+
+        RowLayout {
+            ...
+        }
+
+        RowLayout {
+            ...
+        }
+
+    }
+
+}
+
+
+```
+
+New image
+
+![](D:\GitHub\Articulae\mds\images\new_image.PNG)
+
+The nav buttons
+
+individualcom.qml
+
+```qml
+...
+
+Component {
+
+    Rectangle {
+        anchors.fill: parent
+        color: "transparent"
+
+        Rectangle {
+            id: viewerParent
+            ...
+        }
+
+        ControlBar {
+        }
+
+        RowLayout {
+            anchors.verticalCenter: parent.verticalCenter
+            width: parent.width
+            height: 48
+
+            CustNavButton {
+                text: "\uE76B"
+                Layout.alignment: Qt.AlignLeft
+                Layout.preferredWidth: 18
+                onClicked: backend.get_image_at_index(currIndex - 1)
+                visible: currIndex > 0
+            }
+
+            CustNavButton {
+                text: "\uE76C"
+                Layout.alignment: Qt.AlignRight
+                Layout.preferredWidth: 18
+                onClicked: backend.get_image_at_index(currIndex + 1)
+                visible: currIndex < imgTotal - 1
+            }
+
+        }
+
+        RowLayout {
+            ...
+        }
+
+    }
+
+}
+
+
+```
+
+create the get imae at index slot.
+
+func.py
+
+the import statements
+
+```python
+import os
+import threading
+from typing import List, Tuple
+from PIL import Image
+from PyQt6.QtCore import QObject, pyqtSignal as Signal, pyqtSlot as Slot
+
+
+class Backend(QObject):
+
+    def __init__(self, parent=None):
+        QObject.__init__(self)
+        ...
+
+```
+
+Now the `Backend` class
+
+
+
+```python
+...
+
+class Backend(QObject):
+
+    def __init__(self, parent=None):
+        ...
+        self.curr_index = 0
+
+    firstImage = Signal(str, str, int , int, int, int)
+    updateImage = Signal(str, str, int, int, int)
+
+    @Slot(int)
+    def get_image_at_index(self, index: int):
+        g_thread = threading.Thread(
+            target=self._get_image_at_index,
+            args=[index])
+        g_thread.daemon = True
+        g_thread.start()
+
+    def _get_image_at_index(self, index: int):
+
+        if self.curr_folder_imgs[index]:
+            self.curr_index = index
+            img_name = self.curr_folder_imgs[index]
+            curr_img = "file:///" + img_name
+            if '//' in img_name:
+                curr_img = img_name
+            title = os.path.split(curr_img)[-1]
+            w, h = self.images_sizes[index]
+            self.updateImage.emit(title, curr_img, self.curr_index, w, h)
+
+    def get_image_sizes(self):
+        ...
+
+    ...
+
+
+```
+
+Receive this signal too in Qml
+
+main.qml
+
+```qml
+...
+
+
+ApplicationWindow {
+    ...
+
+    header: Rectangle {
+        ...
+    }
+
+    StackView {
+        ...
+    }
+
+    Comp.IndividualView {id: individual}
+
+    background: Rectangle {
+        ...
+    }
+
+    Connections {
+        target: backend
+
+        function onFirstImage(title, img, index, w, h, total) {
+            title_str = title + " - Photos"
+            currImageSource = img
+            currIndex = index
+            imgWidth = w
+            imgHeight = h
+            imgTotal = total
+        }
+
+        function onUpdateImage(title, img, index, w, h) {
+            title_str = title + " - Photos"
+            currImageSource = img
+            currIndex = index
+            imgWidth = w
+            imgHeight = h
+        }
+
+    }
+
+}
+
+
+```
+
+Now you should be able to click and view all imags
+
+
+
+![](D:\GitHub\Articulae\mds\images\nav_btns.PNG)
+
+Finally we are all done. This has been a long tutorial so we will go no further.
 
 |
