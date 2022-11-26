@@ -37,6 +37,8 @@ ApplicationWindow {
 }
 ```
 
+*Listing 1 -*
+
 ### Running our QML file
 
 1. Open Ninja-Preview
@@ -73,6 +75,8 @@ ApplicationWindow {
 
 }
 ```
+
+*Listing 1 -*
 
 Now you should see
 
@@ -112,6 +116,8 @@ ApplicationWindow {
 }
 ```
 
+*Listing 1 -*
+
 Now you don't really see anythong
 
 It chooses between components to display. Lets create a component that it can use.
@@ -134,6 +140,8 @@ Component {
 
 }
 ```
+
+*Listing 1 -*
 
 Add it to the `main.qml` file
 
@@ -167,6 +175,8 @@ ApplicationWindow {
 }
 ```
 
+*Listing 1 -*
+
 The main changes were, we imported the folder that contains and namespaced it.
 
 `import "./components" as Comp`, then we call the component ( components don't draw on default) and give it an id and then assigns it.
@@ -179,7 +189,7 @@ Now if you run it you would see aa blue window now.
 
 From hereon you will be seeing three dots (...) in the code, to represent code that has already been presented previously. E.g. the previous code could have been written as:
 
-main.qml
+> main.qml
 
 ```qml
 import QtQuick
@@ -212,9 +222,9 @@ For a picture like this
 
 ![](C:\Users\workgroup\Pictures\Saved%20Pictures\pexels-pixabay-358457.jpg)
 
-In the individual coomponent
+In the IndividualView coomponent
 
-components/Individual.qml
+> components/IndividualView.qml
 
 ```qml
 import QtQuick
@@ -258,6 +268,8 @@ Do not close it yet.
 
 Then add a sourcesize and aspect ratio properties to the Image type
 
+> components/IndividualView.qml
+
 ```qml
 ...
 
@@ -296,6 +308,8 @@ You should see, something like this, depending on your image
 The sourcewidth and sourceheight we have specified are the very dimensions of the image we have used, please put in the corresponding dimensions for the image you chose to use.
 
 Now lets block our toolbar
+
+> components/IndividualView.qml
 
 ```qml
 ...
@@ -336,9 +350,9 @@ When you run it, you should see
 
 ![](D:\GitHub\Articulae\mds\images\tool_bar_waterfall.PNG)
 
-Create a new file name it Controlbar
+Create a new file name it ControlBar.qml
 
-controlbar.qml
+> components/ControlBar.qml
 
 ```qml
 import QtQuick
@@ -358,9 +372,9 @@ ToolBar {
 }
 ```
 
-Now replace it in the `indivi.qml`
+Now replace it in the `IndividualView.qml`
 
-Indiv.qml
+> components/IndividualView.qml
 
 ```qml
 ...
@@ -398,7 +412,7 @@ We shall improve on the toolbar later
 
 Lets add the navigation button
 
-Ind.qml
+> components/IndividualView.qml
 
 ```qml
 ...
@@ -453,6 +467,8 @@ When you run this you should see
 Next
 
 addmik the zoom buttons
+
+> components/IndividualView.qml
 
 ```qml
 ...
@@ -518,7 +534,7 @@ Next improve on the toolbar.
 
 You can see that the items are in a row. So we put in a rowlayout
 
-control.qml
+> components/ControlBar.qml
 
 ```qml
 ...
@@ -564,7 +580,7 @@ When you run it
 
 Lets add the menu at the end of the row..
 
-contrl.qml
+> components/ControlBar.qml
 
 ```qml
 ...
@@ -640,7 +656,7 @@ Lets add the buttons found in between the two
 
 Create a new file and name it CustToolButton.qml inside
 
-custtoolbutton.qml
+> components/CustToolButton.qml
 
 ```qml
 import QtQuick
@@ -669,7 +685,7 @@ ToolButton {
 
 Then import it inside
 
-control.qml
+> components/ControlBar.qml
 
 ```qml
 ...
@@ -723,7 +739,7 @@ When you run it you should see.
 
 Now block the rest
 
-control.qml
+> components/ControlBar.qml
 
 ```qml
 ...
@@ -788,6 +804,8 @@ Now lets improve on the custtoolbar
 
 Now lets add the description at the button of the end
 
+> components/CustToolButton.qml
+
 ```qml
 ...
 
@@ -835,7 +853,7 @@ Now the descript won't show if the height is less than 48 based on the code: `vi
 
 Now assign the descriptions
 
-control.qml
+> components/ControlBar.qml
 
 ```qml
 ...
@@ -898,7 +916,7 @@ Almost all the buttons will have icons. Glphs.
 
 Load the glyphs as icons
 
-main.qml
+> main.qml
 
 ```qml
 import QtQuick
@@ -925,9 +943,9 @@ ApplicationWindow {
 
 We can access the glyphs from within our application once it has been loaded by the main entry file
 
-Now use as the glyph for the custtoolbar
+Now use as the glyph for the CustToolButton
 
-custtoolb.qml
+> components/CustToolButton.qml
 
 ```qml
 ...
@@ -960,6 +978,8 @@ ToolButton {
 ```
 
 Glyphs uses unicode, so whatever we put as text will become an icon. Lets place these icons then
+
+> components/ControlBar.qml
 
 ```qml
 ...
@@ -1028,7 +1048,7 @@ When you run
 
 Next lets add glyph for the menubar Icon
 
-control.qml
+> components/ControlBar.qml
 
 ```qml
 ...
@@ -1072,7 +1092,7 @@ Next we use the glyphs for the navigation icons. But lets create a specific comp
 
 Create a new file CustNavButton
 
-custnavbutton.qml
+> components/CustNavButton.qml
 
 ```qml
 import QtQuick
@@ -1099,9 +1119,9 @@ Button {
 
 You can see that we have used mdl2 icons for the text.
 
-Next use it in the indivi
+Next use it in the IndividualView component
 
-individual.qml
+> components/IndividualView.qml
 
 ```qml
 ...
@@ -1153,9 +1173,9 @@ When you run it, you should see
 
 Next the button for the zoom controls
 
-Lets create a new file and call it zoombutton.qml
+Lets create a new file and call it zoomButton.qml
 
-Zoombuton.qml
+> components/ZoomButon.qml
 
 ```qml
 import QtQuick
@@ -1181,9 +1201,9 @@ Button {
 }
 ```
 
-Now put it into the individual.qml
+Now put it into IndividualView.qml
 
-individual.qml
+> components/IndividualView.qml
 
 ```qml
 ...
@@ -1242,7 +1262,7 @@ Next lets do
 
 | icon for view all photos
 
-controlbar.qml
+> components/ControlBar.qml
 
 ```qml
 ...
@@ -1329,7 +1349,7 @@ ToolBar {
 
 | Remove the title bar
 
-main.qml
+> main.qml
 
 ```qml
 ...
@@ -1364,7 +1384,7 @@ You should see
 
 | Add a bar
 
-main.qml
+> main.qml
 
 ```qml
 ...
@@ -1399,7 +1419,7 @@ ApplicationWindow {
 
 | Use a draggable
 
-main.qml
+> main.qml
 
 ```qml
 ...
@@ -1467,9 +1487,9 @@ ApplicationWindow {
 
 | Add the close buttons
 
-Create a new file  name it closebutton.qml
+Create a new file  name it CloseButton.qml
 
-closebutton.qml
+> components/CloseButton.qml
 
 ```qml
 import QtQuick
@@ -1498,7 +1518,7 @@ Button {
 
 Now use it in the main.qml
 
-main.qml
+> main.qml
 
 ```qml
 ...
@@ -1576,7 +1596,7 @@ above
 
 We will be using titles now
 
-main.qml
+> main.qml
 
 ```qml
 ...
@@ -1643,7 +1663,7 @@ ll
 
 Add portrait code to control maximise and minimise
 
-main.qml
+> main.qml
 
 ```qml
 ...
@@ -1770,7 +1790,7 @@ Create backed
 
 Inside the main.py link the qml file.
 
-main.py
+> main.py
 
 ```python
 import sys
@@ -1808,7 +1828,7 @@ Now the functionality will be kept in a separate file so code can be well organi
 
 Create a new file, name it func.py
 
-func.py
+> func.py
 
 ```python
 from PyQt6.QtCore import QObject
@@ -1823,7 +1843,7 @@ class Backend(QObject):
 
 Connect it to the main.py
 
-main.py
+> main.py
 
 ```python
 ...
@@ -1888,9 +1908,7 @@ ApplicationWindow {
 
 Now create  startup method
 
-func.py
-
-
+> func.py
 
 import statements
 
@@ -1911,6 +1929,8 @@ class Backend(QObject):
 ```
 
 Then in the file, in the class `Backend`
+
+> func.py
 
 ```python
 ...
@@ -1983,7 +2003,7 @@ class Backend(QObject):
 
 Call the startup method
 
-main.py
+> main.py
 
 ```python
 ...
@@ -2010,7 +2030,7 @@ Make the connections for them in Qml
 
 Usings signals
 
-func.py
+> func.py
 
 ```python
 ...
@@ -2044,7 +2064,7 @@ class Backend(QObject):
 
 ```
 
-main.qml
+> main.qml
 
 ```qml
 ...
@@ -2099,7 +2119,7 @@ ApplicationWindow {
 
 ```
 
-individulCop.qml
+> components/IndividualView.qml
 
 ```qml
 ...
@@ -2150,7 +2170,7 @@ New image
 
 The nav buttons
 
-individualcom.qml
+> components/IndividualView.qml
 
 ```qml
 ...
@@ -2205,7 +2225,7 @@ Component {
 
 create the get imae at index slot.
 
-func.py
+> func.py
 
 the import statements
 
@@ -2227,7 +2247,7 @@ class Backend(QObject):
 
 Now the `Backend` class
 
-
+> func.py
 
 ```python
 ...
@@ -2271,7 +2291,7 @@ class Backend(QObject):
 
 Receive this signal too in Qml
 
-main.qml
+> main.qml
 
 ```qml
 ...
@@ -2321,7 +2341,7 @@ ApplicationWindow {
 
 ```
 
-Now you should be able to click and view all imags
+Now you should be able to click and view all images
 
 
 
