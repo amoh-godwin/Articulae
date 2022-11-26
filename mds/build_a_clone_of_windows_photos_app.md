@@ -46,7 +46,9 @@ Create another folder in it, and call it 'UI', this will have specifically the U
 
 Create a main.qml file inside the UI folder.
 
-Now open the main.qml file and add our window code
+
+
+Now open the main.qml file and add a basic window code
 
 > main.qml
 
@@ -77,9 +79,9 @@ ApplicationWindow {
 
 ![](D:\GitHub\Articulae\mds\images\ninja_preview_run.PNG)
 
-You should see a basic window with
+You should see a basic window popup
 
-[Image]
+![](D:\GitHub\Articulae\mds\images\base_window.PNG)
 
 Since we have already imported our s niversal styling which makes our controls look like that of the windows Universal style, we can set a dark theme
 
@@ -108,9 +110,9 @@ ApplicationWindow {
 
 Now you should see
 
-[Image]
+![](D:\GitHub\Articulae\mds\images\dark_window.PNG)
 
-Now you can see that the only thing that doesn't look like a the windows photos app is the title bar, which we will handle
+Now you can see that the only thing that doesn't look like a the windows photos app is the title bar, which we will remove later.
 
 Now you can see that everything else draws on top of the image viewer.
 
