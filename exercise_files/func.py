@@ -2,7 +2,7 @@ import os
 import threading
 from typing import List, Tuple
 from PIL import Image
-from PyQt6.QtCore import QObject
+from PyQt6.QtCore import QObject, pyqtSignal as Signal, pyqtSlot as Slot
 
 
 class Backend(QObject):
@@ -14,6 +14,29 @@ class Backend(QObject):
         self.curr_folder = ""
         self.curr_folder_imgs = tuple()
         self.curr_index = 0
+
+    firstImage = Signal(str, str, int , int, int, int)
+    updateImage = Signal(str, str, int, int, int)
+
+    @Slot(int)
+    def get_image_at_index(self, index: int):
+        g_thread = threading.Thread(
+            target=self._get_image_at_index,
+            args=[index])
+        g_thread.daemon = True
+        g_thread.start()
+
+    def _get_image_at_index(self, index: int):
+
+        if self.curr_folder_imgs[index]:
+            self.curr_index = index
+            img_name = self.curr_folder_imgs[index]
+            curr_img = "file:///" + img_name
+            if '//' in img_name:
+                curr_img = img_name
+            title = os.path.split(curr_img)[-1]
+            w, h = self.images_sizes[index]
+            self.updateImage.emit(title, curr_img, self.curr_index, w, h)
 
     def get_image_sizes(self):
         sizes_thread = threading.Thread(target=self._get_image_sizes)
