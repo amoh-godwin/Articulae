@@ -15,6 +15,7 @@ engine = QQmlApplicationEngine()
 back_end = Backend()
 engine.load('./UI/main.qml')
 engine.rootObjects()[0].setProperty('backend', back_end)
+back_end.start_up(sys.argv)
 engine.quit.connect(app.quit)
 
 sys.exit(app.exec())
