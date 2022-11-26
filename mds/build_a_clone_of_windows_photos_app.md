@@ -1762,4 +1762,223 @@ Create backed
 
 | Connect the python
 
+Inside the main.py link the qml file.
+
+main.py
+
+```python
+import sys
+
+from PyQt6.QtGui import QGuiApplication
+from PyQt6.QtQml import QQmlApplicationEngine
+from PyQt6.QtQuick import QQuickWindow
+
+
+QQuickWindow.setSceneGraphBackend('software')
+
+app = QGuiApplication(sys.argv)
+
+engine = QQmlApplicationEngine()
+engine.load('./UI/main.qml')
+engine.quit.connect(app.quit)
+
+sys.exit(app.exec())
+
+```
+
+Now run it using command prompt or the terminal
+
+Navigate to the exact folder, as shown in image
+
+```shell
+>>> python main.py
+```
+
+![](D:\GitHub\Articulae\mds\images\Cmd.PNG)
+
+
+
+Now the functionality will be kept in a separate file so code can be well organised.
+
+Create a new file, name it func.py
+
+func.py
+
+```python
+from PyQt6.QtCore import QObject
+
+
+class Backend(QObject):
+
+    def __init__(self, parent=None):
+        QObject.__init__(self)
+
+```
+
+Connect it to the main.py
+
+main.py
+
+```python
+...
+from PyQt6.QtQuick import QQuickWindow
+
+from func import Backend
+
+
+QQuickWindow.setSceneGraphBackend('software')
+...
+
+engine = QQmlApplicationEngine()
+back_end = Backend()
+engine.load('./UI/main.qml')
+engine.rootObjects()[0].setProperty('backend', back_end)
+engine.quit.connect(app.quit)
+
+...
+
+
+```
+
+Connect it with the qml code.
+
+```qml
+...
+
+
+ApplicationWindow {
+    ...
+    property int orig_y: 0
+
+    property QtObject backend
+
+    Universal.theme: Universal.Dark
+
+    FontLoader {id: segoe_mdl2; source: "./components/segoe-mdl2-assets.ttf" }
+
+    header: Rectangle {
+        ...
+
+    }
+
+    StackView {
+        ...
+    }
+
+    ...
+
+    background: Rectangle {
+        
+    }
+
+    Connections {
+        target: backend
+    }
+
+}
+
+
+```
+
+Now create  startup method
+
+func.py
+
+
+
+import statements
+
+```python
+import os
+import threading
+from typing import List, Tuple
+from PIL import Image
+from PyQt6.QtCore import QObject
+
+
+class Backend(QObject):
+
+    def __init__(self, parent=None):
+        QObject.__init__(self)
+
+
+```
+
+Then in the file, in the class `Backend`
+
+```python
+...
+
+
+class Backend(QObject):
+
+    def __init__(self, parent=None):
+        QObject.__init__(self)
+        self.image_extensions = ('.jpg', '.png', '.jpeg', '.gif', '.tiff', '.svg')
+        self.images_sizes = tuple()
+        self.curr_folder = ""
+        self.curr_folder_imgs = tuple()
+        self.curr_index = 0
+
+    def get_image_sizes(self):
+        sizes_thread = threading.Thread(target=self._get_image_sizes)
+        sizes_thread.daemon = True
+        sizes_thread.start()
+
+    def _get_image_sizes(self):
+        sizes = []
+        for img in self.curr_folder_imgs:
+            sizes.append(self.get_size(img))
+
+        self.images_sizes = tuple(sizes)
+
+    def get_size(self, img_name: str) -> Tuple:
+
+        img = Image.open(img_name)
+        w, h = img.size
+
+        return w, h
+
+    def start_up(self, argv: List):
+        if len(argv) > 1:
+            self.curr_folder = os.path.abspath(os.path.dirname(argv[1]))
+            conts = os.listdir(self.curr_folder)
+
+            imgs = []
+            index = -1
+            for item in conts:
+                ext = os.path.splitext(item)[-1]
+                if ext in self.image_extensions:
+                    index += 1
+                    fullpath = os.path.abspath(os.path.join(self.curr_folder,
+                    item))
+                    if fullpath == argv[1]:
+                        self.curr_index = index
+
+                    imgs.append(fullpath)
+
+            self.curr_folder_imgs = tuple(imgs)
+
+            self.get_image_sizes()
+
+            w, h = self.get_size(argv[1])
+            total = len(self.curr_folder_imgs)
+            img_name = os.path.abspath(argv[1])
+            title = os.path.split(img_name)[-1]
+            name = "file:///" + img_name
+            if '//' in img_name:
+                name = img_name
+
+            self.firstImage.emit(title, name, self.curr_index, w, h, total)
+
+
+
+```
+
+Call the startup method
+
+main.py
+
+
+
 |
