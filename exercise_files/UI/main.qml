@@ -19,6 +19,12 @@ ApplicationWindow {
 
     property QtObject backend
 
+    property string currImageSource: ""
+    property int currIndex: -1
+    property int imgWidth
+    property int imgHeight
+    property int imgTotal
+
     Universal.theme: Universal.Dark
 
     FontLoader {id: segoe_mdl2; source: "./components/segoe-mdl2-assets.ttf" }
@@ -130,6 +136,7 @@ ApplicationWindow {
             imgWidth = w
             imgHeight = h
         }
+
     }
 
 }
