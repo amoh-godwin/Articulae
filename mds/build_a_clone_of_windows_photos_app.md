@@ -363,7 +363,7 @@ You should see, something like this, depending on the image you used.
 
 Please put in the corresponding dimensions for the image you choose to use as the `sourceSize`.
 
-Now lets block our toolbar
+Now lets block our toolbar. Open IndividualView.qml and add a ToolBar
 
 > components/IndividualView.qml
 
@@ -402,13 +402,13 @@ Component {
 }
 ```
 
-*Snippet 9 -*
+*Snippet 9 - The `ToolBar`'s background property has been modified, setting it to a Rectangle with a dark partially transparent color. All Controls have the `background` property but it is only modified when you don't like the default appearance*
 
 When you run it, you should see
 
 ![](D:\GitHub\Articulae\mds\images\tool_bar_waterfall.PNG)
 
-Create a new file name it ControlBar.qml
+As we would like to improve it, lets make it a type, to keep things organized. Create a new file in the components folder and name it ControlBar.qml, in it put the ToolBar code we already have.
 
 > components/ControlBar.qml
 
@@ -430,9 +430,9 @@ ToolBar {
 }
 ```
 
-*Snippet 10 -*
+*Snippet 10 - You can see that we have added import statements. There must be import statement(s) that will be used in that file. All types are found within imports*
 
-Now replace it in the `IndividualView.qml`
+Now replace the `ToolBar` code with the newly created type in the `IndividualView.qml`
 
 > components/IndividualView.qml
 
@@ -464,15 +464,15 @@ Component {
 }
 ```
 
-*Snippet 11 -*
+*Snippet 11 - You can see that we now have `ControlBar` where there used to be a lot of `ToolBar` code.*
 
-When you run it, you should see
+When you run it, you should see the same thing you saw previously.
 
 ![](D:\GitHub\Articulae\mds\images\tool_bar_waterfall.PNG)
 
 We shall improve on the toolbar later
 
-Lets add the navigation button
+For now lets add the navigation buttons
 
 > components/IndividualView.qml
 
@@ -491,6 +491,7 @@ Component {
 
             Image {
                 id: viewer
+                ...
             }
 
         }
@@ -522,13 +523,13 @@ Component {
 }
 ```
 
-*Snippet 12 -*
+*Snippet 12 - We have a `RowLayout` which has been centered vertically inside its parent. In it we have two buttons.*
 
 When you run this you should see
 
 ![](D:\GitHub\Articulae\mds\images\nav_buttons.PNG)
 
-Next
+Next, lets also block the Zoom buttons.
 
 addmik the zoom buttons
 
