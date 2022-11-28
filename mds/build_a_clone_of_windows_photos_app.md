@@ -1,14 +1,10 @@
 # Build A Clone Of Windows' Photos App
 
-Lets start
-
 In developing our app, there are two approaches we can take. 1) Top-Down approach where we and 2) bottom-up
 
 We will be using the Top-down approach, because it is more real world like. Before you create a functionality for a button, the button should be there in the UI. In our case before you get an image to show, you should know where you want to show it and the window size you want to show it in, and so on. So it will be good to start with the UI first and then later connect the Python to it as a backend.
 
-For our UI we will be using QML. Javascript-like styling language.
-
-
+For our UI we will be using QML. The most popular and most loved desktop UI language in the world. Javascript-like styling language.
 
 ## Installations
 
@@ -28,11 +24,11 @@ and if you prefer PySide6
 $ pip install PySide6
 ```
 
+### Install Ninja-Preview
+
 The last thing you will need to get is Ninja-Preview.
 
 This is just a previewer of the UI files before we connect it to python, since we will be focusing on the UI before handling functionality with Python.
-
-
 
 ## Project Folder
 
@@ -40,15 +36,21 @@ Lets setup our project folders
 
 Create a folder that will have all of your project files. You can call it whatever you want, eg: PhotosClone.
 
-Create a main.py file it it.
+Inside this folder, create an empty file and name it `main.py`.
 
-Create another folder in it, and call it 'UI', this will have specifically the UI files.
+Create another folder in it, and call it `UI`, this will have specifically the UI files.
 
-Create a main.qml file inside the UI folder.
+Nexxt, create an empty file and name it `main.qml` file inside the `UI` folder.
 
+Finally, inside the `UI` folder and beside the `main.qml` file create another empty folder and call it `components`
 
+We are done with the folders for now. Lets go on with the coding.
 
-Now open the main.qml file and add a basic window code
+## The Front-end or Graphical User Interface
+
+### Coding a Basic Window
+
+Now open the main.qml file and add the basic window code in snipper 1.
 
 > main.qml
 
@@ -67,9 +69,17 @@ ApplicationWindow {
 }
 ```
 
-*Listing 1 -*
+*Snippet 1 - A Basic Window*
+
+In Snippet 1, we have three import statements, notable among them is the `import QtQuick.Controls.Universal` code, which basically imports the controls (button, textfields, etc) all with the Universal styling. Then we have the `ApplicationWindow` Object type, which actually gives us our Window, all of the code we will be writing will be in this Object Type. It has an ID of `mainWindow` which allows us to access all properties of this type. The `visible: true` line is why we can see the Window, otherwise it will be running in the backround.
+
+ **NB: Don't forget the visible code, unless you want to show a splash screen first before showing it.**
 
 ### Running our QML file
+
+To run our QML file, we can either connect it to Python ( which is how it is done, in production) or we can test it using Ninja-Preview. Let us use Ninja-Preview.
+
+To use Ninja-Preview:
 
 1. Open Ninja-Preview
 
@@ -79,13 +89,11 @@ ApplicationWindow {
 
 ![](D:\GitHub\Articulae\mds\images\ninja_preview_run.PNG)
 
-You should see a basic window popup
+You should see a basic window popup. As shown in below.
 
 ![](D:\GitHub\Articulae\mds\images\base_window.PNG)
 
-Since we have already imported our s niversal styling which makes our controls look like that of the windows Universal style, we can set a dark theme
-
-
+Since we have already imported our universal styling which makes our controls look like that of the windows Universal style, we can set a dark theme for window.
 
 > main.qml
 
@@ -106,19 +114,21 @@ ApplicationWindow {
 }
 ```
 
-*Listing 1 -*
+*Snippet 2 - A Dark themed windows*
 
-Now you should see
+When you run it with Ninja-Preview, you should see that we now have a dark window
 
 ![](D:\GitHub\Articulae\mds\images\dark_window.PNG)
 
-Now you can see that the only thing that doesn't look like a the windows photos app is the title bar, which we will remove later.
+The photos app has multiple view, an individual view and a collections view, which is a sort of timeline of pictures view. But for the sake of brevity, which shall focus on only the individual viewer.
 
-Now you can see that everything else draws on top of the image viewer.
+If you take a look at the Windows' Photos App, you can see that everything else draws on top of the image viewer. The buttons, the toolbar, just about everything is on top of the image its showing.
 
-The photos app allows multiple view type. For the sake of brevity, which shall focus on only the
+![](D:\GitHub\Articulae\mds\images\windows-photos-app.PNG)
 
-So lets start by adding a stack view which we would have used even if we implemented the other view.
+We shall be implementing the same thing in this lesson.
+
+Lets start by adding a stack view which we would have used even if we implemented the other views. This is to get you used to the `StackView`
 
 > main.qml
 
@@ -146,13 +156,15 @@ ApplicationWindow {
 }
 ```
 
-*Listing 1 -*
+*Snippet 3 - StackView*
 
-Now you don't really see anythong
+In Snippet 3, we have added a stackview, it has been centered in on the parent, but that won't have any effect for now, since it is taking up all of the width and height of the parent.
 
-It chooses between components to display. Lets create a component that it can use.
+The Stack stacks components one on top of the other and provide functions for switching between them. We will be using this even though we will be building just one view, just so if you would like to continue building the other views, the foundation will be there.
 
-Remember that the filename
+Lets create the component the component will show, the only for now. Create it in the `components` folder, lets call it a `IndividualView.qml`, if you want to name yours other than this, don't forget that the file must start with a capital letter, because we want to import it as a QML type in application.
+
+Open the file and this code.
 
 > components/IndividualView.qml
 
@@ -171,9 +183,9 @@ Component {
 }
 ```
 
-*Listing 1 -*
+*Snippet 4 - We have added a Rectangle which fills its parent and its color has been set to `dodgerblue`*
 
-Add it to the `main.qml` file
+Lets now use this newly created component in our `main.qml` file. First we have import the folder that the `IndividualView.qml` is in.
 
 > main.qml
 
@@ -205,19 +217,15 @@ ApplicationWindow {
 }
 ```
 
-*Listing 1 -*
+*Snippet 5 - We import the `components` folder as a relative path and then we namespace it using the `as` keyword and then specified a name (`Comp`) for the namespace. We later call our `IndividualView.qml` as a QML type by calling the namespace of the folder is in and then the filename without the dot (.) qml at  the end, this is why the filename needed to be started with a capital letter, so it can be imported as a `Type` we give it an `id` so we can use it anywhere, in this case we use it in the `StackView` as the initialItem.*
 
-The main changes were, we imported the folder that contains and namespaced it.
-
-`import "./components" as Comp`, then we call the component ( components don't draw on default) and give it an id and then assigns it.
-
-`initialItem: individual`
-
-Now if you run it you would see aa blue window now.
+Now if you run it you will see a blue window.
 
 ![](D:\GitHub\Articulae\mds\images\blue_window.PNG)
 
-From hereon you will be seeing three dots (...) in the code, to represent code that has already been presented previously. E.g. the previous code could have been written as:
+Now our component has taken over the `StackView` which has also taken over our `ApplicationWindow`
+
+**From hereon you will be seeing *three dots (...)* in the code, to represent code that has already been presented previously. E.g. the previous code could have been written as:**
 
 > main.qml
 
@@ -244,15 +252,25 @@ ApplicationWindow {
 }
 ```
 
-Compare the above with the previous code, and see how easier it is to follow along.
+*Snippet 6 - Pieces of the previous code has been replace with `...` to focus on newly added code. Compare the snippet 6 with the snippet 5 and see how easier it is to follow along. However at the end of the tutorial all of the codes will be posted.*
 
- This is so we can focus on the newly added code better
+### Displaying Images
 
-For a picture like this
+-----------------------
+
+#### The case of Aspect Ration
+
+Consider the Photo below
 
 ![](C:\Users\workgroup\Pictures\Saved%20Pictures\pexels-pixabay-358457.jpg)
 
-In the IndividualView coomponent
+Let us show this image in our application, 
+
+----------------------------
+
+Lets start displaying images in our application.
+
+In the IndividualView coomponent, we will set the color now to `transparent` so we can see the dark background of our application. Then another `Rectangle`, the finally we add an `Image` type, we assign the property `source` to the filepath of the image we want to show.
 
 > components/IndividualView.qml
 
@@ -288,13 +306,19 @@ Component {
 }
 ```
 
-If you are using a fullpath and not a relative epath. Prefix with 'file:///' so Qt can differenctiate between online 'https://' from local files.
+*Snippet 7 - For the `source` property you can shoose to use either a relatinve path or a full path. If you are using a fullpath, prefix the path with `file:///` so QML can differenctiate between online `https://` from local files.*
 
-When you run it this is what you get.
+When you run it, this is what you get.
 
 ![](D:\GitHub\Articulae\mds\images\no_aspect_ratio_waterfall.PNG) 
 
-Do not close it yet.
+Notice how the image has been strecthed. This is because the width of the image is 1333px and the height is 2000, **the height is greater than the width**, so showing it in an application which has the **width greater than the height** will cause the width to strecth and the height to be skewed.
+
+The width to height ratio of an image is known as **aspect ratio**. Applications use this information to decide how to show an image correctly so it doesn't get distorted on either side.
+
+QML provides `sourceSize` which we can use to specify the actual size of the image file. It is also used to limit the amount of data that will actually be put into the ram to reduce ram usage. QML also provided aspect ratio property types, combined with the `sourceSize` we can show the image with the correct aspect ratio.
+
+In our `IndividualView.qml` lets add the actual size as the `sourceSize` and then use `fillMode` to specify how we want the aspect ratio to be handled.
 
 Then add a sourcesize and aspect ratio properties to the Image type
 
@@ -329,13 +353,15 @@ Component {
 }
 ```
 
-Now click the run button in Ninja-Preview again to load a different Window.
+*Snippet 8 -*
 
-You should see, something like this, depending on your image
+Now run it.
+
+You should see, something like this, depending on the image you used.
 
 ![](D:\GitHub\Articulae\mds\images\aspect_ratio_waterfall.PNG)
 
-The sourcewidth and sourceheight we have specified are the very dimensions of the image we have used, please put in the corresponding dimensions for the image you chose to use.
+Please put in the corresponding dimensions for the image you choose to use as the `sourceSize`.
 
 Now lets block our toolbar
 
@@ -376,6 +402,8 @@ Component {
 }
 ```
 
+*Snippet 9 -*
+
 When you run it, you should see
 
 ![](D:\GitHub\Articulae\mds\images\tool_bar_waterfall.PNG)
@@ -401,6 +429,8 @@ ToolBar {
 
 }
 ```
+
+*Snippet 10 -*
 
 Now replace it in the `IndividualView.qml`
 
@@ -433,6 +463,8 @@ Component {
 
 }
 ```
+
+*Snippet 11 -*
 
 When you run it, you should see
 
@@ -489,6 +521,8 @@ Component {
 
 }
 ```
+
+*Snippet 12 -*
 
 When you run this you should see
 
@@ -556,6 +590,8 @@ Component {
 }
 ```
 
+*Snippet 13 -*
+
 When you run it, you should see
 
 ![](D:\GitHub\Articulae\mds\images\zoom_buttons.PNG)
@@ -603,6 +639,8 @@ ToolBar {
 
 }
 ```
+
+*Snippet 14 -*
 
 When you run it
 
@@ -678,6 +716,8 @@ ToolBar {
 }
 ```
 
+*Snippet 15 -*
+
 The `AboutToShow` increases the height.
 
 ![](D:\GitHub\Articulae\mds\images\toolbar_menubar.PNG)
@@ -712,6 +752,8 @@ ToolButton {
 
 }
 ```
+
+*Snippet 16 -*
 
 Then import it inside
 
@@ -762,6 +804,8 @@ ToolBar {
 
 }
 ```
+
+*Snippet 17 -*
 
 When you run it you should see.
 
@@ -828,6 +872,8 @@ ToolBar {
 }
 ```
 
+*Snippet 18 -*
+
 ![](D:\GitHub\Articulae\mds\images\tool_bar_allbtns.PNG)
 
 Now lets improve on the custtoolbar
@@ -878,6 +924,8 @@ ToolButton {
 
 }
 ```
+
+*Snippet 19 -*
 
 Now the descript won't show if the height is less than 48 based on the code: `visible: ctrl.height > 48`
 
@@ -942,6 +990,8 @@ ToolBar {
 }
 ```
 
+*Snippet 20 -*
+
 Almost all the buttons will have icons. Glphs.
 
 Load the glyphs as icons
@@ -970,6 +1020,8 @@ ApplicationWindow {
 
 }
 ```
+
+*Snippet 21 -*
 
 We can access the glyphs from within our application once it has been loaded by the main entry file
 
@@ -1006,6 +1058,8 @@ ToolButton {
 
 }
 ```
+
+*Snippet 22 -*
 
 Glyphs uses unicode, so whatever we put as text will become an icon. Lets place these icons then
 
@@ -1072,6 +1126,8 @@ ToolBar {
 }
 ```
 
+*Snippet 23 -*
+
 When you run
 
 ![](D:\GitHub\Articulae\mds\images\glyph_toolbar.PNG)
@@ -1118,6 +1174,8 @@ ToolBar {
 }
 ```
 
+*Snippet 24 -*
+
 Next we use the glyphs for the navigation icons. But lets create a specific compo for it so we can use it later on
 
 Create a new file CustNavButton
@@ -1146,6 +1204,8 @@ Button {
     }
 }
 ```
+
+*Snippet 25 -*
 
 You can see that we have used mdl2 icons for the text.
 
@@ -1197,6 +1257,8 @@ Component {
 }
 ```
 
+*Snippet 26 -*
+
 When you run it, you should see
 
 ![](D:\GitHub\Articulae\mds\images\nav_icons.PNG)
@@ -1230,6 +1292,8 @@ Button {
 
 }
 ```
+
+*Snippet 27 -*
 
 Now put it into IndividualView.qml
 
@@ -1285,6 +1349,8 @@ Component {
 
 }
 ```
+
+*Snippet 28 -*
 
 ![](D:\GitHub\Articulae\mds\images\real_zoom_buttons.PNG)
 
@@ -1375,6 +1441,8 @@ ToolBar {
 }
 ```
 
+*Snippet 29 -*
+
 ![](D:\GitHub\Articulae\mds\images\view_all_photos_icon.PNG)
 
 | Remove the title bar
@@ -1403,6 +1471,8 @@ ApplicationWindow {
 
 }
 ```
+
+*Snippet 30 -*
 
 You should see
 
@@ -1441,9 +1511,9 @@ ApplicationWindow {
     ...
 
 }
-
-
 ```
+
+*Snippet 31 -*
 
 [Image]
 
@@ -1509,9 +1579,9 @@ ApplicationWindow {
     ...
 
 }
-
-
 ```
+
+*Snippet 32 -*
 
 ![](D:\GitHub\Articulae\mds\images\movable.PNG)
 
@@ -1543,8 +1613,9 @@ Button {
         color: "white"
     }
 }
-
 ```
+
+*Snippet 33 -*
 
 Now use it in the main.qml
 
@@ -1614,9 +1685,9 @@ ApplicationWindow {
     ...
 
 }
-
-
 ```
+
+*Snippet 34 -*
 
 above
 
@@ -1683,9 +1754,9 @@ ApplicationWindow {
     ...
 
 }
-
-
 ```
+
+*Snippet 35 -*
 
 ll
 
@@ -1755,9 +1826,9 @@ ApplicationWindow {
     ...
 
 }
-
-
 ```
+
+*Snippet 36 -*
 
 Add a border
 
@@ -1808,9 +1879,9 @@ ApplicationWindow {
     }
 
 }
-
-
 ```
+
+*Snippet 37 -*
 
 | all UI done
 
@@ -1839,8 +1910,9 @@ engine.load('./UI/main.qml')
 engine.quit.connect(app.quit)
 
 sys.exit(app.exec())
-
 ```
+
+*Snippet 38 -*
 
 Now run it using command prompt or the terminal
 
@@ -1851,8 +1923,6 @@ Navigate to the exact folder, as shown in image
 ```
 
 ![](D:\GitHub\Articulae\mds\images\Cmd.PNG)
-
-
 
 Now the functionality will be kept in a separate file so code can be well organised.
 
@@ -1868,8 +1938,9 @@ class Backend(QObject):
 
     def __init__(self, parent=None):
         QObject.__init__(self)
-
 ```
+
+*Snippet 39 -*
 
 Connect it to the main.py
 
@@ -1892,9 +1963,9 @@ engine.rootObjects()[0].setProperty('backend', back_end)
 engine.quit.connect(app.quit)
 
 ...
-
-
 ```
+
+*Snippet 40 -*
 
 Connect it with the qml code.
 
@@ -1924,7 +1995,7 @@ ApplicationWindow {
     ...
 
     background: Rectangle {
-        
+
     }
 
     Connections {
@@ -1932,9 +2003,9 @@ ApplicationWindow {
     }
 
 }
-
-
 ```
+
+*Snippet 41 -*
 
 Now create  startup method
 
@@ -1954,9 +2025,9 @@ class Backend(QObject):
 
     def __init__(self, parent=None):
         QObject.__init__(self)
-
-
 ```
+
+*Snippet 42 -*
 
 Then in the file, in the class `Backend`
 
@@ -2026,10 +2097,9 @@ class Backend(QObject):
                 name = img_name
 
             print(title, name, self.curr_index, w, h, total)
-
-
-
 ```
+
+*Snippet 43 -*
 
 Call the startup method
 
@@ -2044,9 +2114,9 @@ back_end.start_up(sys.argv)
 engine.quit.connect(app.quit)
 
 sys.exit(app.exec())
-
-
 ```
+
+*Snippet 44 -*
 
 Usin the command prompt or ter
 
@@ -2089,10 +2159,9 @@ class Backend(QObject):
                 name = img_name
 
             self.firstImage.emit(title, name, self.curr_index, w, h, total)
-
-
-
 ```
+
+*Snippet 45 -*
 
 > main.qml
 
@@ -2145,9 +2214,9 @@ ApplicationWindow {
     }
 
 }
-
-
 ```
+
+*Snippet 46 -*
 
 > components/IndividualView.qml
 
@@ -2190,9 +2259,9 @@ Component {
     }
 
 }
-
-
 ```
+
+*Snippet 47 -*
 
 New image
 
@@ -2249,9 +2318,9 @@ Component {
     }
 
 }
-
-
 ```
+
+*Snippet 48 -*
 
 create the get imae at index slot.
 
@@ -2272,8 +2341,9 @@ class Backend(QObject):
     def __init__(self, parent=None):
         QObject.__init__(self)
         ...
-
 ```
+
+*Snippet 49 -*
 
 Now the `Backend` class
 
@@ -2315,9 +2385,9 @@ class Backend(QObject):
         ...
 
     ...
-
-
 ```
+
+*Snippet 50 -*
 
 Receive this signal too in Qml
 
@@ -2367,13 +2437,11 @@ ApplicationWindow {
     }
 
 }
-
-
 ```
 
+*Snippet 51 -*
+
 Now you should be able to click and view all images
-
-
 
 ![](D:\GitHub\Articulae\mds\images\nav_btns.PNG)
 
