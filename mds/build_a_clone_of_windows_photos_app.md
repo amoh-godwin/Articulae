@@ -1935,6 +1935,8 @@ Now Lets connect the python script to the GUI.
 Inside the main.py link the qml file.
 
 > main.py
+> 
+> PyQt6
 
 ```python
 import sys
@@ -1955,17 +1957,48 @@ engine.quit.connect(app.quit)
 sys.exit(app.exec())
 ```
 
-*Snippet 38 -*
+> main.py
+> 
+> PySide6
 
-Now run it using command prompt or the terminal
+```python
+import sys
 
-Navigate to the exact folder, as shown in image
+from PySide6.QtGui import QGuiApplication
+from PySide6.QtQml import QQmlApplicationEngine
+from PySide6.QtQuick import QQuickWindow
+
+
+QQuickWindow.setSceneGraphBackend('software')
+
+app = QGuiApplication(sys.argv)
+
+engine = QQmlApplicationEngine()
+engine.load('./UI/main.qml')
+engine.quit.connect(app.quit)
+
+sys.exit(app.exec())
+```
+
+*Snippet 38 - On the first 5 lines, we have our import statements. The `QQuickWindow.setSceneGraphBackend('software')` code is just compactibility code, which makes QML work on very old machines. About 90% of computers out there will work fine without it. If you prefer, you can remove it and hence the` QQuickWindow` import. The actual connection with Qml happens with the code `engine.load('./UI/main.qml')`. Be should to give to the actual relative path to it.*
+
+Now run main.py using command prompt or the Terminal
+
+Navigate to the project folder. If your project folder is named 'PhotosClone'
+
+```shell
+>>> cd PhotosClone
+```
+
+Then do, as shown in the image.
 
 ```shell
 >>> python main.py
 ```
 
 ![](D:\GitHub\Articulae\mds\images\Cmd.PNG)
+
+
 
 Now the functionality will be kept in a separate file so code can be well organised.
 
