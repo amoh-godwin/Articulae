@@ -1998,13 +1998,17 @@ Then do, as shown in the image.
 
 ![](D:\GitHub\Articulae\mds\images\Cmd.PNG)
 
+Now when you run it you should see the GUI pop up like before.
 
+Now lets move on to getting the functionality of the window to work.
 
-Now the functionality will be kept in a separate file so code can be well organised.
+Lets keep the functionality in a separate, which is a best practice, so code can be well organised.
 
-Create a new file, name it func.py
+Create a new file beside main.py and name it func.py
 
 > func.py
+> 
+> PyQt6
 
 ```python
 from PyQt6.QtCore import QObject
@@ -2016,11 +2020,27 @@ class Backend(QObject):
         QObject.__init__(self)
 ```
 
-*Snippet 39 -*
+> func.py
+> 
+> PySide6
+
+```python
+from PySide6.QtCore import QObject
+
+
+class Backend(QObject):
+
+    def __init__(self, parent=None):
+        QObject.__init__(self)
+```
+
+*Snippet 39*
 
 Connect it to the main.py
 
 > main.py
+> 
+> PyQt6
 
 ```python
 ...
@@ -2041,7 +2061,30 @@ engine.quit.connect(app.quit)
 ...
 ```
 
-*Snippet 40 -*
+> main.py
+> 
+> PySide6
+
+```python
+...
+from PySide6.QtQuick import QQuickWindow
+
+from func import Backend
+
+
+QQuickWindow.setSceneGraphBackend('software')
+...
+
+engine = QQmlApplicationEngine()
+back_end = Backend()
+engine.load('./UI/main.qml')
+engine.rootObjects()[0].setProperty('backend', back_end)
+engine.quit.connect(app.quit)
+
+...
+```
+
+*Snippet 40 - the rootObjects of the engine are the direct object types declared in the mainqml, which in this is just one, ApplicationWindow. So we get it withe the index of 0, next we set its property backend to the value of our back_end object. Since such a QML property doesn't exist in the ApplicationWindow lets add it. *
 
 Connect it with the qml code.
 
@@ -2081,13 +2124,21 @@ ApplicationWindow {
 }
 ```
 
-*Snippet 41 -*
+*Snippet 41 - We have created a backend poperty which teh python will connect to, next we also create a Connections type, from this, we will handle all calls from Python.*
 
-Now create  startup method
+
+
+When a user starts our app by attempting to open an image file with our app, the filepath will be passed to our application as a CLI argument, this is how all apps are called to open a certain type of file, whether text or multimedia.
+
+Lets create a startup function that takes the CLI argument and pass the filepath to the GUI to show it when the app has been called. Also the app allows a user to navigate the folder in which an image currently been showed is found. So the startup method will call other methods that will handle all processes in between.
+
+
+
+First the import statements
 
 > func.py
-
-import statements
+> 
+> PyQt6
 
 ```python
 import os
@@ -2103,7 +2154,25 @@ class Backend(QObject):
         QObject.__init__(self)
 ```
 
-*Snippet 42 -*
+> func.py
+> 
+> PySide6
+
+```python
+import os
+import threading
+from typing import List, Tuple
+from PIL import Image
+from PySide6.QtCore import QObject
+
+
+class Backend(QObject):
+
+    def __init__(self, parent=None):
+        QObject.__init__(self)
+```
+
+*Snippet 42*
 
 Then in the file, in the class `Backend`
 
@@ -2175,9 +2244,9 @@ class Backend(QObject):
             print(title, name, self.curr_index, w, h, total)
 ```
 
-*Snippet 43 -*
+*Snippet 43 - the start_up method takes the argument values. For now we print some other information we got after processing that one image.*
 
-Call the startup method
+Call the startup method, right after the backend property has been set. Mind you this method will only run, after the UI has fully loaded.
 
 > main.py
 
@@ -2192,27 +2261,60 @@ engine.quit.connect(app.quit)
 sys.exit(app.exec())
 ```
 
-*Snippet 44 -*
+*Snippet 44 - the sys.argv always holds the name of the application the user used to call the app and other CLI argument values passed*
 
-Usin the command prompt or ter
+Using the command prompt or terminal add the filepath to any image file on your computer
 
 ![](D:\GitHub\Articulae\mds\images\Cmd_filepath.PNG)
 
-After running, among the warnings,
+After running, among the warnings, you should see the title, name, current index, the width, height and the total images in the folder.
 
 ![](D:\GitHub\Articulae\mds\images\print.PNG)
 
-Make the connections for them in Qml
+
+
+Now lets use Signals to pass all this information to QML.
 
 Usings signals
 
+Import statements
+
 > func.py
+> 
+> PyQt6
 
 ```python
 ...
 from PIL import Image
 from PyQt6.QtCore import QObject, pyqtSignal as Signal
 
+
+class Backend(QObject):
+
+    ...
+```
+
+> func.py
+> 
+> PySide6
+
+```python
+...
+from PIL import Image
+from PySide6.QtCore import QObject, Signal
+
+
+class Backend(QObject):
+
+    ...
+```
+
+And then in the backend class
+
+> func.py
+
+```python
+...
 
 class Backend(QObject):
 
@@ -2237,7 +2339,7 @@ class Backend(QObject):
             self.firstImage.emit(title, name, self.curr_index, w, h, total)
 ```
 
-*Snippet 45 -*
+*Snippet 45 - We create a signal firstName then we emit it with the values we want. This signal can be handled from within QML*
 
 > main.qml
 
@@ -2292,7 +2394,7 @@ ApplicationWindow {
 }
 ```
 
-*Snippet 46 -*
+*Snippet 46 - Inside the Connections we have handled the firstImage signal, and has receiced and assigned the values to QML properties. The signal handlers name is always 'on' + the title case of the signals name, in this case firstName, that is why the signal handler is onFirstImage*
 
 > components/IndividualView.qml
 
