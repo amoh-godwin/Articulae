@@ -1648,7 +1648,7 @@ Button {
 }
 ```
 
-*Snippet 33 -*
+*Snippet 33*
 
 Now use it in the main.qml
 
@@ -1720,15 +1720,17 @@ ApplicationWindow {
 }
 ```
 
-*Snippet 34 -*
+*Snippet 34 - Notice how that they have been called with the Comp namespace. Because here the components folder has been imported as  namespace.*
 
-above
+Now you should see the buttons.
 
 ![](D:\GitHub\Articulae\mds\images\closebuttons.PNG)
 
-| Use title for title
 
-We will be using titles now
+
+Next lets move on to the title.
+
+Lets create a property to hold the title, lets call this `title_str`
 
 > main.qml
 
@@ -1789,13 +1791,13 @@ ApplicationWindow {
 }
 ```
 
-*Snippet 35 -*
+*Snippet 35 - `title_str` has been initialise with the word 'Photos'*
 
-ll
+Now you can see the title.
 
 ![](D:\GitHub\Articulae\mds\images\title_str.PNG)
 
-Add portrait code to control maximise and minimise
+Lets create a property that will hold whether the window has been maximised or not, with that we can toggle which function the button maximised button applies.
 
 > main.qml
 
@@ -1861,9 +1863,11 @@ ApplicationWindow {
 }
 ```
 
-*Snippet 36 -*
+*Snippet 36 - If the width of the application has been changed somehow that it is greater than a few pixels above our default 800, then portrait will be false.*
 
-Add a border
+
+
+Lets add a border to make our window stand out in case it is over another window.
 
 ```qml
 ...
@@ -1914,13 +1918,19 @@ ApplicationWindow {
 }
 ```
 
-*Snippet 37 -*
+*Snippet 37 - We assign a Rectangle to the background property and set a border to the Rectangle. One problem arises, since this is the background every other thing will draw on top of it, so we have to reduce their width and height by the total border width and/or height. This applies to the header and StackView (the main content)*
 
-| all UI done
 
-Create backed
 
-| Connect the python
+Congratulations on reaching this point. All of the Gui is done. Lets us move on then to the business logic.
+
+
+
+### Creating the Business logic or backend
+
+#### Connect the Python Script
+
+Now Lets connect the python script to the GUI.
 
 Inside the main.py link the qml file.
 
