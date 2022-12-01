@@ -531,7 +531,7 @@ When you run this you should see
 
 Next, lets also block the Zoom buttons.
 
-addmik the zoom buttons
+
 
 > components/IndividualView.qml
 
@@ -591,15 +591,19 @@ Component {
 }
 ```
 
-*Snippet 13 -*
+*Snippet 13 - We have added three buttns in `RowLyout` and the `RowLyout` is anchored to the bottom of the parent `Rectangle`. We shall improve on  the buttons later*
 
-When you run it, you should see
+When you run it, you should see something like this.
 
 ![](D:\GitHub\Articulae\mds\images\zoom_buttons.PNG)
 
-Next improve on the toolbar.
 
-You can see that the items are in a row. So we put in a rowlayout
+
+Now lets improve on the toolbar.
+
+![](D:\GitHub\Articulae\mds\images\windows-photos-app.PNG)
+
+When you look at the Windows' Photos App, you can see that the items are placed as if each of them is a row. So we put them in a `Rowlayout`
 
 > components/ControlBar.qml
 
@@ -641,13 +645,13 @@ ToolBar {
 }
 ```
 
-*Snippet 14 -*
+*Snippet 14 - We have put in a `ToolButton` that is inside a `Rectangle` tht fills the width and height of the `RowLayout`, this way the `Rectangle` will be strecthing to fill all of the width of the `RowLayout` execpt the total width of all the other items placed beside it*
 
-When you run it
+When you run it, you only see the newly added button.
 
 ![](D:\GitHub\Articulae\mds\images\toolbar_btn.PNG)
 
-Lets add the menu at the end of the row..
+But when you add a `Menu`, you can see that the `Rectangle` has taken all of the width minus the width of the `Menu`. This method is used to prevent items in any `Layout` from becoming spaced out.
 
 > components/ControlBar.qml
 
@@ -717,15 +721,15 @@ ToolBar {
 }
 ```
 
-*Snippet 15 -*
+*Snippet 15 - We have a `MennuBr` with  Menu and Actions. The `onAboutToShow`  signal handler increases the height, and the `onAboutToHide` decreases the height of the `ToolBar`*
 
-The `AboutToShow` increases the height.
+
 
 ![](D:\GitHub\Articulae\mds\images\toolbar_menubar.PNG)
 
-Lets add the buttons found in between the two
+Lets add the other buttons found in the `ToolBar`
 
-Create a new file and name it CustToolButton.qml inside
+Each of those buttons will have a lot more than just text, so its best we create new type, so we can reuse them later in the code. Create a new file and name it `CustToolButton.qml` inside the `components` folder
 
 > components/CustToolButton.qml
 
@@ -754,9 +758,9 @@ ToolButton {
 }
 ```
 
-*Snippet 16 -*
+*Snippet 16 - We have a `ToolButton` nd we added a `ToolTip` inside of it that shows up when you hover for `1000` microseconds. We have created a property `tip` which we can later use to assign a `text` for the `ToolTip`*
 
-Then import it inside
+Then import this CustToolButton inside ControlBar
 
 > components/ControlBar.qml
 
@@ -806,13 +810,13 @@ ToolBar {
 }
 ```
 
-*Snippet 17 -*
+*Snippet 17 - We use the `CustToolButton` for the shre button*
 
-When you run it you should see.
+When you run it you should see something like this.
 
 ![](D:\GitHub\Articulae\mds\images\cust_btn_bar.PNG)
 
-Now block the rest
+Now block the rest for the remaining buttons
 
 > components/ControlBar.qml
 
@@ -873,13 +877,13 @@ ToolBar {
 }
 ```
 
-*Snippet 18 -*
+*Snippet 18 - We have added blocking for the remaining buttons.*
 
 ![](D:\GitHub\Articulae\mds\images\tool_bar_allbtns.PNG)
 
-Now lets improve on the custtoolbar
+Now lets improve on the `ControlBar` a bit more.
 
-Now lets add the description at the button of the end
+Now lets add the description at the bottom of the buttons. First lets modify `CustToolButton` to include the description
 
 > components/CustToolButton.qml
 
@@ -926,11 +930,11 @@ ToolButton {
 }
 ```
 
-*Snippet 19 -*
+*Snippet 19 - Now the descript won't show if the height is less than 48 based on the code: `visible: ctrl.height > 48``*
 
-Now the descript won't show if the height is less than 48 based on the code: `visible: ctrl.height > 48`
 
-Now assign the descriptions
+
+Now assign the descriptions to the buttons.
 
 > components/ControlBar.qml
 
@@ -991,11 +995,13 @@ ToolBar {
 }
 ```
 
-*Snippet 20 -*
+*Snippet 20*
 
-Almost all the buttons will have icons. Glphs.
+Almost all the buttons will have icons. Windows applications uses glyphs as their icons. Glyphs are very much like text, they are unicodes, that render as icons based on the font family specified.
 
-Load the glyphs as icons
+We will be using the Microsoft's provided MDL2 Assets font. They have another one Icon fonts, but we will be using the MDL2 instead because a lot of the Photos' icons can be found in that fontset.
+
+Load the font in the main.qml file, this way all child qml files will have access to them.
 
 > main.qml
 
@@ -1022,11 +1028,11 @@ ApplicationWindow {
 }
 ```
 
-*Snippet 21 -*
+*Snippet 21 - We load fonts with the FontLoader passing the filepath to the source parameter, we give it an id so we can access in any child qml file*
 
-We can access the glyphs from within our application once it has been loaded by the main entry file
 
-Now use as the glyph for the CustToolButton
+
+Now use the glyph font in the CustToolButton by the name of the loaded font as the font.family of the Text that will want to turn into an icon.
 
 > components/CustToolButton.qml
 
@@ -1060,9 +1066,9 @@ ToolButton {
 }
 ```
 
-*Snippet 22 -*
+*Snippet 22*
 
-Glyphs uses unicode, so whatever we put as text will become an icon. Lets place these icons then
+Glyphs uses unicode, so whatever we put as text will become an icon. Now in the ControlBar lets put these unicodes instead.
 
 > components/ControlBar.qml
 
@@ -1127,13 +1133,13 @@ ToolBar {
 }
 ```
 
-*Snippet 23 -*
+*Snippet 23*
 
-When you run
+When you run it, you can see that we now have icons, because the fonts are actually font-icons, or glyphs.
 
 ![](D:\GitHub\Articulae\mds\images\glyph_toolbar.PNG)
 
-Next lets add glyph for the menubar Icon
+Next lets add the unicode for the menubar Icon too.
 
 > components/ControlBar.qml
 
@@ -1175,11 +1181,15 @@ ToolBar {
 }
 ```
 
-*Snippet 24 -*
+*Snippet 24 - We set the font.family to the segoe_mdl2*
 
-Next we use the glyphs for the navigation icons. But lets create a specific compo for it so we can use it later on
 
-Create a new file CustNavButton
+
+Next lets use glyphs for the navigation icons too. But first lets create a specific custom type for them to avoid writing the same code twice, and also to keep things orgainsed.
+
+
+
+Create a new file in the components folder and name it CustNavButton.qml. In it put the previous Button code and then customise it.
 
 > components/CustNavButton.qml
 
@@ -1206,9 +1216,9 @@ Button {
 }
 ```
 
-*Snippet 25 -*
+*Snippet 25 - We chnage the appearance of the button by setting the background and contentItem properties. You can see that we have used mdl2 icons for the text.*
 
-You can see that we have used mdl2 icons for the text.
+
 
 Next use it in the IndividualView component
 
@@ -1258,13 +1268,19 @@ Component {
 }
 ```
 
-*Snippet 26 -*
+*Snippet 26*
 
-When you run it, you should see
+When you run it, you should see, now we have real icons.
 
 ![](D:\GitHub\Articulae\mds\images\nav_icons.PNG)
 
-Next the button for the zoom controls
+
+
+Next, lets handle the button for the zoom buttons.
+
+
+
+
 
 Lets create a new file and call it zoomButton.qml
 
@@ -1294,9 +1310,9 @@ Button {
 }
 ```
 
-*Snippet 27 -*
+*Snippet 27 - The color of the button changes when the button gets hovered. The ? and : code is a shorthand if/else statement.*
 
-Now put it into IndividualView.qml
+Now refactor this in the IndividualView.qml
 
 > components/IndividualView.qml
 
@@ -1351,13 +1367,17 @@ Component {
 }
 ```
 
-*Snippet 28 -*
+*Snippet 28*
+
+I have changed the image file that we are using, just so not to bore you out.
+
+Try hover over the ZoomButton, at the bottom and see how they change color.
 
 ![](D:\GitHub\Articulae\mds\images\real_zoom_buttons.PNG)
 
-Next lets do
 
-| icon for view all photos
+
+Next lets add the icon for the "View all photos" button.
 
 > components/ControlBar.qml
 
@@ -1442,11 +1462,15 @@ ToolBar {
 }
 ```
 
-*Snippet 29 -*
+*Snippet 29*
 
 ![](D:\GitHub\Articulae\mds\images\view_all_photos_icon.PNG)
 
-| Remove the title bar
+
+
+#### Remove the title bar
+
+Now lets remove the title bar.
 
 > main.qml
 
@@ -1473,17 +1497,19 @@ ApplicationWindow {
 }
 ```
 
-*Snippet 30 -*
+*Snippet 30 - You assign to values to the flags property. Qt.FramelessWindowHint makes it frameless and the Qt.Window draws an icon for it on the Operating System's Taskbar. Other than that its just like a splashscreen.*
 
-You should see
+You should see now see that the window is now frameless.
 
 ![](D:\GitHub\Articulae\mds\images\frameless.PNG)
 
- You can close it by
+ You can close it by hovering over the icon drawn on the taskbar and then click the close button.
 
 ![](D:\GitHub\Articulae\mds\images\frameless_close.PNG)
 
-| Add a bar
+
+
+Lets add our own custom bar.
 
 > main.qml
 
@@ -1514,11 +1540,11 @@ ApplicationWindow {
 }
 ```
 
-*Snippet 31 -*
+*Snippet 31 - We assign a Rectangle to the header property of the Window*
 
-[Image]
 
-| Use a draggable
+
+Now the draggability of our window is gone. So we have implement one for ourselves. 
 
 > main.qml
 
@@ -1582,13 +1608,19 @@ ApplicationWindow {
 }
 ```
 
-*Snippet 32 -*
+*Snippet 32 - When a user click teh title bar we set the x,y cordinates, if the mouse position changes whiles mouse is still pressed, we set the new x,y cordinates for the window according to how many pixels the mouse has moved since a button was pressed. When he releases the press we reset the cordinates.*
+
+
+
+Try dragging the window around, you will see that the window is not draggable.
 
 ![](D:\GitHub\Articulae\mds\images\movable.PNG)
 
-| Add the close buttons
 
-Create a new file  name it CloseButton.qml
+
+Now lets add the close buttons on the title bar.
+
+Create a new file in the components folder and name it CloseButton.qml
 
 > components/CloseButton.qml
 
