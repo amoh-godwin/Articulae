@@ -2619,9 +2619,9 @@ ApplicationWindow {
 
 *Snippet 51 -*
 
-Now you should be able to click and view all images
+Now you should be able to click and view all of the images in folder
 
-![](D:\GitHub\Articulae\mds\images\nav_btns.PNG)
+![](D:\GitHub\Articulae\mds\images\nav_btns.PNG) 
 
 Finally we are all done. This has been a long tutorial so we will go no further.
 
