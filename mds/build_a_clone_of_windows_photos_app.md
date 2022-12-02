@@ -2339,7 +2339,7 @@ class Backend(QObject):
             self.firstImage.emit(title, name, self.curr_index, w, h, total)
 ```
 
-*Snippet 45 - We create a signal firstName then we emit it with the values we want. This signal can be handled from within QML*
+*Snippet 45 - We create a signal firstName then we emit it with the values we want. Signals can be handled from within QML*
 
 > main.qml
 
@@ -2394,7 +2394,7 @@ ApplicationWindow {
 }
 ```
 
-*Snippet 46 - Inside the Connections we have handled the firstImage signal, and has receiced and assigned the values to QML properties. The signal handlers name is always 'on' + the title case of the signals name, in this case firstName, that is why the signal handler is onFirstImage*
+*Snippet 46 - Inside the Connections we have handled the firstImage signal, and has receiced and assigned the values to QML properties. The signal handlers name is always 'on' + the title case of the signals name, in this case firstName, signal handler should be called onFirstImage*
 
 > components/IndividualView.qml
 
@@ -2439,13 +2439,21 @@ Component {
 }
 ```
 
-*Snippet 47 -*
+*Snippet 47 - The sourceSize and source of the image has been set variables. So now, whenver the values of the variables get changes source and the sourceSize will also change.*
 
-New image
+Now run it again, and pass in an image as a parameter
+
+```shell
+>>> python main.py "C:\Users\workgroup\Pictures\Saved Pictures\pexels-pixabay-33109.jpg"
+```
+
+Now you should be able to see the image, using the right aspect ratio, and the title also showing in the custom title bar.
 
 ![](D:\GitHub\Articulae\mds\images\new_image.PNG)
 
-The nav buttons
+Let us add functionality for the nav buttons. They are supposed to navigate to the other image files in the current folder. But the buttons are to be visible only when there are more images that hasn't been shown, based on the indexing of the images in the current folder.
+
+Lets control their visibility based on their current index. Then they should call for an image to be shown at the next or previous index.
 
 > components/IndividualView.qml
 
@@ -2498,11 +2506,15 @@ Component {
 }
 ```
 
-*Snippet 48 -*
+*Snippet 48 - Both buttons are calling for an image to be shown at the previous or next index when clicked*
 
-create the get imae at index slot.
+Methods QML calls are called slots.
+
+Lets create the get_image_at_index slot
 
 > func.py
+> 
+> PyQt6
 
 the import statements
 
@@ -2521,7 +2533,26 @@ class Backend(QObject):
         ...
 ```
 
-*Snippet 49 -*
+> func.py
+> 
+> PySide6
+
+```python
+import os
+import threading
+from typing import List, Tuple
+from PIL import Image
+from PySide6.QtCore import QObject, Signal, Slot
+
+
+class Backend(QObject):
+
+    def __init__(self, parent=None):
+        QObject.__init__(self)
+        ...
+```
+
+*Snippet 49*
 
 Now the `Backend` class
 
@@ -2565,7 +2596,7 @@ class Backend(QObject):
     ...
 ```
 
-*Snippet 50 -*
+*Snippet 50 - the first get_image_at_index creates a thread and calls the underscore _get_image_index method with the thread and then returns, the underscore does the processing and the emit the updateImage signal ith all of the data*
 
 Receive this signal too in Qml
 
@@ -2617,7 +2648,7 @@ ApplicationWindow {
 }
 ```
 
-*Snippet 51 -*
+*Snippet 51 -  when we receive the update image signal we assign them to the variable which the image, its dimensions and the title to change*
 
 Now you should be able to click and view all of the images in folder
 
