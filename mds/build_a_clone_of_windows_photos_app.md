@@ -50,7 +50,7 @@ We are done with the folders for now. Lets go on with the coding.
 
 ### Coding a Basic Window
 
-Now open the main.qml file and add the basic window code in snipper 1.
+Now open the `main.qml` file and add the basic window code in snipper 1.
 
 > main.qml
 
@@ -71,7 +71,7 @@ ApplicationWindow {
 
 *Snippet 1 - A Basic Window*
 
-In Snippet 1, we have three import statements, notable among them is the `import QtQuick.Controls.Universal` code, which basically imports the controls (button, textfields, etc) all with the Universal styling. Then we have the `ApplicationWindow` Object type, which actually gives us our Window, all of the code we will be writing will be in this Object Type. It has an ID of `mainWindow` which allows us to access all properties of this type. The `visible: true` line is why we can see the Window, otherwise it will be running in the backround.
+In Snippet 1, we have three import statements, notable among them is the `import QtQuick.Controls.Universal` code, which basically imports the controls (button, textfields, etc) all with the Universal styling. Then we have the `ApplicationWindow` Object type, which actually gives us our Window, all of the code we will be writing will be in this Object Type. It has an `id` of `mainWindow` which allows us to access all properties of this type. The `visible: true` line is why we can see the Window, otherwise it will be running in the backround.
 
  **NB: Don't forget the visible code, unless you want to show a splash screen first before showing it.**
 
@@ -158,11 +158,11 @@ ApplicationWindow {
 
 *Snippet 3 - StackView*
 
-In Snippet 3, we have added a stackview, it has been centered in on the parent, but that won't have any effect for now, since it is taking up all of the width and height of the parent.
+In Snippet 3, we have added a `stackview`, it has been centered in on the `parent`, but that won't have any effect for now, since it is taking up all of the `width` and `height` of the `parent`.
 
 The Stack stacks components one on top of the other and provide functions for switching between them. We will be using this even though we will be building just one view, just so if you would like to continue building the other views, the foundation will be there.
 
-Lets create the component the component will show, the only for now. Create it in the `components` folder, lets call it a `IndividualView.qml`, if you want to name yours other than this, don't forget that the file must start with a capital letter, because we want to import it as a QML type in application.
+Lets create the `component` that the `stackview` will show, the only for now. Create it in the `components` folder, lets call it a `IndividualView.qml`, if you want to name yours other than this, don't forget that the file must start with a capital letter, because we want to import it as a QML type in the application.
 
 Open the file and this code.
 
@@ -183,9 +183,9 @@ Component {
 }
 ```
 
-*Snippet 4 - We have added a Rectangle which fills its parent and its color has been set to `dodgerblue`*
+*Snippet 4 - We have added a `Rectangle` which fills its `parent` and its `color` has been set to `dodgerblue`*
 
-Lets now use this newly created component in our `main.qml` file. First we have import the folder that the `IndividualView.qml` is in.
+Lets now use this newly created `component` in our `main.qml` file. First we have imported the folder that the `IndividualView.qml` is in.
 
 > main.qml
 
@@ -217,15 +217,17 @@ ApplicationWindow {
 }
 ```
 
-*Snippet 5 - We import the `components` folder as a relative path and then we namespace it using the `as` keyword and then specified a name (`Comp`) for the namespace. We later call our `IndividualView.qml` as a QML type by calling the namespace of the folder is in and then the filename without the dot (.) qml at  the end, this is why the filename needed to be started with a capital letter, so it can be imported as a `Type` we give it an `id` so we can use it anywhere, in this case we use it in the `StackView` as the initialItem.*
+*Snippet 5 - We import the `components` folder as a relative path and then we namespace it using the `as` keyword and then specified a name (`Comp`) for the namespace. We later call our `IndividualView.qml` as a QML type by calling the namespace of the folder is in and then the filename without the dot (.) qml at  the end, this is why the filename needed to be started with a capital letter, so it can be imported as a Type we give it an `id` so we can use it anywhere, in this case we use it in the `StackView` as the `initialItem`.*
 
 Now if you run it you will see a blue window.
 
 ![](D:\GitHub\Articulae\mds\images\blue_window.PNG)
 
-Now our component has taken over the `StackView` which has also taken over our `ApplicationWindow`
+Now our `component` has taken over the `StackView` which has also taken over our `ApplicationWindow`
 
-**From hereon you will be seeing *three dots (...)* in the code, to represent code that has already been presented previously. E.g. the previous code could have been written as:**
+
+
+**From hereon you will be seeing *three dots (...)* in the code, to represent code that has already been presented previously.                                                                      E.g. the previous code could have been written as:**
 
 > main.qml
 
@@ -254,6 +256,8 @@ ApplicationWindow {
 
 *Snippet 6 - Pieces of the previous code has been replace with `...` to focus on newly added code. Compare the snippet 6 with the snippet 5 and see how easier it is to follow along. However at the end of the tutorial all of the codes will be posted.*
 
+### 
+
 ### Displaying Images
 
 -----------------------
@@ -270,7 +274,7 @@ Let us show this image in our application,
 
 Lets start displaying images in our application.
 
-In the IndividualView coomponent, we will set the color now to `transparent` so we can see the dark background of our application. Then another `Rectangle`, the finally we add an `Image` type, we assign the property `source` to the filepath of the image we want to show.
+In the `IndividualView` coomponent, we will set the `color` now to `transparent` so we can see the dark background of our application. Then another `Rectangle`, since its best practice to keep an `Image` type in a `Rectangle` so you can prevent an overflow by clipping it. Then finally we add an `Image` type, we set the property `source` to the filepath of the image we want to show.
 
 > components/IndividualView.qml
 
@@ -306,7 +310,7 @@ Component {
 }
 ```
 
-*Snippet 7 - For the `source` property you can shoose to use either a relatinve path or a full path. If you are using a fullpath, prefix the path with `file:///` so QML can differenctiate between online `https://` from local files.*
+*Snippet 7 - For the `source` property you can choose to use either a relatinve path or a full path. If you are using a fullpath, prefix the path with `file:///` so QML can differenctiate online files `https://` from local files` file:///`.*
 
 When you run it, this is what you get.
 
@@ -316,11 +320,11 @@ Notice how the image has been strecthed. This is because the width of the image 
 
 The width to height ratio of an image is known as **aspect ratio**. Applications use this information to decide how to show an image correctly so it doesn't get distorted on either side.
 
-QML provides `sourceSize` which we can use to specify the actual size of the image file. It is also used to limit the amount of data that will actually be put into the ram to reduce ram usage. QML also provided aspect ratio property types, combined with the `sourceSize` we can show the image with the correct aspect ratio.
+QML provides `sourceSize` which we can use to specify the actual size of the image file. It is can also be used to limit the amount of data that will actually be put into the ram to reduce ram usage. QML also provided aspect ratio property types, combined with the `sourceSize` we can show the image with the correct aspect ratio.
 
-In our `IndividualView.qml` lets add the actual size as the `sourceSize` and then use `fillMode` to specify how we want the aspect ratio to be handled.
+In our `IndividualView.qml` let us add the actual size as the `sourceSize` and then use `fillMode` to specify how we want the aspect ratio to be handled.
 
-Then add a sourcesize and aspect ratio properties to the Image type
+
 
 > components/IndividualView.qml
 
@@ -353,17 +357,17 @@ Component {
 }
 ```
 
-*Snippet 8 -*
+*Snippet 8*
 
 Now run it.
 
-You should see, something like this, depending on the image you used.
+You should see that all of the image you used is showing without any strecth or skew, 
 
 ![](D:\GitHub\Articulae\mds\images\aspect_ratio_waterfall.PNG)
 
-Please put in the corresponding dimensions for the image you choose to use as the `sourceSize`.
+Please put in the correct dimensions for the image you choose to use as the `sourceSize`.
 
-Now lets block our toolbar. Open IndividualView.qml and add a ToolBar
+Now let us add a blocking for a toolbar. Open `IndividualView.qml` and add a `ToolBar`
 
 > components/IndividualView.qml
 
@@ -402,13 +406,13 @@ Component {
 }
 ```
 
-*Snippet 9 - The `ToolBar`'s background property has been modified, setting it to a Rectangle with a dark partially transparent color. All Controls have the `background` property but it is only modified when you don't like the default appearance*
+*Snippet 9 - The `ToolBar`'s `background` property has been modified, setting it to a Rectangle with a dark partially transparent color. All Controls have the `background` property but it is only modified when you don't like the default appearance*
 
 When you run it, you should see
 
 ![](D:\GitHub\Articulae\mds\images\tool_bar_waterfall.PNG)
 
-As we would like to improve it, lets make it a type, to keep things organized. Create a new file in the components folder and name it ControlBar.qml, in it put the ToolBar code we already have.
+As we would like to improve it, lets make it a type, to keep things organized. Create a new file in the `components` folder and name it `ControlBar.qml`, in it put the `ToolBar` code we already have.
 
 > components/ControlBar.qml
 
@@ -430,7 +434,7 @@ ToolBar {
 }
 ```
 
-*Snippet 10 - You can see that we have added import statements. There must be import statement(s) that will be used in that file. All types are found within imports*
+*Snippet 10 - You can see that we have added our import statements before adding the `ToolBar`. Imports are the folders or packages in which the types are declared.*
 
 Now replace the `ToolBar` code with the newly created type in the `IndividualView.qml`
 
@@ -464,7 +468,7 @@ Component {
 }
 ```
 
-*Snippet 11 - You can see that we now have `ControlBar` where there used to be a lot of `ToolBar` code.*
+*Snippet 11 - You can see that we now have `ControlBar` where there used to be a lot of `ToolBar` code. Since `ControlBar` is in the same immediate folder as the `IndividualView.qml`, it can be used without any import statements.*
 
 When you run it, you should see the same thing you saw previously.
 
@@ -529,9 +533,9 @@ When you run this you should see
 
 ![](D:\GitHub\Articulae\mds\images\nav_buttons.PNG)
 
+
+
 Next, lets also block the Zoom buttons.
-
-
 
 > components/IndividualView.qml
 
@@ -591,7 +595,9 @@ Component {
 }
 ```
 
-*Snippet 13 - We have added three buttns in `RowLyout` and the `RowLyout` is anchored to the bottom of the parent `Rectangle`. We shall improve on  the buttons later*
+*Snippet 13 - We have added three buttons in `RowLayout`. Since each has a `Layout.fillWidth` they will be sharing the `width` of the `parent `equally`. We shall improve on  the buttons later*
+
+
 
 When you run it, you should see something like this.
 
@@ -645,7 +651,7 @@ ToolBar {
 }
 ```
 
-*Snippet 14 - We have put in a `ToolButton` that is inside a `Rectangle` tht fills the width and height of the `RowLayout`, this way the `Rectangle` will be strecthing to fill all of the width of the `RowLayout` execpt the total width of all the other items placed beside it*
+*Snippet 14 - We have put in a `ToolButton` that is inside a `Rectangle` that fills the width and height of the `RowLayout`, this way the `Rectangle` will be strecthing to fill all of the width of the `RowLayout` execpt the total width of all the other items that will be placed beside it*
 
 When you run it, you only see the newly added button.
 
@@ -758,9 +764,9 @@ ToolButton {
 }
 ```
 
-*Snippet 16 - We have a `ToolButton` nd we added a `ToolTip` inside of it that shows up when you hover for `1000` microseconds. We have created a property `tip` which we can later use to assign a `text` for the `ToolTip`*
+*Snippet 16 - We have a `ToolButton` and we've added a `ToolTip` inside of it that shows up when you hover for `1000` microseconds. We have created a property `tip` which we can use to assign a `text` for the `ToolTip`*
 
-Then import this CustToolButton inside ControlBar
+Then import this `CustToolButton` inside `ControlBar`
 
 > components/ControlBar.qml
 
@@ -810,13 +816,13 @@ ToolBar {
 }
 ```
 
-*Snippet 17 - We use the `CustToolButton` for the shre button*
+*Snippet 17 - We use the `CustToolButton` for the share button*
 
 When you run it you should see something like this.
 
 ![](D:\GitHub\Articulae\mds\images\cust_btn_bar.PNG)
 
-Now block the rest for the remaining buttons
+Now block the rest of the remaining buttons
 
 > components/ControlBar.qml
 
@@ -999,9 +1005,9 @@ ToolBar {
 
 Almost all the buttons will have icons. Windows applications uses glyphs as their icons. Glyphs are very much like text, they are unicodes, that render as icons based on the font family specified.
 
-We will be using the Microsoft's provided MDL2 Assets font. They have another one Icon fonts, but we will be using the MDL2 instead because a lot of the Photos' icons can be found in that fontset.
+We will be using the Microsoft's provided Segoe MDL2 Assets font. They have another one, Segoe Fluent Icon fonts, but we will be using the MDL2 instead because a lot of the Photos' icons can be found in that fontset.
 
-Load the font in the main.qml file, this way all child qml files will have access to them.
+Load the font in the `main.qml` file, this way all child qml files will have access to them.
 
 > main.qml
 
@@ -1028,11 +1034,11 @@ ApplicationWindow {
 }
 ```
 
-*Snippet 21 - We load fonts with the FontLoader passing the filepath to the source parameter, we give it an id so we can access in any child qml file*
+*Snippet 21 - We load fonts with the `FontLoader` passing the filepath to the `source` parameter, we give it an `id` so we can it access in any child qml file*
 
 
 
-Now use the glyph font in the CustToolButton by the name of the loaded font as the font.family of the Text that will want to turn into an icon.
+Now use the glyph font assigning the `name` property of the loaded font as the `font.family` of the Text that will want to turn into an icon.
 
 > components/CustToolButton.qml
 
@@ -1066,7 +1072,7 @@ ToolButton {
 }
 ```
 
-*Snippet 22*
+*Snippet 22 - The `CustToolButton` now uses the `segoe_mdl2` glyphs to render icons*
 
 Glyphs uses unicode, so whatever we put as text will become an icon. Now in the ControlBar lets put these unicodes instead.
 
@@ -1135,7 +1141,7 @@ ToolBar {
 
 *Snippet 23*
 
-When you run it, you can see that we now have icons, because the fonts are actually font-icons, or glyphs.
+When you run it, you can see that we now have icons, because the fonts are actually glyphs font icons.
 
 ![](D:\GitHub\Articulae\mds\images\glyph_toolbar.PNG)
 
@@ -1181,15 +1187,15 @@ ToolBar {
 }
 ```
 
-*Snippet 24 - We set the font.family to the segoe_mdl2*
+*Snippet 24 - We set the `font.family `to the `segoe_mdl2`*
 
 
 
-Next lets use glyphs for the navigation icons too. But first lets create a specific custom type for them to avoid writing the same code twice, and also to keep things orgainsed.
+Next lets use glyphs for the navigation icons too. But first lets create a custom type for them.
 
 
 
-Create a new file in the components folder and name it CustNavButton.qml. In it put the previous Button code and then customise it.
+Create a new file in the `components` folder and name it `CustNavButton.qml`. In it put the previous Button code and then customise it.
 
 > components/CustNavButton.qml
 
@@ -1216,11 +1222,11 @@ Button {
 }
 ```
 
-*Snippet 25 - We chnage the appearance of the button by setting the background and contentItem properties. You can see that we have used mdl2 icons for the text.*
+*Snippet 25 - We chnage the appearance of the button by setting the `background` and `contentItem` properties. You can see that we have used `segoe_mdl2` icons for the text.*
 
 
 
-Next use it in the IndividualView component
+Next use it in the `IndividualView` component
 
 > components/IndividualView.qml
 
@@ -1268,19 +1274,15 @@ Component {
 }
 ```
 
-*Snippet 26*
+*Snippet 26 - You can that we hae also proided unicodes for the glyphs*
 
-When you run it, you should see, now we have real icons.
+When you run it, you should see, now we have real icons, for the navigation.
 
 ![](D:\GitHub\Articulae\mds\images\nav_icons.PNG)
 
 
 
 Next, lets handle the button for the zoom buttons.
-
-
-
-
 
 Lets create a new file and call it zoomButton.qml
 
@@ -1310,9 +1312,9 @@ Button {
 }
 ```
 
-*Snippet 27 - The color of the button changes when the button gets hovered. The ? and : code is a shorthand if/else statement.*
+*Snippet 27 - The `color` of the button changes when the button gets `hovered`. The `?` and `:` code is a shorthand if/else statement.*
 
-Now refactor this in the IndividualView.qml
+Now refactor this in the `IndividualView.qml`
 
 > components/IndividualView.qml
 
@@ -1371,7 +1373,7 @@ Component {
 
 I have changed the image file that we are using, just so not to bore you out.
 
-Try hover over the ZoomButton, at the bottom and see how they change color.
+Try hovering over the `ZoomButton`, at the bottom and see how they change color.
 
 ![](D:\GitHub\Articulae\mds\images\real_zoom_buttons.PNG)
 
@@ -1497,7 +1499,7 @@ ApplicationWindow {
 }
 ```
 
-*Snippet 30 - You assign to values to the flags property. Qt.FramelessWindowHint makes it frameless and the Qt.Window draws an icon for it on the Operating System's Taskbar. Other than that its just like a splashscreen.*
+*Snippet 30 - We assign to values to the `flags` property. `Qt.FramelessWindowHint` makes it frameless and the `Qt.Window` draws an icon for it on the Operating System's Taskbar. Other than that it would have been just like a splashscreen.*
 
 You should see now see that the window is now frameless.
 
@@ -1540,11 +1542,13 @@ ApplicationWindow {
 }
 ```
 
-*Snippet 31 - We assign a Rectangle to the header property of the Window*
+*Snippet 31 - We assign a `Rectangle` to the `header` property of the Window*
 
 
 
 Now the draggability of our window is gone. So we have implement one for ourselves. 
+
+A `MouseArea` can give you all mouse related actions and properties.
 
 > main.qml
 
@@ -1608,11 +1612,11 @@ ApplicationWindow {
 }
 ```
 
-*Snippet 32 - When a user click teh title bar we set the x,y cordinates, if the mouse position changes whiles mouse is still pressed, we set the new x,y cordinates for the window according to how many pixels the mouse has moved since a button was pressed. When he releases the press we reset the cordinates.*
+*Snippet 32 - When a user presses on the title bar we save the x,y cordinates, if the mouse position changes whiles mouse is still pressed, we set the new x,y cordinates for the window according to how many pixels the mouse has moved since a button was pressed. When he releases the press we reset the saved cordinates.*
 
 
 
-Try dragging the window around, you will see that the window is not draggable.
+Try dragging the window around using our custom title bar, you will see that the window is not draggable.
 
 ![](D:\GitHub\Articulae\mds\images\movable.PNG)
 
@@ -1620,7 +1624,7 @@ Try dragging the window around, you will see that the window is not draggable.
 
 Now lets add the close buttons on the title bar.
 
-Create a new file in the components folder and name it CloseButton.qml
+Create a new file in the `components` folder and name it `CloseButton.qml`
 
 > components/CloseButton.qml
 
@@ -1650,7 +1654,7 @@ Button {
 
 *Snippet 33*
 
-Now use it in the main.qml
+Now use it in the `main.qml`
 
 > main.qml
 
@@ -1720,9 +1724,9 @@ ApplicationWindow {
 }
 ```
 
-*Snippet 34 - Notice how that they have been called with the Comp namespace. Because here the components folder has been imported as  namespace.*
+*Snippet 34 - Notice how that they have been called with the `Comp` namespace. Because, it is not found in the same folder as `main.qml` but in the `components` folder imported and namespaced as `Comp`*
 
-Now you should see the buttons.
+Now you should see the close buttons.
 
 ![](D:\GitHub\Articulae\mds\images\closebuttons.PNG)
 
@@ -1791,13 +1795,13 @@ ApplicationWindow {
 }
 ```
 
-*Snippet 35 - `title_str` has been initialise with the word 'Photos'*
+*Snippet 35 - `title_str` has been initialise with the word 'Photos'. And the `Text` which is placed for the title is now set to the `title_str`*
 
 Now you can see the title.
 
 ![](D:\GitHub\Articulae\mds\images\title_str.PNG)
 
-Lets create a property that will hold whether the window has been maximised or not, with that we can toggle which function the button maximised button applies.
+Lets create a property that will hold whether the window has been maximised or not. With that we can toggle which function or icon, the maximised button should apply and show respectively.
 
 > main.qml
 
@@ -1863,11 +1867,11 @@ ApplicationWindow {
 }
 ```
 
-*Snippet 36 - If the width of the application has been changed somehow that it is greater than a few pixels above our default 800, then portrait will be false.*
+*Snippet 36 - If the `width` of the application has been changed somehow that it is greater than a few pixels above our default `800`, then` portrait` will be `false`. We then use this property to handle the toggle of the maximise button*
 
 
 
-Lets add a border to make our window stand out in case it is over another window.
+Lets add a border to make our window stand out when it is over another window.
 
 ```qml
 ...
@@ -1918,7 +1922,11 @@ ApplicationWindow {
 }
 ```
 
-*Snippet 37 - We assign a Rectangle to the background property and set a border to the Rectangle. One problem arises, since this is the background every other thing will draw on top of it, so we have to reduce their width and height by the total border width and/or height. This applies to the header and StackView (the main content)*
+*Snippet 37 - We assign a `Rectangle` to the `background` property and set a `border` of the `Rectangle`. One problem arises, since this is the `background` every other thing will draw on top of it, so we have to reduce their `width` and `height` by the total `border` `width` and/or `height`. This applies to the `header` and `StackView` (the main content)*
+
+
+
+![](D:\GitHub\Articulae\mds\images\border.PNG)
 
 
 
@@ -1932,7 +1940,7 @@ Congratulations on reaching this point. All of the Gui is done. Lets us move on 
 
 Now Lets connect the python script to the GUI.
 
-Inside the main.py link the qml file.
+Inside the `main.py` link the qml file.
 
 > main.py
 > 
@@ -1980,9 +1988,9 @@ engine.quit.connect(app.quit)
 sys.exit(app.exec())
 ```
 
-*Snippet 38 - On the first 5 lines, we have our import statements. The `QQuickWindow.setSceneGraphBackend('software')` code is just compactibility code, which makes QML work on very old machines. About 90% of computers out there will work fine without it. If you prefer, you can remove it and hence the` QQuickWindow` import. The actual connection with Qml happens with the code `engine.load('./UI/main.qml')`. Be should to give to the actual relative path to it.*
+*Snippet 38 - On the first 5 lines, we have our `import` statements. The `QQuickWindow.setSceneGraphBackend('software')` code is just compactibility code, which makes QML work on very old machines. About 90% of computers out there will work fine without it. If you prefer, you can remove it and hence the` QQuickWindow` `import`. The actual connection with Qml happens with the code `engine.load('./UI/main.qml')`. Be should to give to the actual relative path to it.*
 
-Now run main.py using command prompt or the Terminal
+Now run `main.py` using command prompt or the Terminal
 
 Navigate to the project folder. If your project folder is named 'PhotosClone'
 
@@ -2002,9 +2010,9 @@ Now when you run it you should see the GUI pop up like before.
 
 Now lets move on to getting the functionality of the window to work.
 
-Lets keep the functionality in a separate, which is a best practice, so code can be well organised.
+Lets keep the functionality in a separate file, which is a best practice, so code can be well organised.
 
-Create a new file beside main.py and name it func.py
+Create a new file beside `main.py` and name it `func.py`
 
 > func.py
 > 
@@ -2034,9 +2042,9 @@ class Backend(QObject):
         QObject.__init__(self)
 ```
 
-*Snippet 39*
+*Snippet 39 - We have created a class Backend that inherits a QObject. We can connect this class to QML because of its inheritance*
 
-Connect it to the main.py
+Connect it to the `main.py`
 
 > main.py
 > 
@@ -2084,9 +2092,9 @@ engine.quit.connect(app.quit)
 ...
 ```
 
-*Snippet 40 - the rootObjects of the engine are the direct object types declared in the mainqml, which in this is just one, ApplicationWindow. So we get it withe the index of 0, next we set its property backend to the value of our back_end object. Since such a QML property doesn't exist in the ApplicationWindow lets add it. *
+*Snippet 40 - the `rootObjects` of the engine are the direct object types declared in the `main.qml`, which in this is just one, `ApplicationWindow`. So we get it with the index of `0`, next we set its property `backend` to the value of our `back_end` an instance of our `Backend` class from `func.py`. Since such a QML property doesn't exist in the `ApplicationWindow`we must create it.*
 
-Connect it with the qml code.
+Create the QML property.
 
 ```qml
 ...
@@ -2124,13 +2132,13 @@ ApplicationWindow {
 }
 ```
 
-*Snippet 41 - We have created a backend poperty which teh python will connect to, next we also create a Connections type, from this, we will handle all calls from Python.*
+*Snippet 41 - We have created the `backend` poperty which python will connect to, next we also create a `Connections` type, within this type, we will handle all calls from Python.*
 
 
 
 When a user starts our app by attempting to open an image file with our app, the filepath will be passed to our application as a CLI argument, this is how all apps are called to open a certain type of file, whether text or multimedia.
 
-Lets create a startup function that takes the CLI argument and pass the filepath to the GUI to show it when the app has been called. Also the app allows a user to navigate the folder in which an image currently been showed is found. So the startup method will call other methods that will handle all processes in between.
+Lets create a startup function that takes the CLI argument and pass the filepath to the GUI to show it the image. Also, our app allows a user to navigate the folder in which an image currently been showed is found. So the startup method will call other methods that will handle all processes for this functionality to work.
 
 
 
@@ -2244,9 +2252,9 @@ class Backend(QObject):
             print(title, name, self.curr_index, w, h, total)
 ```
 
-*Snippet 43 - the start_up method takes the argument values. For now we print some other information we got after processing that one image.*
+*Snippet 43 - the `start_up` method takes the argument values. For now we print the information we get after processing that one image.*
 
-Call the startup method, right after the backend property has been set. Mind you this method will only run, after the UI has fully loaded.
+In `main.py` call the startup method, right after the `backend` property has been set. Mind you this method will only run, after the UI has fully loaded.
 
 > main.py
 
@@ -2261,7 +2269,7 @@ engine.quit.connect(app.quit)
 sys.exit(app.exec())
 ```
 
-*Snippet 44 - the sys.argv always holds the name of the application the user used to call the app and other CLI argument values passed*
+*Snippet 44 - the `sys.argv` always holds the CLI argument passed to the application*
 
 Using the command prompt or terminal add the filepath to any image file on your computer
 
@@ -2309,7 +2317,7 @@ class Backend(QObject):
     ...
 ```
 
-And then in the backend class
+And then in the `Backend` class
 
 > func.py
 
@@ -2339,7 +2347,7 @@ class Backend(QObject):
             self.firstImage.emit(title, name, self.curr_index, w, h, total)
 ```
 
-*Snippet 45 - We create a signal firstName then we emit it with the values we want. Signals can be handled from within QML*
+*Snippet 45 - We create a signal `firstName` then we `emit` it with the values we want. The The emitted signals will be handled from within QML*
 
 > main.qml
 
@@ -2394,7 +2402,9 @@ ApplicationWindow {
 }
 ```
 
-*Snippet 46 - Inside the Connections we have handled the firstImage signal, and has receiced and assigned the values to QML properties. The signal handlers name is always 'on' + the title case of the signals name, in this case firstName, signal handler should be called onFirstImage*
+*Snippet 46 - Inside the `Connections` we handle the `firstImage` signal, we receice and assigne the values to QML properties. The signal handlers name is always 'on' + the title case of the signals name, in this case` firstName`, signal handler should be called `onFirstImage`*
+
+Let use these QML properties to control what Image the image viewer shows.
 
 > components/IndividualView.qml
 
@@ -2439,21 +2449,23 @@ Component {
 }
 ```
 
-*Snippet 47 - The sourceSize and source of the image has been set variables. So now, whenver the values of the variables get changes source and the sourceSize will also change.*
+*Snippet 47 - The `sourceSize` and `source` of the `Image` has been set to other properties. So now, whenever the values of these properties change, `source` and the `sourceSize` will also change.*
 
-Now run it again, and pass in an image as a parameter
+Now run it again, and pass in an image filepath as a parameter
 
 ```shell
 >>> python main.py "C:\Users\workgroup\Pictures\Saved Pictures\pexels-pixabay-33109.jpg"
 ```
 
-Now you should be able to see the image, using the right aspect ratio, and the title also showing in the custom title bar.
+Now you should be able to see the image with the right aspect ratio, and the title also showing in the custom title bar.
 
 ![](D:\GitHub\Articulae\mds\images\new_image.PNG)
 
-Let us add functionality for the nav buttons. They are supposed to navigate to the other image files in the current folder. But the buttons are to be visible only when there are more images that hasn't been shown, based on the indexing of the images in the current folder.
 
-Lets control their visibility based on their current index. Then they should call for an image to be shown at the next or previous index.
+
+Let us now add functionality for the nav buttons. They are supposed to navigate to the other image files in the current folder. But the buttons are to be visible only when there are more images that hasn't been shown, based on the indexing of the images in the current folder.
+
+Let us control their visibility of the button based on their current index. Then they should call for an image to be shown at the next or previous index.
 
 > components/IndividualView.qml
 
@@ -2506,11 +2518,13 @@ Component {
 }
 ```
 
-*Snippet 48 - Both buttons are calling for an image to be shown at the previous or next index when clicked*
+*Snippet 48 - Both buttons when clicked are calling `get_image_at_index` of the `backend` property which we have set to our python `back_end` object,they pass to it an index lower or higher than the current index*
 
-Methods QML calls are called slots.
 
-Lets create the get_image_at_index slot
+
+Methods QML calls, are called slots.
+
+So now lets create the `get_image_at_index` slot
 
 > func.py
 > 
@@ -2596,9 +2610,9 @@ class Backend(QObject):
     ...
 ```
 
-*Snippet 50 - the first get_image_at_index creates a thread and calls the underscore _get_image_index method with the thread and then returns, the underscore does the processing and the emit the updateImage signal ith all of the data*
+*Snippet 50 - Its best if slots returns immediately and rather call on another thread to handle the workload. So we create an underscore method to handle the workload. So all the `get_image_at_index` is doing is to call the underscore `_get_image_at_index` method in a seperate thread. The underscore method does the processing and then emit the `updateImage` signal to QML with all of the data we need*
 
-Receive this signal too in Qml
+Receive this signal in Qml
 
 > main.qml
 
@@ -2648,12 +2662,14 @@ ApplicationWindow {
 }
 ```
 
-*Snippet 51 -  when we receive the update image signal we assign them to the variable which the image, its dimensions and the title to change*
+*Snippet 51 -  When we receive the `updateImage` signal we assign properties to the image source, its dimensions and title properties*
 
 Now you should be able to click and view all of the images in folder
 
 ![](D:\GitHub\Articulae\mds\images\nav_btns.PNG) 
 
-Finally we are all done. This has been a long tutorial so we will go no further.
+Finally we are all done. This has been a long tutorial so we shall go no further.
 
-|
+
+
+All Images used downloaded from [pexels.com](https://pexels.com). Used by permission. Under CC0 [License](https://www.pexels.com/creative-commons-images/)
