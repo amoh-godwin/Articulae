@@ -1,10 +1,16 @@
 # Build A Clone Of Windows' Photos App
 
-In developing our app, there are two approaches we can take. 1) Top-Down approach where we and 2) bottom-up
+In developing our app, there are two approaches we can take. 
+
+1) Top-Down approach where we build the UI first and then later the business logic and
+
+2) Bottom-up - Where you create a functionality before designing a UI for it.
+   
+   
 
 We will be using the Top-down approach, because it is more real world like. Before you create a functionality for a button, the button should be there in the UI. In our case before you get an image to show, you should know where you want to show it and the window size you want to show it in, and so on. So it will be good to start with the UI first and then later connect the Python to it as a backend.
 
-For our UI we will be using QML. The most popular and most loved desktop UI language in the world. Javascript-like styling language.
+For our UI we will be using QML. The most popular and most loved desktop UI language in the world, its Javascript-like styling language.
 
 ## Installations
 
@@ -24,11 +30,17 @@ and if you prefer PySide6
 $ pip install PySide6
 ```
 
+### Segoe Font
+
+We will be using the Segoe MDL2 fonts. Download it here: [Font Segoe MDL2 Assets Normal - download font](https://www.azfonts.net/fonts/segoe-mdl2-assets/normal-261089)
+
 ### Install Ninja-Preview
 
 The last thing you will need to get is Ninja-Preview.
 
 This is just a previewer of the UI files before we connect it to python, since we will be focusing on the UI before handling functionality with Python.
+
+Head over to the [realeases](https://github.com/amoh-godwin/Ninja-Preview/releases) page and download a version for your operating system
 
 ## Project Folder
 
@@ -87,11 +99,11 @@ To use Ninja-Preview:
 
 3. Click the green play button to run the file
 
-![](D:\GitHub\Articulae\mds\images\ninja_preview_run.PNG)
+![](./images/ninja_preview_run.PNG)
 
 You should see a basic window popup. As shown in below.
 
-![](D:\GitHub\Articulae\mds\images\base_window.PNG)
+![](./images/base_window.PNG)
 
 Since we have already imported our universal styling which makes our controls look like that of the windows Universal style, we can set a dark theme for window.
 
@@ -118,13 +130,13 @@ ApplicationWindow {
 
 When you run it with Ninja-Preview, you should see that we now have a dark window
 
-![](D:\GitHub\Articulae\mds\images\dark_window.PNG)
+![](./images/dark_window.PNG)
 
 The photos app has multiple view, an individual view and a collections view, which is a sort of timeline of pictures view. But for the sake of brevity, which shall focus on only the individual viewer.
 
 If you take a look at the Windows' Photos App, you can see that everything else draws on top of the image viewer. The buttons, the toolbar, just about everything is on top of the image its showing.
 
-![](D:\GitHub\Articulae\mds\images\windows-photos-app.PNG)
+![](./images/windows-photos-app.PNG)
 
 We shall be implementing the same thing in this lesson.
 
@@ -221,7 +233,7 @@ ApplicationWindow {
 
 Now if you run it you will see a blue window.
 
-![](D:\GitHub\Articulae\mds\images\blue_window.PNG)
+![](./images/blue_window.PNG)
 
 Now our `component` has taken over the `StackView` which has also taken over our `ApplicationWindow`
 
@@ -314,7 +326,7 @@ Component {
 
 When you run it, this is what you get.
 
-![](D:\GitHub\Articulae\mds\images\no_aspect_ratio_waterfall.PNG) 
+![](./images/no_aspect_ratio_waterfall.PNG) 
 
 Notice how the image has been strecthed. This is because the width of the image is 1333px and the height is 2000, **the height is greater than the width**, so showing it in an application which has the **width greater than the height** will cause the width to strecth and the height to be skewed.
 
@@ -363,7 +375,7 @@ Now run it.
 
 You should see that all of the image you used is showing without any strecth or skew, 
 
-![](D:\GitHub\Articulae\mds\images\aspect_ratio_waterfall.PNG)
+![](./images/aspect_ratio_waterfall.PNG)
 
 Please put in the correct dimensions for the image you choose to use as the `sourceSize`.
 
@@ -410,7 +422,7 @@ Component {
 
 When you run it, you should see
 
-![](D:\GitHub\Articulae\mds\images\tool_bar_waterfall.PNG)
+![](./images/tool_bar_waterfall.PNG)
 
 As we would like to improve it, lets make it a type, to keep things organized. Create a new file in the `components` folder and name it `ControlBar.qml`, in it put the `ToolBar` code we already have.
 
@@ -472,7 +484,7 @@ Component {
 
 When you run it, you should see the same thing you saw previously.
 
-![](D:\GitHub\Articulae\mds\images\tool_bar_waterfall.PNG)
+![](./images/tool_bar_waterfall.PNG)
 
 We shall improve on the toolbar later
 
@@ -531,7 +543,7 @@ Component {
 
 When you run this you should see
 
-![](D:\GitHub\Articulae\mds\images\nav_buttons.PNG)
+![](./images/nav_buttons.PNG)
 
 
 
@@ -601,13 +613,13 @@ Component {
 
 When you run it, you should see something like this.
 
-![](D:\GitHub\Articulae\mds\images\zoom_buttons.PNG)
+![](./images/zoom_buttons.PNG)
 
 
 
 Now lets improve on the toolbar.
 
-![](D:\GitHub\Articulae\mds\images\windows-photos-app.PNG)
+![](./images/windows-photos-app.PNG)
 
 When you look at the Windows' Photos App, you can see that the items are placed as if each of them is a row. So we put them in a `Rowlayout`
 
@@ -655,7 +667,7 @@ ToolBar {
 
 When you run it, you only see the newly added button.
 
-![](D:\GitHub\Articulae\mds\images\toolbar_btn.PNG)
+![](./images/toolbar_btn.PNG)
 
 But when you add a `Menu`, you can see that the `Rectangle` has taken all of the width minus the width of the `Menu`. This method is used to prevent items in any `Layout` from becoming spaced out.
 
@@ -731,7 +743,7 @@ ToolBar {
 
 
 
-![](D:\GitHub\Articulae\mds\images\toolbar_menubar.PNG)
+![](./images/toolbar_menubar.PNG)
 
 Lets add the other buttons found in the `ToolBar`
 
@@ -820,7 +832,7 @@ ToolBar {
 
 When you run it you should see something like this.
 
-![](D:\GitHub\Articulae\mds\images\cust_btn_bar.PNG)
+![](./images/cust_btn_bar.PNG)
 
 Now block the rest of the remaining buttons
 
@@ -885,7 +897,7 @@ ToolBar {
 
 *Snippet 18 - We have added blocking for the remaining buttons.*
 
-![](D:\GitHub\Articulae\mds\images\tool_bar_allbtns.PNG)
+![](./images/tool_bar_allbtns.PNG)
 
 Now lets improve on the `ControlBar` a bit more.
 
@@ -1143,7 +1155,7 @@ ToolBar {
 
 When you run it, you can see that we now have icons, because the fonts are actually glyphs font icons.
 
-![](D:\GitHub\Articulae\mds\images\glyph_toolbar.PNG)
+![](./images/glyph_toolbar.PNG)
 
 Next lets add the unicode for the menubar Icon too.
 
@@ -1278,7 +1290,7 @@ Component {
 
 When you run it, you should see, now we have real icons, for the navigation.
 
-![](D:\GitHub\Articulae\mds\images\nav_icons.PNG)
+![](./images/nav_icons.PNG)
 
 
 
@@ -1375,7 +1387,7 @@ I have changed the image file that we are using, just so not to bore you out.
 
 Try hovering over the `ZoomButton`, at the bottom and see how they change color.
 
-![](D:\GitHub\Articulae\mds\images\real_zoom_buttons.PNG)
+![](./images/real_zoom_buttons.PNG)
 
 
 
@@ -1466,7 +1478,7 @@ ToolBar {
 
 *Snippet 29*
 
-![](D:\GitHub\Articulae\mds\images\view_all_photos_icon.PNG)
+![](./images/view_all_photos_icon.PNG)
 
 
 
@@ -1503,11 +1515,11 @@ ApplicationWindow {
 
 You should see now see that the window is now frameless.
 
-![](D:\GitHub\Articulae\mds\images\frameless.PNG)
+![](./images/frameless.PNG)
 
  You can close it by hovering over the icon drawn on the taskbar and then click the close button.
 
-![](D:\GitHub\Articulae\mds\images\frameless_close.PNG)
+![](./images/frameless_close.PNG)
 
 
 
@@ -1618,7 +1630,7 @@ ApplicationWindow {
 
 Try dragging the window around using our custom title bar, you will see that the window is not draggable.
 
-![](D:\GitHub\Articulae\mds\images\movable.PNG)
+![](./images/movable.PNG)
 
 
 
@@ -1728,7 +1740,7 @@ ApplicationWindow {
 
 Now you should see the close buttons.
 
-![](D:\GitHub\Articulae\mds\images\closebuttons.PNG)
+![](./images/closebuttons.PNG)
 
 
 
@@ -1799,7 +1811,7 @@ ApplicationWindow {
 
 Now you can see the title.
 
-![](D:\GitHub\Articulae\mds\images\title_str.PNG)
+![](./images/title_str.PNG)
 
 Lets create a property that will hold whether the window has been maximised or not. With that we can toggle which function or icon, the maximised button should apply and show respectively.
 
@@ -1926,7 +1938,7 @@ ApplicationWindow {
 
 
 
-![](D:\GitHub\Articulae\mds\images\border.PNG)
+![](./images/border.PNG)
 
 
 
@@ -2004,7 +2016,7 @@ Then do, as shown in the image.
 >>> python main.py
 ```
 
-![](D:\GitHub\Articulae\mds\images\Cmd.PNG)
+![](./images/Cmd.PNG)
 
 Now when you run it you should see the GUI pop up like before.
 
@@ -2273,13 +2285,11 @@ sys.exit(app.exec())
 
 Using the command prompt or terminal add the filepath to any image file on your computer
 
-![](D:\GitHub\Articulae\mds\images\Cmd_filepath.PNG)
+![](./images/Cmd_filepath.PNG)
 
 After running, among the warnings, you should see the title, name, current index, the width, height and the total images in the folder.
 
-![](D:\GitHub\Articulae\mds\images\print.PNG)
-
-
+![](./images/print.PNG)
 
 Now lets use Signals to pass all this information to QML.
 
@@ -2459,7 +2469,7 @@ Now run it again, and pass in an image filepath as a parameter
 
 Now you should be able to see the image with the right aspect ratio, and the title also showing in the custom title bar.
 
-![](D:\GitHub\Articulae\mds\images\new_image.PNG)
+![](./images/new_image.PNG)
 
 
 
@@ -2666,10 +2676,12 @@ ApplicationWindow {
 
 Now you should be able to click and view all of the images in folder
 
-![](D:\GitHub\Articulae\mds\images\nav_btns.PNG) 
+![](./images/nav_btns.PNG) 
 
 Finally we are all done. This has been a long tutorial so we shall go no further.
 
+### Link to Source code
+This is the link to all the codes.
 
 
 All Images used downloaded from [pexels.com](https://pexels.com). Used by permission. Under CC0 [License](https://www.pexels.com/creative-commons-images/)
