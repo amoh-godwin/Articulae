@@ -5,8 +5,6 @@ In developing our app, there are two approaches we can take.
 1) Top-Down approach where we build the UI first and then later the business logic and
 
 2) Bottom-up - Where you create a functionality before designing a UI for it.
-   
-   
 
 We will be using the Top-down approach, because it is more real world like. Before you create a functionality for a button, the button should be there in the UI. In our case before you get an image to show, you should know where you want to show it and the window size you want to show it in, and so on. So it will be good to start with the UI first and then later connect the Python to it as a backend.
 
@@ -237,8 +235,6 @@ Now if you run it you will see a blue window.
 
 Now our `component` has taken over the `StackView` which has also taken over our `ApplicationWindow`
 
-
-
 **From hereon you will be seeing *three dots (...)* in the code, to represent code that has already been presented previously.                                                                      E.g. the previous code could have been written as:**
 
 > main.qml
@@ -335,8 +331,6 @@ The width to height ratio of an image is known as **aspect ratio**. Applications
 QML provides `sourceSize` which we can use to specify the actual size of the image file. It is can also be used to limit the amount of data that will actually be put into the ram to reduce ram usage. QML also provided aspect ratio property types, combined with the `sourceSize` we can show the image with the correct aspect ratio.
 
 In our `IndividualView.qml` let us add the actual size as the `sourceSize` and then use `fillMode` to specify how we want the aspect ratio to be handled.
-
-
 
 > components/IndividualView.qml
 
@@ -545,8 +539,6 @@ When you run this you should see
 
 ![](./images/nav_buttons.PNG)
 
-
-
 Next, lets also block the Zoom buttons.
 
 > components/IndividualView.qml
@@ -609,13 +601,9 @@ Component {
 
 *Snippet 13 - We have added three buttons in `RowLayout`. Since each has a `Layout.fillWidth` they will be sharing the `width` of the `parent `equally`. We shall improve on  the buttons later*
 
-
-
 When you run it, you should see something like this.
 
 ![](./images/zoom_buttons.PNG)
-
-
 
 Now lets improve on the toolbar.
 
@@ -740,8 +728,6 @@ ToolBar {
 ```
 
 *Snippet 15 - We have a `MennuBr` with  Menu and Actions. The `onAboutToShow`  signal handler increases the height, and the `onAboutToHide` decreases the height of the `ToolBar`*
-
-
 
 ![](./images/toolbar_menubar.PNG)
 
@@ -950,8 +936,6 @@ ToolButton {
 
 *Snippet 19 - Now the descript won't show if the height is less than 48 based on the code: `visible: ctrl.height > 48``*
 
-
-
 Now assign the descriptions to the buttons.
 
 > components/ControlBar.qml
@@ -1047,8 +1031,6 @@ ApplicationWindow {
 ```
 
 *Snippet 21 - We load fonts with the `FontLoader` passing the filepath to the `source` parameter, we give it an `id` so we can it access in any child qml file*
-
-
 
 Now use the glyph font assigning the `name` property of the loaded font as the `font.family` of the Text that will want to turn into an icon.
 
@@ -1201,11 +1183,7 @@ ToolBar {
 
 *Snippet 24 - We set the `font.family `to the `segoe_mdl2`*
 
-
-
 Next lets use glyphs for the navigation icons too. But first lets create a custom type for them.
-
-
 
 Create a new file in the `components` folder and name it `CustNavButton.qml`. In it put the previous Button code and then customise it.
 
@@ -1235,8 +1213,6 @@ Button {
 ```
 
 *Snippet 25 - We chnage the appearance of the button by setting the `background` and `contentItem` properties. You can see that we have used `segoe_mdl2` icons for the text.*
-
-
 
 Next use it in the `IndividualView` component
 
@@ -1291,8 +1267,6 @@ Component {
 When you run it, you should see, now we have real icons, for the navigation.
 
 ![](./images/nav_icons.PNG)
-
-
 
 Next, lets handle the button for the zoom buttons.
 
@@ -1389,8 +1363,6 @@ Try hovering over the `ZoomButton`, at the bottom and see how they change color.
 
 ![](./images/real_zoom_buttons.PNG)
 
-
-
 Next lets add the icon for the "View all photos" button.
 
 > components/ControlBar.qml
@@ -1480,8 +1452,6 @@ ToolBar {
 
 ![](./images/view_all_photos_icon.PNG)
 
-
-
 #### Remove the title bar
 
 Now lets remove the title bar.
@@ -1521,8 +1491,6 @@ You should see now see that the window is now frameless.
 
 ![](./images/frameless_close.PNG)
 
-
-
 Lets add our own custom bar.
 
 > main.qml
@@ -1555,8 +1523,6 @@ ApplicationWindow {
 ```
 
 *Snippet 31 - We assign a `Rectangle` to the `header` property of the Window*
-
-
 
 Now the draggability of our window is gone. So we have implement one for ourselves. 
 
@@ -1626,13 +1592,9 @@ ApplicationWindow {
 
 *Snippet 32 - When a user presses on the title bar we save the x,y cordinates, if the mouse position changes whiles mouse is still pressed, we set the new x,y cordinates for the window according to how many pixels the mouse has moved since a button was pressed. When he releases the press we reset the saved cordinates.*
 
-
-
 Try dragging the window around using our custom title bar, you will see that the window is not draggable.
 
 ![](./images/movable.PNG)
-
-
 
 Now lets add the close buttons on the title bar.
 
@@ -1741,8 +1703,6 @@ ApplicationWindow {
 Now you should see the close buttons.
 
 ![](./images/closebuttons.PNG)
-
-
 
 Next lets move on to the title.
 
@@ -1881,8 +1841,6 @@ ApplicationWindow {
 
 *Snippet 36 - If the `width` of the application has been changed somehow that it is greater than a few pixels above our default `800`, then` portrait` will be `false`. We then use this property to handle the toggle of the maximise button*
 
-
-
 Lets add a border to make our window stand out when it is over another window.
 
 ```qml
@@ -1936,15 +1894,9 @@ ApplicationWindow {
 
 *Snippet 37 - We assign a `Rectangle` to the `background` property and set a `border` of the `Rectangle`. One problem arises, since this is the `background` every other thing will draw on top of it, so we have to reduce their `width` and `height` by the total `border` `width` and/or `height`. This applies to the `header` and `StackView` (the main content)*
 
-
-
 ![](./images/border.PNG)
 
-
-
 Congratulations on reaching this point. All of the Gui is done. Lets us move on then to the business logic.
-
-
 
 ### Creating the Business logic or backend
 
@@ -1955,8 +1907,6 @@ Now Lets connect the python script to the GUI.
 Inside the `main.py` link the qml file.
 
 > main.py
-> 
-> PyQt6
 
 ```python
 import sys
@@ -1964,29 +1914,6 @@ import sys
 from PyQt6.QtGui import QGuiApplication
 from PyQt6.QtQml import QQmlApplicationEngine
 from PyQt6.QtQuick import QQuickWindow
-
-
-QQuickWindow.setSceneGraphBackend('software')
-
-app = QGuiApplication(sys.argv)
-
-engine = QQmlApplicationEngine()
-engine.load('./UI/main.qml')
-engine.quit.connect(app.quit)
-
-sys.exit(app.exec())
-```
-
-> main.py
-> 
-> PySide6
-
-```python
-import sys
-
-from PySide6.QtGui import QGuiApplication
-from PySide6.QtQml import QQmlApplicationEngine
-from PySide6.QtQuick import QQuickWindow
 
 
 QQuickWindow.setSceneGraphBackend('software')
@@ -2027,25 +1954,9 @@ Lets keep the functionality in a separate file, which is a best practice, so cod
 Create a new file beside `main.py` and name it `func.py`
 
 > func.py
-> 
-> PyQt6
 
 ```python
 from PyQt6.QtCore import QObject
-
-
-class Backend(QObject):
-
-    def __init__(self, parent=None):
-        QObject.__init__(self)
-```
-
-> func.py
-> 
-> PySide6
-
-```python
-from PySide6.QtCore import QObject
 
 
 class Backend(QObject):
@@ -2059,35 +1970,10 @@ class Backend(QObject):
 Connect it to the `main.py`
 
 > main.py
-> 
-> PyQt6
 
 ```python
 ...
 from PyQt6.QtQuick import QQuickWindow
-
-from func import Backend
-
-
-QQuickWindow.setSceneGraphBackend('software')
-...
-
-engine = QQmlApplicationEngine()
-back_end = Backend()
-engine.load('./UI/main.qml')
-engine.rootObjects()[0].setProperty('backend', back_end)
-engine.quit.connect(app.quit)
-
-...
-```
-
-> main.py
-> 
-> PySide6
-
-```python
-...
-from PySide6.QtQuick import QQuickWindow
 
 from func import Backend
 
@@ -2146,19 +2032,13 @@ ApplicationWindow {
 
 *Snippet 41 - We have created the `backend` poperty which python will connect to, next we also create a `Connections` type, within this type, we will handle all calls from Python.*
 
-
-
 When a user starts our app by attempting to open an image file with our app, the filepath will be passed to our application as a CLI argument, this is how all apps are called to open a certain type of file, whether text or multimedia.
 
 Lets create a startup function that takes the CLI argument and pass the filepath to the GUI to show it the image. Also, our app allows a user to navigate the folder in which an image currently been showed is found. So the startup method will call other methods that will handle all processes for this functionality to work.
 
-
-
 First the import statements
 
 > func.py
-> 
-> PyQt6
 
 ```python
 import os
@@ -2166,24 +2046,6 @@ import threading
 from typing import List, Tuple
 from PIL import Image
 from PyQt6.QtCore import QObject
-
-
-class Backend(QObject):
-
-    def __init__(self, parent=None):
-        QObject.__init__(self)
-```
-
-> func.py
-> 
-> PySide6
-
-```python
-import os
-import threading
-from typing import List, Tuple
-from PIL import Image
-from PySide6.QtCore import QObject
 
 
 class Backend(QObject):
@@ -2298,8 +2160,6 @@ Usings signals
 Import statements
 
 > func.py
-> 
-> PyQt6
 
 ```python
 ...
@@ -2312,20 +2172,7 @@ class Backend(QObject):
     ...
 ```
 
-> func.py
-> 
-> PySide6
 
-```python
-...
-from PIL import Image
-from PySide6.QtCore import QObject, Signal
-
-
-class Backend(QObject):
-
-    ...
-```
 
 And then in the `Backend` class
 
@@ -2471,8 +2318,6 @@ Now you should be able to see the image with the right aspect ratio, and the tit
 
 ![](./images/new_image.PNG)
 
-
-
 Let us now add functionality for the nav buttons. They are supposed to navigate to the other image files in the current folder. But the buttons are to be visible only when there are more images that hasn't been shown, based on the indexing of the images in the current folder.
 
 Let us control their visibility of the button based on their current index. Then they should call for an image to be shown at the next or previous index.
@@ -2530,15 +2375,11 @@ Component {
 
 *Snippet 48 - Both buttons when clicked are calling `get_image_at_index` of the `backend` property which we have set to our python `back_end` object,they pass to it an index lower or higher than the current index*
 
-
-
 Methods QML calls, are called slots.
 
 So now lets create the `get_image_at_index` slot
 
 > func.py
-> 
-> PyQt6
 
 the import statements
 
@@ -2548,25 +2389,6 @@ import threading
 from typing import List, Tuple
 from PIL import Image
 from PyQt6.QtCore import QObject, pyqtSignal as Signal, pyqtSlot as Slot
-
-
-class Backend(QObject):
-
-    def __init__(self, parent=None):
-        QObject.__init__(self)
-        ...
-```
-
-> func.py
-> 
-> PySide6
-
-```python
-import os
-import threading
-from typing import List, Tuple
-from PIL import Image
-from PySide6.QtCore import QObject, Signal, Slot
 
 
 class Backend(QObject):
@@ -2681,7 +2503,7 @@ Now you should be able to click and view all of the images in folder
 Finally we are all done. This has been a long tutorial so we shall go no further.
 
 ### Link to Source code
-This is the link to all the codes.
 
+This is the link to all the codes.
 
 All Images used downloaded from [pexels.com](https://pexels.com). Used by permission. Under CC0 [License](https://www.pexels.com/creative-commons-images/)
