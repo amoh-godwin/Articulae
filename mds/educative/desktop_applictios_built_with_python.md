@@ -1,7 +1,5 @@
 # Desktop Applications Built With Python
 
-
-
 Several desktop applications has been built with python and many still continue to be built with it. Among them are:
 
 * Blender3D - The second most popular 3D creation softwareand the best Open-Source 3D creation software
@@ -20,10 +18,4 @@ Several desktop applications has been built with python and many still continue 
 
 * Mission Bio - A medical diagonostics software with focus on cancer.
 
-
-
 I believe with Python's popularity, there are a lot more that I do not know of.
-
-
-
-
