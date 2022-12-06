@@ -1,6 +1,6 @@
 # Future of Desktop Applications
 
-Had it not been the fact that many tutorials and courses that taught Desktop applications used old and ugly native controls, desktop applications market would have been much much bigger today.
+Had it not been the fact that many tutorials and courses that teach Desktop applications use old and ugly native controls, desktop applications market would have been so much bigger than what it is today.
 
 Consider that we would have had desktop apps for every social media application out there because they would needed to support offline access to the tweets and post. Email Clients, News Apps, just about any web application would have a desktop application because it would be efficient because of it storage capabiiities, the same data wouldn't need to be downloaded twice or more, the logos, profile pictures, streaming apps could have cache partly watched videos so they could resume the download of the data later and not have to download them all over again.
 
