@@ -1,0 +1,21 @@
+freecodecamp
+
+When to Use a Decorator in Python
+
+Here are the building blocks used to create Python decorators
+ - A function is an object. Because of that, a function can be assigned to a variable. The function can be accessed from that variable.
+ - A function can be nested within another function.
+ - Since a function can be nested inside another function it can also be returned.
+ - A function can be passed to another function as an argument.
+
+How to Create a Python Decorator
+
+
+How to Add Arguments to Decorators in Python
+ - *args will take an unlimited number of arguments of any type, such as 10, True, or 'Brandon'.
+ - **kwargs will take an unlimited number of keyword arguments, such as count=99, is_authenticated=True, or name='Brandon'.
+
+
+Example of a Python Decorator in Action
+
+Conclusion 
