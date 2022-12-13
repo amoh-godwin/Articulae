@@ -1,12 +1,12 @@
 Introduction
 
  - Everything in Python is an object
- - How functions work.
  - First-Class Objects.
+ - Passing Functions as Arguments to other Functions
  - Inner Functions.
  - Higher-Order Functions.
 
-Passing Functions as Arguments to other Functions
+
 
 Introduction to Decorators
  - It is also called meta programming where a part of the program attempts to change another part of program at compile time
@@ -79,12 +79,12 @@ The Use Cases of Decorators
  - Memoization
  - Synchronization
 
-Where you dont need decoratorss
+Where you dont need decorators
 Singleton Class
 
 Summary
 
 Further reading
- - What is the Decorators Library in Python?
+ - The Decorators Library in Python
 
 
