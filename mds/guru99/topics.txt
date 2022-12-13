@@ -1,0 +1,16 @@
+Introduction
+
+ - Everything in Python is an object
+ - How functions work.
+ - First-Class Objects.
+ - Inner Functions.
+ - Higher-Order Functions.
+
+Passing Functions as Arguments to other Functions
+
+Introduction to Decorators
+ - It is also called meta programming where a part of the program attempts to change another part of program at compile time
+ - Passed as an argument
+ - Modified
+ - Reuse these customised behaviours on multiple functions/classes.
+ - Python decorator modify data
