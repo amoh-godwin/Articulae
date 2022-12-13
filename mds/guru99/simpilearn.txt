@@ -1,0 +1,43 @@
+simplilearn
+
+
+ - Passed as an argument
+ - Returned from a function
+ - Modified
+ - Assigned to other variables
+ - Stored in data structures such as hash tables and lists
+
+Syntax of Python Decorators
+
+In the above syntax:
+
+ - func_name: Name of the function
+ - name_decorator: Name of the decorator
+
+
+Example of Decorators in Python
+
+
+Decorators in Python With Parameters
+
+How to Reuse Decorators in Python?
+
+Chaining Multiple Decorators in Python
+
+Defining the General Purpose Decorators in Python
+
+Working With Some Fancy Decorators in Python
+
+ - Example: Using Stateful Decorators in Python
+ - Example: Using Classes as Decorators in Python
+
+
+What is the Decorators Library in Python?
+
+
+Summing It Up
+
+About the Author
+
+
+

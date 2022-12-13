@@ -1,0 +1,43 @@
+javatpoint
+
+Python Decorator
+ - It is also called meta programming where a part of the program attempts to change another part of program at compile time
+ - Before understanding the Decorator, we need to know some important concepts of Python
+
+What are the functions in Python?
+ - Functions are first-class objects in the Python because they can reference to, passed to a variable and returned from other functions as well.
+
+Inner Function
+ - A function that accepts other function as an argument is also called higher order function
+
+Decorating functions with parameters
+
+
+Syntactic Decorator
+ - Python allows to use decorator in easy way with @symbol
+
+Reusing Decorator
+
+
+Python Decorator with Argument
+
+
+Returning Values from Decorated Functions
+
+Fancy Decorators
+
+Class Decorators
+
+Singleton Class
+
+Nesting Decorators
+
+Decorator with Arguments
+
+Stateful Decorators
+
+Classes as Decorators
+
+
+
+

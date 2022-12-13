@@ -1,0 +1,17 @@
+codeberryschool
+
+Declaring our example code
+
+Modify the function
+
+Using the wrapper function
+
+Applying a Python decorator
+
+Applying a Python Decorator to Multiple Functions
+
+Using Python decorators with the @ symbol
+
+Summary
+
+

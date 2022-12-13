@@ -1,0 +1,130 @@
+Overview
+
+Scope
+
+Introduction
+
+Prerequisites for Learning Decorators
+
+ - How functions work.
+ - First-Class Objects.
+ - Inner Functions.
+ - Higher-Order Functions.
+
+Takeaway
+ - A Decorator is a function that takes another function and extends the behavior of the latter function without explicitly modifying it.
+
+
+Functions in Python
+
+
+First-Class Objects
+
+Assigning a function to a variable
+
+Passing a function to another function
+
+Returning a function from a function
+
+ - Higher-order function is a function that takes a function as an argument or returns a function.
+
+
+Inner Functions
+
+ - Inner functions can access variables in the outer scope of the enclosing function. This pattern is known as a Closure.
+
+
+Introduction to Decorators
+
+ - decorator: This is a decorator function, it accepts another function as an argument and "decorates it" which means that it modifies it in some way and returns the modified version.
+Inside the decorator function, we are defining another inner function called wrapper. This is the actual function that does the modification by wrapping the passed function func.
+decorator returns the wrapper function.
+ - say_hello: This is an ordinary function that we need to decorate. Here, all it does is print a simple statement.
+
+
+Syntactic Decorator
+
+
+Preserving the Original Name and Docstring of the Decorated Function
+
+
+Reusing Decorator
+
+
+Decorators Functions with Parameters
+
+
+Returning Values from Decorated Functions
+
+Decorators with Arguments
+ - The most inner function wrapper is taking a variable number of arguments and then calling the decorated function num_times times. It finally returns the return value of the original decorated function.
+ - One level above is the decorator_repeat function which does the work of a normal decorator, it returns the wrapper function.
+ - On the outermost level is the repeat decorator function that accepts an argument and provides it to the inner functions using the closure pattern.
+ - You can pass arguments to a decorator by wrapping them inside of another decorator function.
+
+
+Chaining Decorators
+
+ - The first one takes a function that returns a string and then splits it into a list of words.
+ - The second one takes a function that returns a string and converts it into uppercase.
+ - You can apply multiple decorators to a single function by stacking them on top of each other.
+
+Fancy Decorators
+
+ - Decorating the methods of a class.
+ - Decorating a complete class.
+
+ - @classmethod: It is used to create methods that are bound to the class and not the object of the class. It is shared among all the objects of that class. The class is passed as the first parameter to a class method. Class methods are often used as factory methods that can create specific instances of the class.
+ - @staticmethod: Static methods can't modify object state or class state as they don't have access to cls or self. They are just a part of the class namespace.
+ - @property: It is used to create getters and setters for class attributes.
+
+
+Decorating a Complete Class
+ - Decorators can be used with the methods of a class or the whole class.
+
+
+Classes as Decorators
+
+ - The init function needs to take a function as an argument.
+ - The class needs to implement the __call__ method. This is required because the class will be used as a decorator and a decorator must be a callable object.
+
+ - Classes can also be used as decorators by implementing the __call__ method and passing the function to __init__ as an argument.
+
+
+Real World Usage of Decorators
+
+
+Other Use Cases of Decorators
+ - Authorization in Python frameworks like Flask and Django.
+ - Logging and debugging code.
+ - Caching return values of a function.
+ - Validating JSON (JavaScript Object Notation).
+Takeaway:
+
+ - Decorators in Python have several real-world usages like measuring execution time, authentication, logging, etc.
+
+
+Conclusion
+ - A Decorator in Python is a function that takes another function and extends the behavior of the latter function without explicitly modifying it.
+ - Functions are first-class objects in Python.
+ - We can easily decorate a function using the @decorator syntax.
+ - We can pass arguments to a decorator by wrapping them inside of another decorator function.
+ - We can apply multiple decorators to a single function by stacking them.
+ - Decorators can be used with the methods of a class or the whole class.
+ - Classes can also be used as decorators.
+ - Decorators in Python have several real-world usages like measuring execution time, authentication, logging, etc.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

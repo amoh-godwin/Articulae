@@ -1,0 +1,25 @@
+towardsdatascience
+
+The Simplest Tutorial for Python Decorators
+Add a “Pythonic” wrapper of any functions/classes without modifying them
+
+ - Add some behaviours to built-in or third-party functions/classes, so we don’t need to fork and modify the source code.
+ - Reuse these customised behaviours on multiple functions/classes.
+ - function_decorator is the name of the decorator.
+ - wrapped_func is the name of the inner function, which is actually only used in this decorator definition.
+ - func is the function that is being decorated.
+
+Basic Usage
+
+Pass Arguments
+
+More Examples
+
+Decorating a Class
+
+Singleton
+
+
+Summary
+
+

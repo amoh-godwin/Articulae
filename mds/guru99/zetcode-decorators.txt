@@ -1,0 +1,25 @@
+Zetcode
+
+Python decorator
+
+Python decorator example
+
+Python decorator with @ symbol
+
+Decorating functions with parameters
+
+Python decorator modify data
+
+Python multiple stacked decorators
+
+Python decorator timing example
+
+The functools @wraps decorator
+
+Python class decorator
+
+Python @staticmethod decorator
+
+Flask decorators
+
+

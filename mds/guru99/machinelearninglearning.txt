@@ -1,0 +1,22 @@
+Machine learning mastery
+
+
+Overview
+
+What is the decorator pattern, and why is it useful?
+
+Function Decorators in Python
+
+The Use Cases of Decorators
+
+
+Some Practical Examples of Decorators
+
+Memoization
+
+Function Catalog
+ - Without the registration decorators and function catalog, adding a new activation function would need modification to every function that uses activation.
+
+Further reading
+
+

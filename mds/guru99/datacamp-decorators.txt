@@ -1,0 +1,29 @@
+datacamp
+
+Assigning Functions to Variables
+
+Defining Functions Inside other Functions
+
+Passing Functions as Arguments to other Functions
+
+Functions Returning other Functions
+
+Nested Functions have access to the Enclosing Function's Variable Scope
+
+Creating Decorators
+
+Applying Multiple Decorators to a Single Function
+
+Accepting Arguments in Decorator Functions
+
+Defining General Purpose Decorators
+
+Passing Arguments to the Decorator
+
+Debugging Decorators
+
+Python Decorators Summary
+ - Authorization in Python frameworks such as Flask and Django
+ - Logging
+ - Measuring execution time
+ - Synchronization
