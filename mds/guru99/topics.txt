@@ -65,9 +65,26 @@ Debugging Decorators
  - The lists of positional and keyword arguments is joined together to one signature string with each argument separated by a comma.
  - The return value is printed after the function is executed.
 
-
-
 Defining General Purpose Decorators
+
+The Use Cases of Decorators
+
+ - Authorization
+ - Logging
+ - Timing Functions
+ - Registering Plugins or Function Catalog
+ - Caching Return Values
+ - Adding Information About Units
+ - Validating JSON
+ - Memoization
+ - Synchronization
 
 Where you dont need decoratorss
 Singleton Class
+
+Summary
+
+Further reading
+ - What is the Decorators Library in Python?
+
+
