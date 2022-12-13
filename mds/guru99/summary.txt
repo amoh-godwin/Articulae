@@ -54,36 +54,19 @@ Decorating functions with parameters
 
 
 
-Singleton Class
 
 
-The Use Cases of Decorators
 
- - Authorization
- - Logging
- - Timing Functions
- - Slowing Down Code
- - Slowing Down Code, Revisited
- - Registering Plugins
- - Caching Return Values
- - Adding Information About Units
- - Validating JSON
- - Synchronization
 
-Memoization
 
-Function Catalog
- - Without the registration decorators and function catalog, adding a new activation function would need modification to every function that uses activation.
 
-What is the Decorators Library in Python?
+
+
 
 Takeaway
  - A Decorator is a function that takes another function and extends the behavior of the latter function without explicitly modifying it.
 
  - Higher-order function is a function that takes a function as an argument or returns a function.
 
-Inner Functions
-
- - Inner functions can access variables in the outer scope of the enclosing function. This pattern is known as a Closure.
-
 Further reading
+ - What is the Decorators Library in Python?
