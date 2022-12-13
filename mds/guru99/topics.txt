@@ -35,7 +35,39 @@ Chaining Decorators | Applying Multiple Decorators to a Single Function
 
 Nesting a Decorator Within a Function
 
+ADVANCED DECORATORS
+
+Preserving function Metadata after decoration
+The functools @wraps decorator
+
+Decorating a Class
+ - Decorators can be used with the methods of a class or the whole class.
+
+Classes as Decorators
+
+ - The init function needs to take a function as an argument.
+ - The class needs to implement the __call__ method. This is required because the class will be used as a decorator and a decorator must be a callable object.
+
+ - Classes can also be used as decorators by implementing the __call__ method and passing the function to __init__ as an argument.
+
+Fancy Decorators
+
+ - @classmethod: It is used to create methods that are bound to the class and not the object of the class. It is shared among all the objects of that class. The class is passed as the first parameter to a class method. Class methods are often used as factory methods that can create specific instances of the class.
+ - @staticmethod: Static methods can't modify object state or class state as they don't have access to cls or self. They are just a part of the class namespace.
+ - @property: It is used to create getters and setters for class attributes.
+
+Stateful Decorators
+ - Sometimes, it�s useful to have a decorator that can keep track of state.
+
+Debugging Decorators
+ - Create a list of the positional arguments. Use repr() to get a nice string representing each argument.
+ - Create a list of the keyword arguments. The f-string formats each argument as key=value where the !r specifier means that repr() is used to represent the value.
+ - The lists of positional and keyword arguments is joined together to one signature string with each argument separated by a comma.
+ - The return value is printed after the function is executed.
 
 
 
 Defining General Purpose Decorators
+
+Where you dont need decoratorss
+Singleton Class
