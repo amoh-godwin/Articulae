@@ -10,7 +10,32 @@ Passing Functions as Arguments to other Functions
 
 Introduction to Decorators
  - It is also called meta programming where a part of the program attempts to change another part of program at compile time
+ - Syntax of Python Decorators
  - Passed as an argument
  - Modified
  - Reuse these customised behaviours on multiple functions/classes.
  - Python decorator modify data
+
+Writing your first decorator
+
+Decorating functions with parameters
+
+How to Add Arguments to Decorators in Python
+ - *args will take an unlimited number of arguments of any type, such as 10, True, or 'Brandon'.
+ - **kwargs will take an unlimited number of keyword arguments, such as count=99, is_authenticated=True, or name='Brandon'.
+ - The most inner function wrapper is taking a variable number of arguments and then calling the decorated function num_times times.
+ - On the outermost level is the repeat decorator function that accepts an argument and provides it to the inner functions using the closure pattern.
+ - You can pass arguments to a decorator by wrapping them inside of another decorator function.
+
+Returning Values from Decorated Functions
+
+Applying a Python Decorator to Multiple Functions
+
+Chaining Decorators | Applying Multiple Decorators to a Single Function
+
+Nesting a Decorator Within a Function
+
+
+
+
+Defining General Purpose Decorators
