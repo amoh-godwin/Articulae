@@ -11,46 +11,38 @@ Introduction
 Introduction to Decorators
  - It is also called meta programming where a part of the program attempts to change another part of program at compile time
  - Syntax of Python Decorators
- - Passed as an argument
- - Modified
  - Reuse these customised behaviours on multiple functions/classes.
  - Python decorator modify data
 
 Writing your first decorator
 
-Decorating functions with parameters
+ - Decorating functions with parameters
 
 How to Add Arguments to Decorators in Python
- - *args will take an unlimited number of arguments of any type, such as 10, True, or 'Brandon'.
- - **kwargs will take an unlimited number of keyword arguments, such as count=99, is_authenticated=True, or name='Brandon'.
- - The most inner function wrapper is taking a variable number of arguments and then calling the decorated function num_times times.
- - On the outermost level is the repeat decorator function that accepts an argument and provides it to the inner functions using the closure pattern.
- - You can pass arguments to a decorator by wrapping them inside of another decorator function.
 
 Returning Values from Decorated Functions
 
-Applying a Python Decorator to Multiple Functions
+Reusing a Decorator on Multiple Functions
 
-Chaining Decorators | Applying Multiple Decorators to a Single Function
+Chaining Decorators | Applying Multiple Decorators on a Single Function
 
-Nesting a Decorator Within a Function
+A Decorator Within a Function
 
 ADVANCED DECORATORS
 
-Preserving function Metadata after decoration
-The functools @wraps decorator
+Preserving function Metadata functools @wraps decorator
 
 Decorating a Class
  - Decorators can be used with the methods of a class or the whole class.
 
-Classes as Decorators
+Classes as a Decorator
 
  - The init function needs to take a function as an argument.
  - The class needs to implement the __call__ method. This is required because the class will be used as a decorator and a decorator must be a callable object.
 
  - Classes can also be used as decorators by implementing the __call__ method and passing the function to __init__ as an argument.
 
-Fancy Decorators
+Built-in Fancy Decorators
 
  - @classmethod: It is used to create methods that are bound to the class and not the object of the class. It is shared among all the objects of that class. The class is passed as the first parameter to a class method. Class methods are often used as factory methods that can create specific instances of the class.
  - @staticmethod: Static methods can't modify object state or class state as they don't have access to cls or self. They are just a part of the class namespace.
@@ -59,15 +51,9 @@ Fancy Decorators
 Stateful Decorators
  - Sometimes, it�s useful to have a decorator that can keep track of state.
 
-Debugging Decorators
- - Create a list of the positional arguments. Use repr() to get a nice string representing each argument.
- - Create a list of the keyword arguments. The f-string formats each argument as key=value where the !r specifier means that repr() is used to represent the value.
- - The lists of positional and keyword arguments is joined together to one signature string with each argument separated by a comma.
- - The return value is printed after the function is executed.
-
 Defining General Purpose Decorators
 
-The Use Cases of Decorators
+Example Use Cases of Decorators
 
  - Authorization
  - Logging
@@ -76,6 +62,7 @@ The Use Cases of Decorators
  - Caching Return Values
  - Adding Information About Units
  - Validating JSON
+ - Debugging Decorators
  - Memoization
  - Synchronization
 
