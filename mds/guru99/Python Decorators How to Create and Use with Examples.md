@@ -1,7 +1,5 @@
 # Python Decorators: How to Create and Use with Examples
 
-
-
 ## Introduction
 
 Everything in the python programming language is an object. First-class objects are objects that can be dynamically created, destroyed, passed as a parameter to a procedure/function, returned as a value from a procedure/function. In languages like c++ and Java everythig is not a first-class object but in python everything is. Which means that functions and classes themselves can be passed as parameters.
@@ -15,8 +13,6 @@ def greeting(func):
     func()
 
 greeting(day_based_greeting)
-
-
 ```
 
 *Listing 1.0*
@@ -104,7 +100,6 @@ user = 'Ruby'
 is_user_registered(user)
 say_hello(user)
 day_based_greeting()
-
 ```
 
 ```shellsession
@@ -115,7 +110,75 @@ Good Afternoon
 
 Python offers a new syntax known as decorators where we decorate a function/class with another function/class using the `@` symbol. Using this syntax we can handle processes before and after a function/class is called and even its inputs and what happens to its outputs.
 
+It is used extensively in web programming and Gui programming in python.
+
+With it python calls the decorator function and passes in the decorated and then assigns the return value to the decorated function as:
+
+```python
+
+```
+
+pass
+
+```python
+delete = record_history(delete)
+```
+
+
+
 But first we have to utilize the concept of inner functions first. So our example can be re-written as:
+
+```python
+from time import time
+
+def record_history(func):
+
+    def inner_caller():
+        start = time()
+        func()
+        end = time()
+        diff = end - start
+        print(f"function: {func.__name__} was called. It ran for {diff} secs")
+    return inner_caller
+
+@record_history
+def delete():
+    print('Deleting a file')
+
+delete()
+
+
+```
+
+Listing 2.1
+
+```shellsession
+Deleting a file
+function: delete was called. It ran for 0.0 secs
+```
+
+Although python has a module for timing code expressions, I wanted you to see the actual function being run on its on line. So we can time a function using the timeit module as;
+
+```python
+from timeit import timeit
+
+def record_history(func):
+
+    def inner_caller():
+        diff = timeit(func, number=1)
+        print(f"function: {func.__name__} was called. It ran for {diff} secs")
+    return inner_caller
+
+...
+
+
+```
+
+What is going on under the hood is python is writing the function as:
+
+```python
+
+```
 
 
 
