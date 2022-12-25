@@ -218,6 +218,12 @@ I have been well decorated
 we are still here after running the decorated
 ```
 
+But now another problem arises. What happens to parameters that will be passed to the decorated function.
+
+
+
+---
+
 So our example can be re-written as:
 
 ```python
@@ -268,13 +274,66 @@ def record_history(func):
 
 What is going on under the hood is python is writing the function as:
 
-```python
-
-```
+---
 
 
 
 ## How to add arguments to decorators in Python
+
+You see, once you are returning a function as the decorated, when the decorated gets called all the parameters it is called with will be passed to the function you are returning, it is the decorated now.
+
+```python
+
+def decorator(func):
+    print("I am for decoration")
+    print(f"I have received {func.__name__} as a prameter")
+
+    return func # this will receive the parameters, when called
+
+
+@decorator
+def decorated(name, sister):
+    print(f"Name is: {name}, My sister is: {sister}")
+
+
+decorated('John', 'Jane')
+
+```
+
+This will print
+
+```python
+I am for decoration
+I have received decorated as a prameter
+Name is: John, My sister is: Jane
+```
+
+So when you are returning an inner function, you must also receive the parameters in the inner function and also pass it in when you call the decorated in the inner function as:
+
+```python
+
+def decorator(func):
+    print("I am for decoration")
+    print(f"I have received {func.__name__} as a prameter")
+
+    def inner_function(x, y):
+        func(x, y)
+        print('I am done with all I want to do')
+
+    return inner_function
+
+```
+
+This will return
+
+```shellsession
+I am for decoration
+I have received decorated as a prameter
+Name is: John, My sister is: Jane
+I am done with all I want to do
+```
+
+pass
 
 ## Returning values from decorated functions
 
