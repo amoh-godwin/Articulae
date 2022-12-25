@@ -116,17 +116,109 @@ With it python calls the decorator function and passes in the decorated and then
 
 ```python
 
+def decorator(func):
+    print("I am for decoration")
+    print(f"I have received {func.__name__} as a prameter")
+    return lambda : print('What I return is the decorated function')
+
+@decorator
+def decorated():
+    print("I have been well decorated")
+
 ```
 
-pass
+Listing 2.1
+
+Just runing the code in Listing 2.1, without calling the decorated function, you will see that python has called the decorator function, so it will output
+
+```shellsession
+I am for decoration
+I have received decorated as a prameter
+```
+
+Because, under the hood, python is calling the decorator and assigning its return value to the decorated as:
 
 ```python
-delete = record_history(delete)
+decorated = decorator(decorated)
 ```
 
+So now when we run the decorated, we can see that it run our lambda function which was return by the decorator:
+
+```python
+...
 
 
-But first we have to utilize the concept of inner functions first. So our example can be re-written as:
+@decorator
+def decorated():
+    print("I have been well decorated")
+
+
+decorated()
+```
+
+This will print
+
+```shellsession
+I am for decoration
+I have received decorated as a prameter
+What I return is the decorated function
+```
+
+If we want to run the decorated function we can return that rather, since the decorator received it as a parameter.
+
+```python
+
+def decorator(func):
+    print("I am for decoration")
+    print(f"I have received {func.__name__} as a prameter")
+    return func
+
+@decorator
+def decorated():
+    print("I have been well decorated")
+
+
+decorated()
+```
+
+Now when we run we would see
+
+```shellsession
+I am for decoration
+I have received decorated as a prameter
+I have been well decorated
+```
+
+With this you can see that we can control when a function runs just by decorating it.
+
+But now a problem arises. What if we want to control what happens after the function runs. We can, if we utilize the concept of inner functions. 
+
+With inner functions we return our inner function to the decorated, when it gets called we call the decorated and then handle other processes after its done executing.
+
+```python
+def decorator(func):
+    print("I am for decoration")
+    print(f"I have received {func.__name__} as a prameter")
+
+    def inner_function():
+        func()
+        print('we are still here after running the decorated')
+
+    return inner_function
+
+...
+```
+
+this outputs
+
+```shellsession
+I am for decoration
+I have received decorated as a prameter
+I have been well decorated
+we are still here after running the decorated
+```
+
+So our example can be re-written as:
 
 ```python
 from time import time
