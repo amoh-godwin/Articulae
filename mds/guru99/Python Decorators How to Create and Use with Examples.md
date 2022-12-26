@@ -482,11 +482,65 @@ This will also output
 Settings for move are: {'destination': 'C:/Users/Downloads', 'replace_existing': False}
 ```
 
+### Using for a decorator
+
+```python
+
+def decorator(func):
+    print("I am for decoration")
+    print(f"I have received {func.__name__} as a prameter")
+
+    def my_inner_function(*args, **kwargs):
+        return_val = func(*args, **kwargs)
+        print('I am done with all I want to do')
+        return return_val
+
+    return my_inner_function
 
 
 
+@decorator
+def decorated(name, sister):
+    return f"Name is: {name}, My sister is: {sister}"
+
+
+@decorator
+def another_decorated(source='', destination=""):
+    print(f'We are moving files from {source} to {destination}')
+
+
+@decorator
+def third_decorated(**kgs):
+    print(f"source: {kgs['source']}, destination: {kgs['destination']}")
+
+
+print(decorated('Joseph', 'Josephine'))
+another_decorated(source='C:/Users/Downloads', destination='G:/')
+third_decorated(source='C:/Users/Downloads', destination='G:/')
+```
+
+will output
+
+```shellsession
+I am for decoration
+I have received decorated as a prameter
+I am for decoration
+I have received another_decorated as a prameter
+I am for decoration
+I have received third_decorated as a prameter
+I am done with all I want to do
+Name is: Joseph, My sister is: Josephine
+We are moving files from C:/Users/Downloads to G:/
+I am done with all I want to do
+source: C:/Users/Downloads, destination: G:/
+I am done with all I want to do
+```
+
+You can see that the decorator run for each time it was used
 
 ## Multiple decorators on a single function
+
+You can also stack up a decorators on a single function.
 
 ## A decorator within a function
 
