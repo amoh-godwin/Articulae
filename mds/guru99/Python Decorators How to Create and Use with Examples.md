@@ -320,7 +320,8 @@ def decorator(func):
         func(x, y)
         print('I am done with all I want to do')
 
-    return inner_function
+    return inner_function # this will receive the parameters, when called
+
 
 ```
 
@@ -333,11 +334,157 @@ Name is: John, My sister is: Jane
 I am done with all I want to do
 ```
 
-pass
+
+
+### Passing arguments to Decorators themselves
+
+The syntax of decorators allows you to call them as if they were functions and its return statement will function as the decorator:
+
+```python
+@decorator_wrapper()
+def decorated():
+    pass
+```
+
+will be translated as
+
+```python
+returned_decorator = decorator_wrapper()
+decorated = returned_decorator(decorated)
+```
+
+With this you concept, no decorator is available yet, so nothing gets passed into the decorator_wrapper, you are free to provide your own parameters as:
+
+```python
+
+def decorator_wrapper(x, y):
+
+    print(f"we have our decorator params: {x, y}")
+
+    def decorator(func):
+        print("I am for decoration")
+        print(f"I have received {func.__name__} as a prameter")
+
+        def inner_function(x, y):
+            func(x, y)
+            print('I am done with all I want to do')
+
+        return inner_function
+
+
+    return decorator
+
+
+@decorator_wrapper('Joseph', 'Josephine')
+def decorated(name, sister):
+    print(f"Name is: {name}, My sister is: {sister}")
+
+
+decorated('John', 'Jane')
+
+
+
+```
+
+Run this and you will have
+
+```python
+we have our decorator params: ('Joseph', 'Josephine')
+I am for decoration
+I have received decorated as a prameter
+Name is: John, My sister is: Jane
+I am done with all I want to do
+```
+
+
 
 ## Returning values from decorated functions
 
+When you are running the decorated inside the inner function, you have access to the return value, you can do whatever you want with it or since the inner function is actually the function that will be run as decorated, you can return the return value of the decorated function as the return value of the inner function, as:
+
+```python
+
+def decorator_wrapper(x, y):
+
+    ...
+
+    def decorator(func):
+        ...
+
+        def inner_function(x, y):
+            return_val = func(x, y)
+            print('I am done with all I want to do')
+            return return_val
+
+        return inner_function
+    return decorator
+
+
+@decorator_wrapper('Joseph', 'Josephine')
+def decorated(name, sister):
+    return f"Name is: {name}, My sister is: {sister}"
+
+
+print(decorated('John', 'Jane'))
+
+
+```
+
+You will get the return value as:
+
+```shellsession
+we have our decorator params: ('Joseph', 'Josephine')
+I am for decoration
+I have received decorated as a prameter
+I am done with all I want to do
+Name is: John, My sister is: Jane
+```
+
+
+
 ## Reusing a decorator on multiple functions
+
+Reusability is one of the reasons why decorators are important. But there arises a problem, how do you handle different number of parameters for different decorated functions. For that we use the good old python concept of *args and **kwargs.
+
+*args and **kwargs are pragmatics, you can call them whatever you want, but strictly write them with the stars.
+
+*args will pack all supplied arguments as a tuple:
+
+```python
+def delete_files(*my_args):
+    print(f"we are deleting: {my_args}") 
+
+
+delete_files('NewTextDocument.txt', "New Folder", "Video(2).mp4")
+```
+
+This will output
+
+```shellsession
+we are deleting: ('NewTextDocument.txt', 'New Folder', 'Video(2).mp4')
+```
+
+
+
+Where as **kwargs will pack all the parameters as a dictionary
+
+```python
+def move_files(**my_kwargs):
+    print(f"Settings for move are: {my_kwargs}") 
+
+
+move_files(destination="C:/Users/Downloads", replace_existing=False)
+```
+
+This will also output
+
+```
+Settings for move are: {'destination': 'C:/Users/Downloads', 'replace_existing': False}
+```
+
+
+
+
 
 ## Multiple decorators on a single function
 
