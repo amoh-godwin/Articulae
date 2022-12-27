@@ -115,7 +115,6 @@ It is used extensively in web programming and Gui programming in python.
 With it python calls the decorator function and passes in the decorated and then assigns the return value to the decorated function as:
 
 ```python
-
 def decorator(func):
     print("I am for decoration")
     print(f"I have received {func.__name__} as a prameter")
@@ -124,7 +123,6 @@ def decorator(func):
 @decorator
 def decorated():
     print("I have been well decorated")
-
 ```
 
 Listing 2.1
@@ -167,7 +165,6 @@ What I return is the decorated function
 If we want to run the decorated function we can return that rather, since the decorator received it as a parameter.
 
 ```python
-
 def decorator(func):
     print("I am for decoration")
     print(f"I have received {func.__name__} as a prameter")
@@ -220,8 +217,6 @@ we are still here after running the decorated
 
 But now another problem arises. What happens to parameters that will be passed to the decorated function.
 
-
-
 ---
 
 So our example can be re-written as:
@@ -244,8 +239,6 @@ def delete():
     print('Deleting a file')
 
 delete()
-
-
 ```
 
 Listing 2.1
@@ -268,22 +261,17 @@ def record_history(func):
     return inner_caller
 
 ...
-
-
 ```
 
 What is going on under the hood is python is writing the function as:
 
 ---
 
-
-
 ## How to add arguments to decorators in Python
 
 You see, once you are returning a function as the decorated, when the decorated gets called all the parameters it is called with will be passed to the function you are returning, it is the decorated now.
 
 ```python
-
 def decorator(func):
     print("I am for decoration")
     print(f"I have received {func.__name__} as a prameter")
@@ -297,7 +285,6 @@ def decorated(name, sister):
 
 
 decorated('John', 'Jane')
-
 ```
 
 This will print
@@ -311,7 +298,6 @@ Name is: John, My sister is: Jane
 So when you are returning an inner function, you must also receive the parameters in the inner function and also pass it in when you call the decorated in the inner function as:
 
 ```python
-
 def decorator(func):
     print("I am for decoration")
     print(f"I have received {func.__name__} as a prameter")
@@ -321,8 +307,6 @@ def decorator(func):
         print('I am done with all I want to do')
 
     return inner_function # this will receive the parameters, when called
-
-
 ```
 
 This will return
@@ -333,8 +317,6 @@ I have received decorated as a prameter
 Name is: John, My sister is: Jane
 I am done with all I want to do
 ```
-
-
 
 ### Passing arguments to Decorators themselves
 
@@ -356,7 +338,6 @@ decorated = returned_decorator(decorated)
 With this you concept, no decorator is available yet, so nothing gets passed into the `decorator_wrapper`, you are free to provide your own parameters as:
 
 ```python
-
 def decorator_wrapper(x, y):
 
     print(f"we have our decorator params: {x, y}")
@@ -381,9 +362,6 @@ def decorated(name, sister):
 
 
 decorated('John', 'Jane')
-
-
-
 ```
 
 Run this and you will have
@@ -396,14 +374,11 @@ Name is: John, My sister is: Jane
 I am done with all I want to do
 ```
 
-
-
 ## Returning values from decorated functions
 
 When you are running the decorated inside the inner function, you have access to the return value, you can do whatever you want with it or since the inner function is actually the function that will be run as decorated, you can return the return value of the decorated function as the return value of the inner function, as:
 
 ```python
-
 def decorator_wrapper(x, y):
 
     ...
@@ -426,8 +401,6 @@ def decorated(name, sister):
 
 
 print(decorated('John', 'Jane'))
-
-
 ```
 
 You will get the return value as:
@@ -439,8 +412,6 @@ I have received decorated as a prameter
 I am done with all I want to do
 Name is: John, My sister is: Jane
 ```
-
-
 
 ## Reusing a decorator on multiple functions
 
@@ -464,8 +435,6 @@ This will output
 we are deleting: ('NewTextDocument.txt', 'New Folder', 'Video(2).mp4')
 ```
 
-
-
 Where as `**kwargs` will pack all the parameters as a dictionary
 
 ```python
@@ -485,7 +454,6 @@ Settings for move are: {'destination': 'C:/Users/Downloads', 'replace_existing':
 ### Using them for decorators
 
 ```python
-
 def decorator(func):
     print("I am for decoration")
     print(f"I have received {func.__name__} as a prameter")
@@ -543,7 +511,6 @@ You can see that the decorator run for each time it was used
 You can also stack up decorators on a single function.
 
 ```python
-
 def decorator(func):
     print("I am for decoration")
     print(f"I have received {func.__name__} as a prameter")
@@ -594,13 +561,145 @@ I am done with all I want to do
 Post processing done
 ```
 
-
-
 ## A decorator within a function
+
+A decorator can be applied on inner functions as well if need be.
+
+```python
+
+...
+
+def decorated(name, sister):
+
+    @decorator
+    def decorated2():
+        print(f"Name is: {name}, My sister is: {sister}")
+    
+    decorated2()
+
+
+decorated('Joseph', 'Josephine')
+```
+
+
 
 ## Preserving function metadata
 
+Printing a function's metadata before it has been reassigned gives the original function's metadata but after it has been decorated, it gives the metadata of the inner function.
+
+```python
+def decorator(func):
+    print(f"function name before reassignment is: {func.__name__}")
+
+    def inner_function(*args, **kwargs):
+        """Returns the decorated function"""
+        return_val = func(*args, **kwargs)
+
+    return inner_function
+
+
+@decorator
+def male_and_female(name, sister):
+    """Juxtapose Male and female names"""
+    print(f"Name is: {name}, My sister is: {sister}")
+
+
+male_and_female('Joseph', 'Josephine')
+
+print(f"function name after reassignment: {male_and_female.__name__}")
+print(f"function docstring: {male_and_female.__doc__}")
+```
+
+will output
+
+```shellsession
+function name before reassignment is: male_and_female
+Name is: Joseph, My sister is: Josephine
+function name after reassignment: inner_function
+function docstring: Returns the decorated function
+```
+
+This is rightly so, since it has been set `male_and_female` has been set to `inner_function`. But there is a way you can preserve the original function's metadata even after its been decorated.
+
+With this we use python's built-in `functools.wraps` decorator.
+
+```python
+from functools import wraps
+
+def decorator(func):
+    print(f"function name before reassignment is: {func.__name__}")
+
+    @wraps(func)
+    def inner_function(*args, **kwargs):
+        """Returns the decorated function"""
+        return_val = func(*args, **kwargs)
+
+    return inner_function
+
+
+...
+
+
+male_and_female('Joseph', 'Josephine')
+
+print(f"function name after reassignment: {male_and_female.__name__}")
+print(f"function docstring: {male_and_female.__doc__}")
+
+
+```
+
+will output
+
+```shellsession
+function name before reassignment is: male_and_female
+Name is: Joseph, My sister is: Josephine
+function name after reassignment: male_and_female
+function docstring: Juxtapose Male and female names
+```
+
 ## Decorating a class
+
+In decorating classes if you decorate the class as a whole, only the instantiating of the class into an object is affected, not when you call individual methods.
+
+```python
+
+def decorator(func):
+
+    def inner_function(*args, **kwargs):
+        ret = func(*args, **kwargs)
+        print('Decorator ends here')
+        return ret
+
+    return inner_function
+
+
+@decorator
+class FileSystem():
+
+    def __init__(self):
+        print('Creating Class')
+        self.current_folder = "."
+        self.total_size = 0
+
+    def copy_files(self, source: str):
+        print('copying files')
+
+
+fs = FileSystem()
+fs.copy_files('.')
+
+
+```
+
+outputs
+
+```shellsession
+Creating Class
+Decorator ends here
+copying files
+```
+
+
 
 ## Classes as decorators
 
