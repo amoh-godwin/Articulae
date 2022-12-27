@@ -353,7 +353,7 @@ returned_decorator = decorator_wrapper()
 decorated = returned_decorator(decorated)
 ```
 
-With this you concept, no decorator is available yet, so nothing gets passed into the decorator_wrapper, you are free to provide your own parameters as:
+With this you concept, no decorator is available yet, so nothing gets passed into the `decorator_wrapper`, you are free to provide your own parameters as:
 
 ```python
 
@@ -444,11 +444,11 @@ Name is: John, My sister is: Jane
 
 ## Reusing a decorator on multiple functions
 
-Reusability is one of the reasons why decorators are important. But there arises a problem, how do you handle different number of parameters for different decorated functions. For that we use the good old python concept of *args and **kwargs.
+Reusability is one of the reasons why decorators are important. But there arises a problem, how do you handle different number of parameters for different decorated functions. For that we use the good old python concept of `*args` and `**kwargs`.
 
-*args and **kwargs are pragmatics, you can call them whatever you want, but strictly write them with the stars.
+`*args` and `**kwargs` are pragmatics, you can call them whatever you want, but strictly write them with the stars.
 
-*args will pack all supplied arguments as a tuple:
+`*args` will pack all supplied arguments as a tuple:
 
 ```python
 def delete_files(*my_args):
@@ -466,7 +466,7 @@ we are deleting: ('NewTextDocument.txt', 'New Folder', 'Video(2).mp4')
 
 
 
-Where as **kwargs will pack all the parameters as a dictionary
+Where as `**kwargs` will pack all the parameters as a dictionary
 
 ```python
 def move_files(**my_kwargs):
@@ -482,7 +482,7 @@ This will also output
 Settings for move are: {'destination': 'C:/Users/Downloads', 'replace_existing': False}
 ```
 
-### Using for a decorator
+### Using them for decorators
 
 ```python
 
@@ -490,12 +490,12 @@ def decorator(func):
     print("I am for decoration")
     print(f"I have received {func.__name__} as a prameter")
 
-    def my_inner_function(*args, **kwargs):
+    def inner_function(*args, **kwargs):
         return_val = func(*args, **kwargs)
         print('I am done with all I want to do')
         return return_val
 
-    return my_inner_function
+    return inner_function
 
 
 
@@ -540,7 +540,61 @@ You can see that the decorator run for each time it was used
 
 ## Multiple decorators on a single function
 
-You can also stack up a decorators on a single function.
+You can also stack up decorators on a single function.
+
+```python
+
+def decorator(func):
+    print("I am for decoration")
+    print(f"I have received {func.__name__} as a prameter")
+
+    def inner_function(*args, **kwargs):
+        return_val = func(*args, **kwargs)
+        print('I am done with all I want to do')
+
+    return inner_function
+
+
+def decorator2(func):
+
+    print(f"{func.__name__} is received")
+
+    def inner_function(*args, **kwargs):
+        func(*args, **kwargs)
+        print('Post processing done')
+
+    return inner_function
+
+
+@decorator2
+@decorator
+def decorated(name, sister):
+    print(f"Name is: {name}, My sister is: {sister}")
+
+
+decorated('Joseph', 'Josephine')
+```
+
+The underlying translation is as:
+
+```python
+decorated = decorator2(decorator(decorated))
+```
+
+Since python translates code from left to right, `decorator` will first run and then return its inner function to `decorator2`, which will run and return its `inner_function` to `decorated`. So when `decorated` is called, it will call the `inner_function` of `decorator2` which will call `inner_function` of `decorator` which will call the `func`.
+
+You will see an output as:
+
+```shellsession
+I am for decoration
+I have received decorated as a prameter
+inner_function is received
+Name is: Joseph, My sister is: Josephine
+I am done with all I want to do
+Post processing done
+```
+
+
 
 ## A decorator within a function
 
@@ -548,7 +602,7 @@ You can also stack up a decorators on a single function.
 
 ## Decorating a class
 
-## classes as decorators
+## Classes as decorators
 
 ## Built-in Fancy Decorators
 
