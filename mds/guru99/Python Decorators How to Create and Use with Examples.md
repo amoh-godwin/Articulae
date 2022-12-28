@@ -699,9 +699,105 @@ Decorator ends here
 copying files
 ```
 
+Decorating each method with a function would have been much better
 
+```python
+
+...
+
+class FileSystem():
+
+    @decorator
+    def __init__(self):
+        print('Creating Class')
+        self.current_folder = "."
+        self.total_size = 0
+
+    @decorator
+    def copy_files(self, source: str):
+        print('copying files')
+
+
+fs = FileSystem()
+fs.copy_files('.')
+
+
+```
+
+outputs
+
+```shellsession
+Creating Class
+Decorator ends here
+copying files
+Decorator ends here
+```
 
 ## Classes as decorators
+
+For classes, the `__init__`  is called whenever a class is being initialised into an object, but the `__call__` method is fired whenever that object is called.
+
+```python
+
+class FileSystem():
+
+    def __init__(self):
+        print('Creating Class')
+        self.current_folder = "."
+        self.total_size = 0
+    
+    def __call__(self):
+        print('I have been called')
+
+    def copy_files(self, source: str):
+        print('copying files')
+
+
+fs = FileSystem()
+print("checkpoint")
+fs()
+fs.copy_files('.')
+```
+
+this will output
+
+```shellsession
+Creating Class
+blue
+I have been called
+copying files
+```
+
+You can see that the `__call__` method rather than the `__init__` method should be used to wrap the decorated function/class.
+
+```python
+
+class Decorator:
+
+    def __init__(self, func):
+        self.func = func
+
+    def __call__(self, *args, **kwargs):
+        print(f'preprocesses for {self.func.__name__}')
+        return self.func(*args, **kwargs)
+
+@Decorator
+class FileSystem():
+
+    def __init__(self):
+        print('Creating Class')
+        self.current_folder = "."
+        self.total_size = 0
+
+    def copy_files(self, source: str):
+        print('copying files')
+
+
+fs = FileSystem()
+fs.copy_files('.')
+```
+
+
 
 ## Built-in Fancy Decorators
 
