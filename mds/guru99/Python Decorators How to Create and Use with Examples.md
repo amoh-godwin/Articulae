@@ -797,9 +797,53 @@ fs = FileSystem()
 fs.copy_files('.')
 ```
 
+If classes are used as decorators on methods, the self will be the first argument passed to the `__call__`
 
+```python
+
+class Decorator:
+
+    def __init__(self, func):
+        self.func = func
+
+    def __call__(*args, **kwargs):
+        self = args[0]
+        print(f'preprocesses for {self.func.__name__}')
+        self.func(*args, **kwargs)
+
+
+class FileSystem():
+
+    @Decorator
+    def __init__(self):
+        print('Creating Class')
+        self.current_folder = "."
+        self.total_size = 0
+    
+    @Decorator
+    def copy_files(self, source: str):
+        print('copying files')
+
+
+fs = FileSystem()
+fs.copy_files('.')
+
+```
+
+will output
+
+```shellsession
+preprocesses for __init__
+Creating Class
+preprocesses for copy_files
+copying files
+```
+
+The same goes for when a class has been used to decorate a function.
 
 ## Built-in Fancy Decorators
+
+You have already seen the built-in `@wraps` decorator there are other decorators, which  you will meet sooner or later or you have even met them, namely `@staticmethod`, `@classmethod` and `@dataclass`
 
 ## Stateful Decorators
 
