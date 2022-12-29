@@ -219,51 +219,7 @@ But now another problem arises. What happens to parameters that will be passed t
 
 ---
 
-So our example can be re-written as:
 
-```python
-from time import time
-
-def record_history(func):
-
-    def inner_caller():
-        start = time()
-        func()
-        end = time()
-        diff = end - start
-        print(f"function: {func.__name__} was called. It ran for {diff} secs")
-    return inner_caller
-
-@record_history
-def delete():
-    print('Deleting a file')
-
-delete()
-```
-
-Listing 2.1
-
-```shellsession
-Deleting a file
-function: delete was called. It ran for 0.0 secs
-```
-
-Although python has a module for timing code expressions, I wanted you to see the actual function being run on its on line. So we can time a function using the timeit module as;
-
-```python
-from timeit import timeit
-
-def record_history(func):
-
-    def inner_caller():
-        diff = timeit(func, number=1)
-        print(f"function: {func.__name__} was called. It ran for {diff} secs")
-    return inner_caller
-
-...
-```
-
-What is going on under the hood is python is writing the function as:
 
 ---
 
@@ -841,13 +797,187 @@ copying files
 
 The same goes for when a class has been used to decorate a function.
 
+
+
 ## Built-in Fancy Decorators
 
-You have already seen the built-in `@wraps` decorator there are other decorators, which  you will meet sooner or later or you have even met them, namely `@staticmethod`, `@classmethod` and `@dataclass`
+You have already seen the built-in `@wraps` decorator there are other decorators, some of which I am sure you will meet sooner or later or you have even met them, namely `@staticmethod`, `@classmethod` and `@dataclass`
+
+
+
+### @staticmethod
+
+`@staticmehod` is ued to decorate methods that do not modify the class instance and hence do not expect `self` as a parameter it.
+
+```python
+import os
+
+class Filesystem:
+
+    @staticmethod
+    def fix_splashes(old_path):
+        fixed_path = old_path.replace(os.devnull, '/')
+        return fixed_path
+
+fs = Filesystem()
+fixed = fs.fix_splashes('C:\\Users\\John')
+print(fixed)
+```
+
+will output
+
+```shellsession
+C:\Users\John
+```
+
+Accessing it without the `@staticmethod` decorator will get the class instance passed to it and will cause an error.
+
+
+
+### @classmethod
+
+`@classmethod` is very much like `@staticmethod`, the only difference is `@classmethod` receives a reference to the class instance as the first parameter.
+
+```python
+...
+
+    @classmethod
+    def fix_splashes(cls, old_path):
+        print(f'class is called {cls.__name__}')
+        ...
+
+...
+```
+
+will output
+
+```shellsession
+class is called Filesystem
+C:\Users\John
+```
+
+### @dataclass
+
+`@dataclass` converts a class into a datatype wth its fields accessed using the dot (`.`) syntax
+
+```python
+from dataclasses import dataclass, asdict
+
+
+@dataclass
+class Folder:
+    name: str
+    files: list[str]
+
+drive_c = Folder('C', ['a.txt', 'b.txt'])
+users = Folder('Users', ['c.txt', 'd.txt'])
+
+print(drive_c)
+print(drive_c.name)
+print(users.files)
+
+```
+
+will output
+
+```shellsession
+Folder(name='C', files=['a.txt', 'b.txt'])
+C
+['c.txt', 'd.txt']
+```
+
+You can also convert them to dictionary
+
+```python
+
+...
+print(users.files)
+user_folder = asdict(users)
+print(user_folder['files'])
+```
+
+
 
 ## Stateful Decorators
 
+Since a decorated function has been set to the inner function of a decorator. The decorator can be used to keep track of the decorated.
+
+```python
+
+def limit_retries(func):
+    limit = 3
+    limit_retries.retries = 0
+
+    def wrapper(*args, **kwargs):
+        limit_retries.retries += 1
+        
+        if limit_retries.retries <= limit:
+            func(*args, **kwargs)
+        else:
+            print("You have reached the maximum allowed. Bye!")
+
+    return wrapper
+
+@limit_retries
+def answer(passcode):
+
+    if passcode == 'Guildo':
+        print('Welcome')
+    else:
+        print("Incorrect")
+
+
+print("Enter founder of Python's firstname to enter: ")
+
+answer("John")
+answer("Rahul")
+answer("Jin")
+answer("Tim")
+```
+
+will output
+
+```python
+Enter founder of Python's firstname to enter:
+Incorrect
+Incorrect
+Incorrect
+You have reached the maximum allowed. Bye!
+```
+
+
+
 ## Example use cases of decorators
+
+### Record history
+
+We can time a function using the timeit module as;
+
+```python
+from timeit import timeit
+
+def record_history(func):
+
+    def inner_caller():
+        diff = timeit(func, number=1)
+        print(f"function: {func.__name__} was called. It ran for {diff} secs")
+    return inner_caller
+
+@record_history
+def delete():
+    print('Deleting a file')
+
+delete()
+```
+
+will output
+
+```shellsession
+Deleting a file
+function: delete was called. It ran for 0.0 secs
+```
+
+
 
 ## Where you don't need decorators
 
