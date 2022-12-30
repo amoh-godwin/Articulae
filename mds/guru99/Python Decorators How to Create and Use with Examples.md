@@ -2,7 +2,7 @@
 
 ## Introduction
 
-Everything in the python programming language is an object. First-class objects are objects that can be dynamically created, destroyed, passed as a parameter to a procedure/function, returned as a value from a procedure/function. In languages like c++ and Java everythig is not a first-class object but in python everything is. Which means that functions and classes themselves can be passed as parameters.
+Everything in the python programming language is an object. In languages like c++ and Java not everythig is a first-class object but in python everything is. First-class objects are objects that can be dynamically created, destroyed, passed as a parameter to a procedure/function, returned as a value from a procedure/function. Which means that functions and classes themselves can be passed as parameters.
 
 ```python
 def day_based_greeting():
@@ -15,9 +15,7 @@ def greeting(func):
 greeting(day_based_greeting)
 ```
 
-*Listing 1.0*
-
-Notice how that `day_based_greeting` has been passed into `greeting` without the brackets. The brackets indicate that it is being called.
+Notice how that `day_based_greeting` has been passed into `greeting` without the brackets. The brackets would have called it and the return value (in this case `None`) rather would be passed to `greeting`.
 
 The output will be:
 
@@ -55,8 +53,6 @@ def say_hello(name):
 say_hello('Guido')
 ```
 
-*Listing 1.1*
-
 Outputs:
 
 ```shellsession
@@ -64,11 +60,11 @@ Hello, Guido
 Good Morning
 ```
 
-In Listing 1.1, we have an inner function `day_based_greeting` inside the function `say_hello`. The variable `hour` is accessible to `day_based_greeting` but `greeting` isn't accessible to the `say_hello` function. In essence all variables, including parameters passed to the outer function are accessible to the inner function without being explicitedly passed to it.
+We have an inner function `day_based_greeting` inside the function `say_hello`. The variable `hour` is accessible to `day_based_greeting` but `greeting` isn't accessible to the `say_hello` function. In essence all variables, including parameters passed to the outer function are accessible to the inner function without being explicitedly passed to it.
 
 ## Introduction to Decorators
 
-What if we wanted this kind of greeting whenever we want to say hello and whenever we want to bid farewell. We could just move our function out and call it from another function say `bid_farewell()`.What if we wanted to be sure, whoever we wanted to say hello to was a registered user, we would need some functions to run before, we run our `say_hello` before we run our `day_based_greeting`.
+What if we wanted this kind of greeting whenever we want to say hello and whenever we want to bid farewell. We could just move our function out and call it from another function say `bid_farewell()`. What if we wanted to be sure, whoever we wanted to say hello to was a registered user, we would need some functions to run before, we run our `say_hello` before we run our `day_based_greeting`.
 
 ```python
 from datetime import datetime
@@ -108,7 +104,7 @@ Hello, Ruby
 Good Afternoon
 ```
 
-Python offers a new syntax known as decorators where we decorate a function/class with another function/class using the `@` symbol. Using this syntax we can handle processes before and after a function/class is called and even its inputs and what happens to its outputs.
+Python offers a new syntax known as decorators where we decorate a function with another function/class using the `@` symbol. Using this syntax we can handle processes before and after a function is called and even its inputs and what happens to its outputs.
 
 It is used extensively in web programming and Gui programming in python.
 
@@ -125,9 +121,7 @@ def decorated():
     print("I have been well decorated")
 ```
 
-Listing 2.1
-
-Just runing the code in Listing 2.1, without calling the decorated function, you will see that python has called the decorator function, so it will output
+Just runing the code above, without calling the decorated function, you will see that python has called the decorator function, so it will output
 
 ```shellsession
 I am for decoration
@@ -188,9 +182,11 @@ I have been well decorated
 
 With this you can see that we can control when a function runs just by decorating it.
 
+**NB: You don't have to call the functions `decorator` and `decorated`, you can call them whatever you like.**
+
 But now a problem arises. What if we want to control what happens after the function runs. We can, if we utilize the concept of inner functions. 
 
-With inner functions we return our inner function to the decorated, when it gets called we call the decorated and then handle other processes after its done executing.
+With inner functions we return our inner function to the decorated function, when it gets called we call the decorated function and then handle other processes after its done executing.
 
 ```python
 def decorator(func):
@@ -217,15 +213,11 @@ we are still here after running the decorated
 
 But now another problem arises. What happens to parameters that will be passed to the decorated function.
 
----
 
-
-
----
 
 ## How to add arguments to decorators in Python
 
-You see, once you are returning a function as the decorated, when the decorated gets called all the parameters it is called with will be passed to the function you are returning, it is the decorated now.
+You see, once you are returning a function as the decorated, when the decorated gets called all the parameters it is called with, will be passed to the function you are returning, it is the decorated now.
 
 ```python
 def decorator(func):
@@ -274,9 +266,11 @@ Name is: John, My sister is: Jane
 I am done with all I want to do
 ```
 
+### 
+
 ### Passing arguments to Decorators themselves
 
-The syntax of decorators allows you to call them as if they were functions and its return statement will function as the decorator:
+The syntax of decorators allows you to call them as if they were functions and its return value will function as a decorator, as:
 
 ```python
 @decorator_wrapper()
@@ -330,9 +324,11 @@ Name is: John, My sister is: Jane
 I am done with all I want to do
 ```
 
+
+
 ## Returning values from decorated functions
 
-When you are running the decorated inside the inner function, you have access to the return value, you can do whatever you want with it or since the inner function is actually the function that will be run as decorated, you can return the return value of the decorated function as the return value of the inner function, as:
+When you are running the decorated inside the inner function, you have access to the return value, you can do whatever you want with it or since the inner function is actually the function that will be run as the decorated, you can return the return value of the decorated function as the return value of the inner function, as:
 
 ```python
 def decorator_wrapper(x, y):
@@ -368,6 +364,8 @@ I have received decorated as a prameter
 I am done with all I want to do
 Name is: John, My sister is: Jane
 ```
+
+## 
 
 ## Reusing a decorator on multiple functions
 
@@ -408,6 +406,8 @@ Settings for move are: {'destination': 'C:/Users/Downloads', 'replace_existing':
 ```
 
 ### Using them for decorators
+
+Now lets use them for decorators to handle unknown number and types of parameters
 
 ```python
 def decorator(func):
@@ -461,6 +461,8 @@ I am done with all I want to do
 ```
 
 You can see that the decorator run for each time it was used
+
+ 
 
 ## Multiple decorators on a single function
 
@@ -522,7 +524,6 @@ Post processing done
 A decorator can be applied on inner functions as well if need be.
 
 ```python
-
 ...
 
 def decorated(name, sister):
@@ -530,14 +531,14 @@ def decorated(name, sister):
     @decorator
     def decorated2():
         print(f"Name is: {name}, My sister is: {sister}")
-    
+
     decorated2()
 
 
 decorated('Joseph', 'Josephine')
 ```
 
-
+ 
 
 ## Preserving function metadata
 
@@ -575,7 +576,7 @@ function name after reassignment: inner_function
 function docstring: Returns the decorated function
 ```
 
-This is rightly so, since it has been set `male_and_female` has been set to `inner_function`. But there is a way you can preserve the original function's metadata even after its been decorated.
+This is rightly so, since `male_and_female` has been set to `inner_function`. But there is a way you can preserve the original function's metadata even after its been decorated.
 
 With this we use python's built-in `functools.wraps` decorator.
 
@@ -600,8 +601,6 @@ male_and_female('Joseph', 'Josephine')
 
 print(f"function name after reassignment: {male_and_female.__name__}")
 print(f"function docstring: {male_and_female.__doc__}")
-
-
 ```
 
 will output
@@ -613,12 +612,13 @@ function name after reassignment: male_and_female
 function docstring: Juxtapose Male and female names
 ```
 
+ 
+
 ## Decorating a class
 
-In decorating classes if you decorate the class as a whole, only the instantiating of the class into an object is affected, not when you call individual methods.
+In decorating classes, if you decorate the class as a whole, only the instantiating of the class into an object is affected, all other methods are not affected.
 
 ```python
-
 def decorator(func):
 
     def inner_function(*args, **kwargs):
@@ -643,8 +643,6 @@ class FileSystem():
 
 fs = FileSystem()
 fs.copy_files('.')
-
-
 ```
 
 outputs
@@ -655,10 +653,11 @@ Decorator ends here
 copying files
 ```
 
-Decorating each method with a function would have been much better
+You can see that the decorator wasn't called for `fs.copy_files`
+
+Decorating each method with a function is the way to go
 
 ```python
-
 ...
 
 class FileSystem():
@@ -676,8 +675,6 @@ class FileSystem():
 
 fs = FileSystem()
 fs.copy_files('.')
-
-
 ```
 
 outputs
@@ -694,14 +691,13 @@ Decorator ends here
 For classes, the `__init__`  is called whenever a class is being initialised into an object, but the `__call__` method is fired whenever that object is called.
 
 ```python
-
 class FileSystem():
 
     def __init__(self):
         print('Creating Class')
         self.current_folder = "."
         self.total_size = 0
-    
+
     def __call__(self):
         print('I have been called')
 
@@ -719,7 +715,7 @@ this will output
 
 ```shellsession
 Creating Class
-blue
+checkpoint
 I have been called
 copying files
 ```
@@ -727,7 +723,6 @@ copying files
 You can see that the `__call__` method rather than the `__init__` method should be used to wrap the decorated function/class.
 
 ```python
-
 class Decorator:
 
     def __init__(self, func):
@@ -753,10 +748,9 @@ fs = FileSystem()
 fs.copy_files('.')
 ```
 
-If classes are used as decorators on methods, the self will be the first argument passed to the `__call__`
+If classes are used as decorators on methods, the `self` will be the first argument passed to the `__call__`
 
 ```python
-
 class Decorator:
 
     def __init__(self, func):
@@ -775,7 +769,7 @@ class FileSystem():
         print('Creating Class')
         self.current_folder = "."
         self.total_size = 0
-    
+
     @Decorator
     def copy_files(self, source: str):
         print('copying files')
@@ -783,7 +777,6 @@ class FileSystem():
 
 fs = FileSystem()
 fs.copy_files('.')
-
 ```
 
 will output
@@ -797,13 +790,11 @@ copying files
 
 The same goes for when a class has been used to decorate a function.
 
-
+ 
 
 ## Built-in Fancy Decorators
 
 You have already seen the built-in `@wraps` decorator there are other decorators, some of which I am sure you will meet sooner or later or you have even met them, namely `@staticmethod`, `@classmethod` and `@dataclass`
-
-
 
 ### @staticmethod
 
@@ -831,8 +822,6 @@ C:\Users\John
 ```
 
 Accessing it without the `@staticmethod` decorator will get the class instance passed to it and will cause an error.
-
-
 
 ### @classmethod
 
@@ -875,7 +864,6 @@ users = Folder('Users', ['c.txt', 'd.txt'])
 print(drive_c)
 print(drive_c.name)
 print(users.files)
-
 ```
 
 will output
@@ -886,31 +874,27 @@ C
 ['c.txt', 'd.txt']
 ```
 
-You can also convert them to dictionary
+You can also convert them to a dictionary
 
 ```python
-
 ...
 print(users.files)
 user_folder = asdict(users)
 print(user_folder['files'])
 ```
 
-
-
 ## Stateful Decorators
 
-Since a decorated function has been set to the inner function of a decorator. The decorator can be used to keep track of the decorated.
+Function attributes can be used to store data on the inner function.
 
 ```python
-
 def limit_retries(func):
     limit = 3
     limit_retries.retries = 0
 
     def wrapper(*args, **kwargs):
         limit_retries.retries += 1
-        
+
         if limit_retries.retries <= limit:
             func(*args, **kwargs)
         else:
@@ -945,9 +929,45 @@ Incorrect
 You have reached the maximum allowed. Bye!
 ```
 
-
+ 
 
 ## Example use cases of decorators
+
+### Authentication
+
+```python
+
+USERS = ('John', 'Bob', 'Lee', "Kwame")
+
+def authenticate(func):
+
+    def inner_func(*args, **kwargs):
+        if args[0] in USERS:
+            return func(*args, **kwargs)
+        else:
+           print("User not registered")
+
+    return inner_func
+
+
+@authenticate
+def admin_page(user):
+    print(f"Hello {user}, Welcome to the Admin Page")
+
+
+admin_page('Bob')
+admin_page('bob_henry')
+
+```
+
+will output
+
+```shellsession
+Hello Bob, Welcome to the Admin Page
+User not registered
+```
+
+
 
 ### Record history
 
@@ -977,8 +997,176 @@ Deleting a file
 function: delete was called. It ran for 0.0 secs
 ```
 
+### Cache
+
+```python
+from time import time
+
+class CacheMan():
+
+    def __init__(self, func):
+        self.func = func
+        self.cache = {}
+
+    def __call__(self, *args, **kwargs):
+        all_args = args + tuple(kwargs.values())
+
+        for arg in all_args:
+            if arg not in self.cache:
+                self.cache[arg] = self.func(*args, **kwargs)
+
+            return self.cache[arg]
+
+
+def timer(func):
+
+    def inner_function(*args, **kwargs):
+        start = time()
+        ret_val = func(*args, **kwargs)
+        end = time()
+        diff = end - start
+        print(f"{func.__name__} took: {diff} seconds")
+        return ret_val
+
+    return inner_function
+
+@CacheMan
+@timer
+def factorial(n):
+    if n:
+        return n * factorial(n-1)
+    return 1
+
+f3 = factorial(3)
+print(f"Factorial 3 is {f3}")
+f2 = factorial(2)
+print(f"Factorial 2 is {f2}")
+f4 = factorial(4)
+print(f"Factorial 4 is {f4}")
+
+```
+
+outputs
+
+```shellsession
+factorial took: 0.0 seconds
+factorial took: 0.0 seconds
+factorial took: 0.0 seconds
+factorial took: 0.0 seconds
+Factorial 3 is 6
+Factorial 2 is 2
+factorial took: 0.0 seconds
+Factorial 4 is 24
+```
+
+When `factorial(3)` is called it gets the return value from the cache but when `factorial(4)` is called it makes just one more call, saving us time.
+
+### Sessions
+
+```python
+from time import time
+from secrets import token_hex
+
+class Session():
+
+    def __init__(self, func):
+        self.func = func
+        self.current_key = ""
+        self.expiry = time() + 3600
+    
+    def __call__(self, *args, **kwargs):
+        if 'session' in kwargs:
+            if kwargs['session'] == self.current_key and self.expiry > time():
+                self.func(*args, **kwargs)
+        else:
+            self.current_key = token_hex(16)
+            self.expiry = time() + 3600 # 1 hour (seconds)
+            print('You have been redirected to the login Page')
+            return login_page(self.current_key)
+
+
+@Session
+def admin_page(user, session=None):
+    print(f"Hello {user}, Welcome to the Admin Page")
+
+def login_page(session):
+    print('Please Login')
+    return session
+
+new_session = admin_page('Bob')
+admin_page('Bob', session=new_session)
+
+```
+
+will output
+
+```shellsession
+You have been redirected to the login Page
+Please Login
+Hello Bob, Welcome to the Admin Page
+```
+
 
 
 ## Where you don't need decorators
 
+There is a design pattern known as singleton, where you can only import one instance of a class. If you ever feel the temptation to use a decorator to achieve this, don't. Classes have a method `__new__` which is called before an instance of a class is created, you should use that to prevent multiple instances from being created.
+
+```python
+# Without the singleton
+class NotSingleton():
+
+    pass
+
+
+ns = NotSingleton()
+ns1 = NotSingleton()
+
+print(ns == ns1) # different instances
+
+# With singleton
+class Singleton():
+
+    def __new__(cls):
+        if hasattr(cls, 'instance'):
+            return cls.instance
+
+sg = Singleton()
+sg1 = Singleton()
+
+print(sg == sg1) # the very same instance
+
+```
+
+will output
+
+```shellsession
+False
+True
+```
+
+
+
 ## Summary
+
+In this tutorial we have learnt about
+
+* How inner functions can access variables declared in their parent functions
+
+* How to define simple decorators
+
+* How to pass arguments to decorators
+
+* How to reuse a decorator on multiple function
+
+* How to chain decorators
+
+* How to decorate classes
+
+* How to use classes as decorators
+
+* Some built-in decorators
+
+* Real-World examples of decorator
+
+Bye for now, See you next time.
