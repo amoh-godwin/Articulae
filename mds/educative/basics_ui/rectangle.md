@@ -25,4 +25,4 @@ ApplicationWindow {
 }
 ```
 
-The `color` for the `Rectangle` has a transparency of 77%, indicated by the `77` in front of the other 6 numbers. We could have also set the color to `"transparent"`
+The color code for the `Rectangle` has a transparency of 77%, indicated by the `77` in front of the other 6 numbers. We could have also set the color to `"transparent"`
