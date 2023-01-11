@@ -2,6 +2,10 @@
 
 The next UI element on the popularity chart is the `Rectangle`. It is found in the `QtQuick` package.
 
+
+
+A `Rectangle` requires that both of its `width` and `height` properties must be set explicitedly or implicitedly, otherwise the `Rectangle` will not draw
+
 ```qml
 import QtQuick
 import QtQuick.Controls.Basic
