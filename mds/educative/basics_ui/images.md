@@ -25,11 +25,11 @@ ApplicationWindow {
 
 There are two things wrong with this approach.
 
-* All of the image gets loaded into the ram, even though the dimensions specified with `width` and height might be smaller than the images' dimensions.
+* All of the image gets loaded into the RAM, even though the dimensions specified with `width` and `height` might be smaller than the images' dimensions.
 
-* You can not preserve the Images' aspect ratio. By this I mean the image will strecth if the specified width and height are not the actual dimensions of the image.
+* You can not preserve the Images' aspect ratio. By this I mean the image will strecth if the specified `width` and `height` are not the actual dimensions of the image.
 
-The best way is to add a sourceSize. sourceSize controls just how much of the image is loaded into the ram. And the sourceSize's dimensions will be used for aspect ratio preservation.
+The best way is to add a `sourceSize`. `sourceSize` controls just how much of the image is loaded into the RAM. And the `sourceSize`'s dimensions will be used for aspect ratio preservation.
 
 ```qml
 import QtQuick
@@ -56,4 +56,4 @@ ApplicationWindow {
 
 ```
 
-Apart from PreserveAspectFit, you can also have PreserveAspectCrop.
+Apart from `PreserveAspectFit`, you can also have `PreserveAspectCrop`.
