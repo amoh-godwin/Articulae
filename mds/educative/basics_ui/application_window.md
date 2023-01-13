@@ -21,3 +21,41 @@ ApplicationWindow {
 You can see that we have in the code above we have import statements and at least one object type.
 
 The `visible: true` code, if set to false, will make the Window invisible. It wouldn't be transparent it will just be a backgroud application.
+
+A window can be made frameless by setting the flags property to the appropriate flag.
+
+```qml
+import QtQuick
+import QtQuick.Controls.Basic
+
+ApplicationWindow {
+    visible: true
+    width: 500
+    height: 500
+    title: "My very first window"
+    flags: Qt.FramelessWindowHint
+}
+
+```
+
+But with this the taskbar isn't drawn and the only to close it is with the operating systems control. On Windows that will be Alt+F4.
+
+But we can fix the taskbar issue by adding another flag.
+
+```qml
+import QtQuick
+import QtQuick.Controls.Basic
+
+ApplicationWindow {
+    visible: true
+    width: 500
+    height: 500
+    title: "My very first window"
+    flags: Qt.FramelessWindowHint | Qt.Window
+}
+
+```
+
+Now the application's icon shows up on the taskbar and we even have a close button for it. This is how application's with custom title bars are implemented.
+
+![](D:\GitHub\Articulae\mds\educative\images\taskicon.PNG)
