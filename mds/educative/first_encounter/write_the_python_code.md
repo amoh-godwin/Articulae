@@ -21,8 +21,6 @@ engine.load("main.qml")
 engine.quit.connect(app.quit)
 
 sys.exit(app.exec())
-
-
 ```
 
 Run it and have a feel of what is like to create an app with Python and Qml code.

@@ -16,8 +16,6 @@ ApplicationWindow {
     }
 
 }
-
-
 ```
 
 The approach is:
@@ -30,8 +28,6 @@ The approach is:
 
 * Your filename will become the name of your type. So a filename MyOwnRectangle.qml will become a type MyOwnRectangle
 - Your file name will strictly have to start with an upper case letter
-
-
 
 Lets build a custom type.
 
@@ -51,7 +47,6 @@ Rectangle {
     height: rect.diameter
     radius: rect.diameter / 2
 }
-
 ```
 
 Call it **MyRoundRectangle.qml**
@@ -77,11 +72,8 @@ ApplicationWindow {
     }
 
 }
-
 ```
 
 You can see we can specify the `diameter`, our newly added property and `color` which is an old property of the inherited type `Rectangle`.
-
-
 
 This method of customisation can be employed to organise our code to make it more maintainable.

@@ -19,8 +19,6 @@ ApplicationWindow {
     }
 
 }
-
-
 ```
 
 But Qml requires that you namespace the folder first. This is to prevent conflict with other object types that might have the same name.
@@ -61,7 +59,4 @@ ApplicationWindow {
     }
 
 }
-
 ```
-
-

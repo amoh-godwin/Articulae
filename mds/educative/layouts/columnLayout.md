@@ -50,7 +50,6 @@ ApplicationWindow {
 
 
 }
-
 ```
 
 A layout type doesn't really have a width and a height so you can't do width: parent.width or do so for height. You have to use Layout.fillWidth or Layout.fillHeight.
@@ -102,7 +101,111 @@ ApplicationWindow {
 
 
 }
-
 ```
 
 You can use preferredWidth and preferredHeight instead of width and height to set specific dimensions.
+
+```qml
+import QtQuick
+import QtQuick.Controls.Basic
+import QtQuick.Layouts
+
+ApplicationWindow {
+    visible: true
+    width: 500
+    height: 500
+    title: "ColumnLayout"
+
+    ColumnLayout {
+        anchors.fill: parent
+        spacing: 0
+
+        Rectangle {
+            Layout.fillWidth: true
+            Layout.preferredHeight: 50
+            color: "dodgerblue"
+        }
+
+        Rectangle {
+            Layout.fillWidth: true
+            Layout.preferredHeight: 250
+            color: "lightgrey"
+        }
+
+        Rectangle {
+            Layout.fillWidth: true
+            Layout.preferredHeight: 150
+            color: "dimgrey"
+        }
+
+        Rectangle {
+            Layout.fillWidth: true
+            Layout.preferredHeight: 50
+            color: "gold"
+        }
+
+    }
+
+
+}
+
+```
+
+Also you can set maximumWidth, maximumHeight and minimumWidth and minimumHeight. With this properties, preferredWidth or preferredHeight must also be set.
+
+```qml
+import QtQuick
+import QtQuick.Controls.Basic
+import QtQuick.Layouts
+
+ApplicationWindow {
+    visible: true
+    width: 500
+    height: 500
+    title: "ColumnLayout"
+
+    ColumnLayout {
+        anchors.fill: parent
+        spacing: 0
+
+        Rectangle {
+            Layout.preferredWidth: 500
+            Layout.maximumWidth: 300
+            Layout.minimumWidth: 250
+            Layout.preferredHeight: 50
+            color: "dodgerblue"
+
+        }
+
+        Rectangle {
+            Layout.preferredWidth: 500
+            Layout.maximumWidth: 600
+            Layout.minimumWidth: 250
+            Layout.preferredHeight: 250
+            color: "lightgrey"
+        }
+
+        Rectangle {
+            Layout.preferredWidth: 500
+            Layout.maximumWidth: 600
+            Layout.minimumWidth: 250
+            Layout.preferredHeight: 150
+            color: "dimgrey"
+        }
+
+        Rectangle {
+            Layout.preferredWidth: 500
+            Layout.maximumWidth: 600
+            Layout.minimumWidth: 250
+            Layout.preferredHeight: 50
+            color: "gold"
+        }
+
+    }
+
+
+}
+
+```
+
+For the first Rectangle even when the prefferedWidth is to 500, the maximumWidth is taking effect. For the remaining 3 Rectangles, when you try expanding the width of the application by dragging at the edges of the window you can see that the width of the Rectangles will not go beyound 600 pixels.

@@ -35,7 +35,6 @@ ApplicationWindow {
     title: "My very first window"
     flags: Qt.FramelessWindowHint
 }
-
 ```
 
 But with this the taskbar isn't drawn and the only to close it is with the operating systems control. On Windows that will be Alt+F4.
@@ -53,7 +52,6 @@ ApplicationWindow {
     title: "My very first window"
     flags: Qt.FramelessWindowHint | Qt.Window
 }
-
 ```
 
 Now the application's icon shows up on the taskbar and we even have a close button for it. This is how application's with custom title bars are implemented.

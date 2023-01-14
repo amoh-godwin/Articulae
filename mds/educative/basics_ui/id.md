@@ -25,8 +25,6 @@ ApplicationWindow {
     }
 
 }
-
-
 ```
 
 You can see that we accessed the `width` property of the `ApplicationWindow` using the `parent` id because `ApplicationWindow` is the `parent` of `Rectangle`.

@@ -4,8 +4,6 @@ Object types are place at coordinates 0,0. But you can change this with anchors.
 
 Anchors can be applied either in reference to another object type as a whole or it can be applied according to an anchor line of an object type.
 
-
-
 ```qml
 import QtQuick
 import QtQuick.Controls.Basic
@@ -45,8 +43,6 @@ ApplicationWindow {
     }
 
 }
-
-
 ```
 
 lets apply anchors in reference to the object types.
@@ -76,8 +72,6 @@ ApplicationWindow {
     }
 
 }
-
-
 ```
 
 `rect01` has been anchored to fill all of the anchors of its parent, which is the ApplicationWindow. On the other hand, rect02 has been anchored to the center of its parent rect01.
@@ -117,7 +111,6 @@ ApplicationWindow {
     }
 
 }
-
 ```
 
 Now lets apply them to the anchor lines
@@ -148,8 +141,6 @@ ApplicationWindow {
     }
 
 }
-
-
 ```
 
 Then you can apply margins to the anchors.
@@ -181,7 +172,6 @@ ApplicationWindow {
         anchors.bottomMargin: 8
     }
 }
-
 ```
 
 You can apply the anchor margins all at once.
@@ -204,7 +194,6 @@ ApplicationWindow {
     }
 
 }
-
 ```
 
 for each margin, there should be an accompanied anchor co-ordinate set.
@@ -236,5 +225,4 @@ ApplicationWindow {
     }
 
 }
-
 ```

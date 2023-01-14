@@ -8,6 +8,6 @@ And I haven't even touched on Artificial intelligence and Data Science apps. The
 
 And mind you, desktops are not like mobile phones, they support having many application on your machine. Try that on mobile phones you would run out of storage space and ram. Also OS version targetting is a big problem for mobile apps.
 
-So if people developers and IT CEOs knew they would get the same beauty they get with web and mobile for desktops they would be enough reason to have a desktop app s.
+So if people developers and IT CEOs knew they would get the same beauty they get with web and mobile for desktops they would be enough reason to have a desktop app.
 
 With this I say that there is a a future in learning desktop applications, for a developer hoping to get a job, for a startup and for a big corporation.
