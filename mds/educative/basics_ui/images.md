@@ -1,5 +1,13 @@
 # Images
 
+We will be using this Image for our study of images. You can use any image you choose. But to understand the concepts try and use and image with the width greater than the height.
+
+![](D:\Tutsandbox\educative\stadium.jpg)
+
+Its dimensions are: *2048x1216*
+
+
+
 With images, you can just provide `width` and `height` and then set the `source`. The `source` is the url of the image file and your file image will just show up.
 
 ```qml
@@ -8,19 +16,18 @@ import QtQuick.Controls.Basic
 
 ApplicationWindow {
     visible: true
-    width: 500
-    height: 500
+    width: 400
+    height: 600
     title: "Images"
 
     Image {
         width: parent.width
         height: parent.height
-        source: "./pexels-paul-ijsendoorn-33041.jpg"
+        source: "./stadium.jpg"
     }
 
 
 }
-
 ```
 
 There are two things wrong with this approach.
@@ -37,23 +44,47 @@ import QtQuick.Controls.Basic
 
 ApplicationWindow {
     visible: true
-    width: 500
-    height: 500
+    width: 400
+    height: 600
     title: "Images"
 
 
     Image {
         width: parent.width
         height: parent.height
-        sourceSize.width: 250
-        sourceSize.height: 250
-        source: "./pexels-paul-ijsendoorn-33041.jpg"
+        sourceSize.width: 400
+        sourceSize.height: 600
+        source: "./stadium.jpg"
         fillMode: Image.PreserveAspectFit
+    }
+
+
+}
+```
+
+With `PreserveAspectCrop`.
+
+```qml
+import QtQuick
+import QtQuick.Controls.Basic
+
+ApplicationWindow {
+    visible: true
+    width: 400
+    height: 600
+    title: "Images"
+
+
+    Image {
+        width: parent.width
+        height: parent.height
+        sourceSize.width: 400
+        sourceSize.height: 600
+        source: "./stadium.jpg"
+        fillMode: Image.PreserveAspectCrop
     }
 
 
 }
 
 ```
-
-Apart from `PreserveAspectFit`, you can also have `PreserveAspectCrop`.
