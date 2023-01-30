@@ -39,8 +39,6 @@ Customs.MyRoundRect {
 }
 ```
 
-
-
 ```qml
 import QtQuick
 import QtQuick.Controls.Basic
@@ -60,3 +58,59 @@ ApplicationWindow {
 
 }
 ```
+
+
+
+### Top Properties
+
+Properties of the root object in the top most qml file are available to imported object types with  the use of any id.
+
+
+
+Lets define a property borderColor for out top most root object.
+
+```qml
+import QtQuick
+import QtQuick.Controls.Basic
+import "./my_customs" as Customs
+
+ApplicationWindow {
+    visible: true
+    width: 500
+    height: 500
+    title: "Namespace"
+
+    property color borderColor: "gold"
+
+    Customs.MyRoundRect {
+        anchors.centerIn: parent
+        diameter: 250
+        color: "dodgerblue"
+    }
+
+}
+
+```
+
+And now lets use it in our imported qml file without the use of any id.
+
+> my_customs/MyRoundRect.qml
+
+```qml
+import QtQuick
+
+Rectangle {
+    id: rect
+
+    property int diameter: 100
+
+    width: rect.diameter
+    height: rect.diameter
+    radius: rect.diameter / 2
+    border.width: 8
+    border.color: borderColor
+}
+
+```
+
+But the other way around is not possible. Properties defined in an imported qml file are not available to the root object.
