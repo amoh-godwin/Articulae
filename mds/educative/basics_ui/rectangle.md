@@ -2,7 +2,73 @@
 
 The next UI element on the popularity chart is the `Rectangle`. It is found in the `QtQuick` package.
 
-A `Rectangle` requires that both of its `width` and `height` properties must be set explicitedly or implicitedly, otherwise the `Rectangle` will not draw
+A `Rectangle` requires that both of its `width` and `height` properties must be set explicitedly or implicitedly, otherwise the `Rectangle` will not draw.
+
+```qml
+import QtQuick
+import QtQuick.Controls.Basic
+
+ApplicationWindow {
+    visible: true
+    width: 500
+    height: 500
+    title: "Rectangle"
+    color: "dimgrey"
+
+    Rectangle {
+        width: 300
+        height: 300
+    }
+
+}
+```
+
+You can see that the background of the window is dimgrey. The Rectangle's color like every other Visual item is set to white by default. The color property, like I have stated, is not exclusive to a Rectangle and an ApplicationWindow. The color property takes a color type and not a string. You can set it to a SVG color name, a hexadecimal triplet, or quad code, or using any of Qt.rgba(), Qt.hsva(), Qt.hsla(), Qt.darker(), Qt.lighter() or Qt.tint() functions.
+
+An SVG color name:
+
+```qml
+import QtQuick
+import QtQuick.Controls.Basic
+
+ApplicationWindow {
+    visible: true
+    width: 500
+    height: 500
+    title: "Rectangle"
+    color: "dimgrey"
+
+    Rectangle {
+        width: 300
+        height: 300
+        color: "dodgerblue"
+    }
+
+}
+```
+
+A hexadecimal code:
+
+```qml
+import QtQuick
+import QtQuick.Controls.Basic
+
+ApplicationWindow {
+    visible: true
+    width: 500
+    height: 500
+    title: "Rectangle"
+
+    Rectangle {
+        width: 300
+        height: 300
+        color: "#527236"
+    }
+
+}
+```
+
+A hexadecimal code with transparency. The transparency is a percentage value, from 01 to 99. It is written after the # character but it precedes the 6 digit color code.
 
 ```qml
 import QtQuick
@@ -18,13 +84,197 @@ ApplicationWindow {
         width: 300
         height: 300
         color: "#77527236"
-        border.color: "gold"
-        border.width: 3
-        radius: 5
     }
-
 
 }
 ```
 
-The color code for the `Rectangle` has a transparency of 77%, indicated by the `77` in front of the other 6 numbers. We could have also set the color to `"transparent"`
+Using Qt.rgba
+
+```qml
+import QtQuick
+import QtQuick.Controls.Basic
+
+ApplicationWindow {
+    visible: true
+    width: 500
+    height: 500
+    title: "Rectangle"
+
+    Rectangle {
+        width: 300
+        height: 300
+        color: Qt.rgba(52,72,36,0.7)
+    }
+
+}
+```
+
+Rectangle has a radius, that makes the edges round.
+
+```qml
+import QtQuick
+import QtQuick.Controls.Basic
+
+ApplicationWindow {
+    visible: true
+    width: 500
+    height: 500
+    title: "Rectangle"
+
+    Rectangle {
+        width: 300
+        height: 300
+        color: "dodgerblue"
+        radius: 8
+    }
+
+}
+```
+
+It appears that the radius functions as if the Rectangle were to be a circle. In that, if you specify the radius to be half the width and height of the Rectangle, it turns the Rectangle into a perfect circle, much like a radius is in the drawing of a circle.
+
+```qml
+import QtQuick
+import QtQuick.Controls.Basic
+
+ApplicationWindow {
+    visible: true
+    width: 500
+    height: 500
+    title: "Rectangle"
+
+    Rectangle {
+        width: 300
+        height: 300
+        color: "dodgerblue"
+        radius: 150
+    }
+
+}
+```
+
+Rectangle has a border. You can specify, just the width, or just the color, in that case the defaults of the unset will apply, which are 1 and black respectively.
+
+```qml
+import QtQuick
+import QtQuick.Controls.Basic
+
+ApplicationWindow {
+    visible: true
+    width: 500
+    height: 500
+    title: "Rectangle"
+
+    Rectangle {
+        width: 300
+        height: 300
+        color: "dodgerblue"
+        radius: 150
+        border.color: "gold"
+        border.width: 10
+    }
+
+}
+```
+
+There is also an opacity property. It takes a number between 0 and 1. 1 being fully opaque and 0 being fully transparent.
+
+```qml
+import QtQuick
+import QtQuick.Controls.Basic
+
+ApplicationWindow {
+    visible: true
+    width: 500
+    height: 500
+    title: "Rectangle"
+
+    Rectangle {
+        width: 300
+        height: 300
+        color: "dodgerblue"
+        radius: 150
+        border.color: "gold"
+        border.width: 10
+        opacity: 0.5
+    }
+
+}
+```
+
+There is also a rotation property.
+
+```qml
+import QtQuick
+import QtQuick.Controls.Basic
+
+ApplicationWindow {
+    visible: true
+    width: 500
+    height: 500
+    title: "Rectangle"
+
+    Rectangle {
+        width: 300
+        height: 300
+        color: "dodgerblue"
+        rotation: 45
+    }
+
+}
+```
+
+There is the visible property.
+
+```qml
+import QtQuick
+import QtQuick.Controls.Basic
+
+ApplicationWindow {
+    visible: true
+    width: 500
+    height: 500
+    title: "Rectangle"
+
+    Rectangle {
+        width: 300
+        height: 300
+        color: "dodgerblue"
+        visible: false
+    }
+
+}
+```
+
+If a Visual object is placed in the same parent as another without any layout. The last visual object will be drawn on top of the first one.
+
+```qml
+import QtQuick
+import QtQuick.Controls.Basic
+
+ApplicationWindow {
+    visible: true
+    width: 500
+    height: 500
+    title: "Rectangle"
+
+    Rectangle {
+        width: 300
+        height: 300
+        color: "dodgerblue"
+        rotation: 45
+    }
+
+    Rectangle {
+        width: 300
+        height: 300
+        color: "gold"
+        opacity: 0.5
+    }
+
+}
+
+```
+
+In some cases, this is what you want to achieve, but most of the times you would want put it in a layout.
