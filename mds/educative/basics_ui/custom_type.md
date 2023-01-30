@@ -1,6 +1,40 @@
 # Custom Types
 
-You can create your own object types that can be imported into other qml files as:
+### A qml file
+
+A valid qml file, is a file that contains at least one import statement, either QtQml or QtQuick and at least one Object types.
+
+So far we have seen qml files with two import statements (QtQuick, QtQuick.Controls.Basic) and one Object type as its root object (ApplicationWindow).
+
+ApplicationWindow gives us a Window. Other do other things. Over 90% of the Object types that we use are themselves qml files, and they all contain another object type. In that case, we say they inherit another object type.
+
+### Creating a custom type
+
+A qml file that begins with a upper case alphabet will become an object type. And can be imported into another qml file as an object type, provided it obeys the rules of a valid qml file.
+
+Lets create a file and call it MyOwnRectangle.qml. In it lets inherit a Rectangle
+
+```qml
+import QtQuick
+
+Rectangle {
+}
+
+```
+
+Lets import it a normal qml file, say main.qml.
+
+To be able to import a qml file.
+
+1. The qml file has to be in the same folder as the qml file that wants to import it
+
+2. If it is in a folder, the folder can be imported with an import statement as: `import "./path/to/qmlfiles"`
+
+3. The folder should be installed with a valid, qmldir file located inside the folder.
+
+
+
+So now, lets put own MyOwnRectangle in the same folder as main.qml and import it as an object type in main.qml.
 
 ```qml
 import QtQuick
@@ -12,28 +46,23 @@ ApplicationWindow {
     height: 500
 
     MyOwnRectangle {
-        anchors.fill: parent
+        anchors.centerIn: parent
+        width: 200
+        height: 200
+        color: 'teal'
     }
 
 }
+
 ```
 
-The approach is:
-
-* You have to build on top of an already existing object type
-
-* You import that type in a separate file
-
-* You update or improve upon it. You can even include multiple object types
-
-* Your filename will become the name of your type. So a filename MyOwnRectangle.qml will become a type MyOwnRectangle
-- Your file name will strictly have to start with an upper case letter
-
-Lets build a custom type.
+### Building on top of an inherited type
 
 Lets say we decide on building on top of `Rectangle`.
 
-We can turn a square into a circle provided the `radius` is half of one of its sides.
+We add a new property diameter to it.
+
+Lets us call this one MyRoundRect.qml.
 
 ```qml
 import QtQuick
@@ -49,11 +78,7 @@ Rectangle {
 }
 ```
 
-Call it **MyRoundRectangle.qml**
-
-Now import it in a normal qml file say **main.qml**
-
-To import it without specifying any import statement. The **MyRoundRect.qml** must be in the same folder as **main.qml**.
+We import and use the property like any other property.
 
 ```qml
 import QtQuick
@@ -62,18 +87,16 @@ import QtQuick.Controls.Basic
 ApplicationWindow {
     visible: true
     width: 500
-    height: 400
-    title: "Custom"
+    height: 500
 
     MyRoundRect {
         anchors.centerIn: parent
-        diameter: 250
-        color: "dodgerblue"
+        diameter: 200
+        color: 'teal'
     }
 
 }
+
 ```
 
-You can see we can specify the `diameter`, our newly added property and `color` which is an old property of the inherited type `Rectangle`.
-
-This method of customisation can be employed to organise our code to make it more maintainable.
+This method of customisation can be employed to organise long qml code into separate qml files and imported as object types to make the code more simpler and maintainable.
