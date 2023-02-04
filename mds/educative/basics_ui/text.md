@@ -20,12 +20,7 @@ ApplicationWindow {
     }
 
 }
-
 ```
-
-
-
-
 
 ### font.pixelSize
 
@@ -46,10 +41,7 @@ ApplicationWindow {
     }
 
 }
-
 ```
-
-
 
 ### font.bold
 
@@ -71,10 +63,7 @@ ApplicationWindow {
     }
 
 }
-
 ```
-
-
 
 ### font.family
 
@@ -96,7 +85,6 @@ ApplicationWindow {
     }
 
 }
-
 ```
 
 You can use an uninstalled font either from an online source or from a local source. First you have to load the font using `FontLoader` give it an `id` and use its `name` attribute as the `font.family`
@@ -123,8 +111,6 @@ ApplicationWindow {
 }
 ```
 
-
-
 ### renderType
 
 ```qml
@@ -145,10 +131,7 @@ ApplicationWindow {
     }
 
 }
-
 ```
-
-
 
 ### elide
 
@@ -172,10 +155,7 @@ ApplicationWindow {
     }
 
 }
-
 ```
-
-
 
 #### elideLeft
 
@@ -197,10 +177,7 @@ ApplicationWindow {
     }
 
 }
-
 ```
-
-
 
 #### elideMiddle
 
@@ -222,17 +199,13 @@ ApplicationWindow {
     }
 
 }
-
 ```
-
-
 
 ### wrapMode
 
 #### WordWrap
 
 ```qml
-
 import QtQuick
 import QtQuick.Controls.Basic
 
@@ -251,10 +224,7 @@ ApplicationWindow {
     }
 
 }
-
 ```
-
-
 
 #### WrapAnywhere
 
@@ -277,10 +247,7 @@ ApplicationWindow {
     }
 
 }
-
 ```
-
-
 
 #### Wrap
 
@@ -303,10 +270,7 @@ ApplicationWindow {
     }
 
 }
-
 ```
-
-
 
 #### NoWrap
 
@@ -329,10 +293,7 @@ ApplicationWindow {
     }
 
 }
-
 ```
-
-
 
 ### textFormat
 
@@ -356,10 +317,7 @@ ApplicationWindow {
     }
 
 }
-
 ```
-
-
 
 #### StyledText
 
@@ -381,10 +339,7 @@ ApplicationWindow {
     }
 
 }
-
 ```
-
-
 
 #### MarkdownText
 
@@ -406,10 +361,7 @@ ApplicationWindow {
     }
 
 }
-
 ```
-
-
 
 #### PlainText
 
@@ -431,5 +383,4 @@ ApplicationWindow {
     }
 
 }
-
 ```
