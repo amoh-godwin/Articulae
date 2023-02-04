@@ -35,6 +35,8 @@ In the above code, we import sys module from python, QGuiApplication, and QQmlAp
 
 * engine.load, loads whatever qml file we would like to use as the UI layer.
 
-* When the user clicks the close button in the UI, the UI layer exits, but the application will still be running the background. So we connect the application's quit method with the quit functinn of the UI layer.
+* When the user clicks the close button in the UI, the UI layer exits, but the application will still be running the background. So we connect the application's quit method with the quit function of the UI layer.
+
+* app.exec, is what executes all the code settings we have made to the application. You can say it is the most important code. It only returns after the application has exited. It then return an exit code. The sys.exit exits out of python. It returns an exit code to the user. Since python runs code from right to left, we can actually run the app.exec code in, and pass the returned exit code to, the sys.exit function, which will return the exit code to the user.
 
 Run it and have a feel of what is like to create an app with Python and Qml code.
