@@ -33,4 +33,8 @@ In the above code, we import sys module from python, QGuiApplication, and QQmlAp
 
 * QQmlApplicationEngine also handles all communications to and from QML.
 
+* engine.load, loads whatever qml file we would like to use as the UI layer.
+
+* When the user clicks the close button in the UI, the UI layer exits, but the application will still be running the background. So we connect the application's quit method with the quit functinn of the UI layer.
+
 Run it and have a feel of what is like to create an app with Python and Qml code.
