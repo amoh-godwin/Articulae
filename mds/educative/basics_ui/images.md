@@ -24,7 +24,6 @@ ApplicationWindow {
         source: "./stadium.jpg"
     }
 
-
 }
 ```
 
