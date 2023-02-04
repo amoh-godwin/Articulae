@@ -1,14 +1,16 @@
 # Write the UI code
 
-In this section you will be having your first encounter with creating GUIs. You don't understand the code yet, but I want you to get a feel of how simple it is to create a GUI.
+In this section you will be having your first encounter with creating GUIs.
 
-We will be writing the UI code first and then connect the UI code to python.
+Because we are using the Top-Down software engineering approach, we will be writing the UI code first before we connect it to python. Because this will just be an introduction, we will do very little in python.
 
-* Create a new file anywhere on your computer and call it `main.qml`.
+You won't understand the code yet, but I want you to get a feel of how simple it is to create a GUI.
+
+Follow these steps:
+
+* Create a new file and call it `main.qml`.
 
 * Open it and write the following code in it:
-  
-  main.qml
   
   ```qml
   import QtQuick
@@ -54,6 +56,18 @@ We will be writing the UI code first and then connect the UI code to python.
   }
   ```
 
-The code above is less than 45 lines and it includes animation.
+The code above is less than 45 lines.
+
+* We create a window with a width of 600 and a height of 400
+
+* We give it a title of "Python Gui | Welcome"
+
+* We add text that says "Welcome"
+
+* We center the text in the center of the Window
+
+* Then we add an Animation that fades in the text, and then fade out the text.
+
+* We repeat that sequence a 1000 times.
 
 Now lets preview this code even before we connect it to Python.
