@@ -31,7 +31,7 @@ import QtQuick.Controls.Basic
 import "./my_customs" as Customs
 ```
 
-And used as:
+And object types in that folder can be used as:
 
 ```qml
 Customs.MyRoundRect {
@@ -59,13 +59,9 @@ ApplicationWindow {
 }
 ```
 
-
-
 ### Top Properties
 
 Properties of the root object in the top most qml file are available to imported object types with  the use of any id.
-
-
 
 Lets define a property borderColor for out top most root object.
 
@@ -89,7 +85,6 @@ ApplicationWindow {
     }
 
 }
-
 ```
 
 And now lets use it in our imported qml file without the use of any id.
@@ -110,7 +105,6 @@ Rectangle {
     border.width: 8
     border.color: borderColor
 }
-
 ```
 
 But the other way around is not possible. Properties defined in an imported qml file are not available to the root object.
