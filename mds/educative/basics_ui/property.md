@@ -2,6 +2,8 @@
 
 We can define our own properties for an object type, provided the properties were declared inside of that type.
 
+## Defining properties
+
 In defining our own custom types, we use the `property` keyword followed by the type and then by a name you would identify the property by. The type can be any of the Qml built-in Value types or other supported types. eg:
 
 ```qml
