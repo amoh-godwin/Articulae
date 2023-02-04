@@ -23,7 +23,11 @@ ApplicationWindow {
 }
 ```
 
-You can see that the background of the window is dimgrey. The Rectangle's color like every other Visual item is set to white by default. The color property, like I have stated, is not exclusive to a Rectangle and an ApplicationWindow. The color property takes a color type and not a string. You can set it to a SVG color name, a hexadecimal triplet, or quad code, or using any of Qt.rgba(), Qt.hsva(), Qt.hsla(), Qt.darker(), Qt.lighter() or Qt.tint() functions.
+You can see that the background of the window is dimgrey. The Rectangle's color like every other Visual item is set to white by default.
+
+## Color
+
+The color property, like I have stated, is not exclusive to a Rectangle and an ApplicationWindow. The color property takes a color type and not a string. You can set it to a SVG color name, a hexadecimal triplet, or quad code, or using any of Qt.rgba(), Qt.hsva(), Qt.hsla(), Qt.darker(), Qt.lighter() or Qt.tint() functions.
 
 An SVG color name:
 
@@ -110,6 +114,8 @@ ApplicationWindow {
 }
 ```
 
+## Radius
+
 Rectangle has a radius, that makes the edges round.
 
 ```qml
@@ -154,6 +160,8 @@ ApplicationWindow {
 }
 ```
 
+## Border
+
 Rectangle has a border. You can specify, just the width, or just the color, in that case the defaults of the unset will apply, which are 1 and black respectively.
 
 ```qml
@@ -177,6 +185,8 @@ ApplicationWindow {
 
 }
 ```
+
+## Opacity
 
 There is also an opacity property. It takes a number between 0 and 1. 1 being fully opaque and 0 being fully transparent.
 
@@ -203,6 +213,8 @@ ApplicationWindow {
 }
 ```
 
+## Rotation
+
 There is also a rotation property.
 
 ```qml
@@ -225,6 +237,8 @@ ApplicationWindow {
 }
 ```
 
+## Visibillity
+
 There is the visible property.
 
 ```qml
@@ -246,6 +260,8 @@ ApplicationWindow {
 
 }
 ```
+
+## Stacking
 
 If a Visual object is placed in the same parent as another without any layout. The last visual object will be drawn on top of the first one.
 
@@ -274,7 +290,6 @@ ApplicationWindow {
     }
 
 }
-
 ```
 
 In some cases, this is what you want to achieve, but most of the times you would want put it in a layout.
