@@ -58,16 +58,18 @@ Follow these steps:
 
 The code above is less than 45 lines.
 
-* We create a window with a width of 600 and a height of 400
+* We create a window with a `width` of `600` and a `height` of `400`
 
-* We give it a title of "Python Gui | Welcome"
+* We give it a `title` of `"Python Gui | Welcome"`
 
-* We add text that says "Welcome"
+* We add text that says `"Welcome"`
 
 * We center the text in the center of the Window
 
 * Then we add an Animation that fades in the text, and then fade out the text.
 
-* We repeat that sequence a 1000 times.
+* We repeat that sequence a `1000` times.
+
+That will be all the explanation for now, since we will discuss this later.
 
 Now lets preview this code even before we connect it to Python.
