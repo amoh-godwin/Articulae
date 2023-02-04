@@ -1,9 +1,5 @@
 # Custom Types
 
-### A qml file
-
-A valid qml file, is a file that contains at least one import statement, either QtQml or QtQuick and at least one Object types.
-
 So far we have seen qml files with two import statements (QtQuick, QtQuick.Controls.Basic) and one Object type as its root object (ApplicationWindow).
 
 ApplicationWindow gives us a Window. Other do other things. Over 90% of the Object types that we use are themselves qml files, and they all contain another object type. In that case, we say they inherit another object type.
@@ -19,7 +15,6 @@ import QtQuick
 
 Rectangle {
 }
-
 ```
 
 Lets import it a normal qml file, say main.qml.
@@ -31,8 +26,6 @@ To be able to import a qml file.
 2. If it is in a folder, the folder can be imported with an import statement as: `import "./path/to/qmlfiles"`
 
 3. The folder should be installed with a valid, qmldir file located inside the folder.
-
-
 
 So now, lets put own MyOwnRectangle in the same folder as main.qml and import it as an object type in main.qml.
 
@@ -53,7 +46,6 @@ ApplicationWindow {
     }
 
 }
-
 ```
 
 ### Building on top of an inherited type
@@ -96,7 +88,6 @@ ApplicationWindow {
     }
 
 }
-
 ```
 
 This method of customisation can be employed to organise long qml code into separate qml files and imported as object types to make the code more simpler and maintainable.
