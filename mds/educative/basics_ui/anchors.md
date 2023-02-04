@@ -22,10 +22,7 @@ ApplicationWindow {
     }
 
 }
-
 ```
-
-
 
 ### anchors.centerIn
 
@@ -46,10 +43,7 @@ ApplicationWindow {
     }
 
 }
-
 ```
-
-
 
 ### anchors.verticalCenter
 
@@ -70,12 +64,7 @@ ApplicationWindow {
     }
 
 }
-
 ```
-
-
-
-
 
 ### anchors.horizontalCenter
 
@@ -96,12 +85,7 @@ ApplicationWindow {
     }
 
 }
-
 ```
-
-
-
-
 
 ### anchors.left, right
 
@@ -123,10 +107,9 @@ ApplicationWindow {
     }
 
 }
-
 ```
 
-can be applied as singles
+can be applied as individuals
 
 ```qml
 import QtQuick
@@ -145,12 +128,7 @@ ApplicationWindow {
     }
 
 }
-
 ```
-
-
-
-
 
 ### anchors.topMargin, bottomMargin
 
@@ -175,10 +153,7 @@ ApplicationWindow {
     }
 
 }
-
 ```
-
-
 
 ### anchors.margins
 
@@ -201,10 +176,7 @@ ApplicationWindow {
     }
 
 }
-
 ```
-
-
 
 ### anchors shorthand
 
@@ -230,5 +202,4 @@ ApplicationWindow {
     }
 
 }
-
 ```
