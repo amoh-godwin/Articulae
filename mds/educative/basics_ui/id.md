@@ -24,7 +24,7 @@ ApplicationWindow {
 
 ### Using the children
 
-children is plurar. It is always a list, so if the is only one child. You call it using the first index.
+children is plural. It is always a list, so if the is only one child. You call it using the first index.
 
 ```qml
 import QtQuick
@@ -81,6 +81,8 @@ ApplicationWindow {
 }
 ```
 
+## Top-most object
+
 However, the properties of the top most object type can be accessed by the other object types without specifying any id at all.
 
 ```qml
@@ -119,7 +121,6 @@ ApplicationWindow {
     }
 
 }
-
 ```
 
 If the object type itself has another property by that same name, the object's own property will be used instead.
@@ -163,7 +164,6 @@ ApplicationWindow {
     }
 
 }
-
 ```
 
 In that case, you should specify an id.
