@@ -103,3 +103,63 @@ ApplicationWindow {
 
 }
 ```
+
+All of the properties can be set/changed dynamically, so there is an attached property that lets you know if the item is the one currently displayed, the property isCurrentItem
+
+```qml
+import QtQuick
+import QtQuick.Controls.Basic
+import QtQuick.Layouts
+
+ApplicationWindow {
+    visible: true
+    width: 800
+    height: 500
+    title: "GridLayout"
+
+    StackLayout {
+        anchors.fill: parent
+        currentIndex: 2
+
+        Rectangle {
+            Layout.fillWidth: true
+            Layout.fillHeight: true
+            color: "dodgerblue"
+
+        }
+
+        Rectangle {
+            Layout.fillWidth: true
+            Layout.fillHeight: true
+            color: "tomato"
+        }
+
+        Rectangle {
+            Layout.fillWidth: true
+            Layout.fillHeight: true
+            color: StackLayout.isCurrentItem ? "dodgerblue" : "dimgrey"
+        }
+
+        Rectangle {
+            Layout.fillWidth: true
+            Layout.fillHeight: true
+            color: "gold"
+        }
+
+        Rectangle {
+            Layout.fillWidth: true
+            Layout.fillHeight: true
+            color: "lightgrey"
+        }
+
+    }
+
+}
+
+```
+
+The `?`, `:` is a shorthand conditional value-assignment statement. It is in the format of:
+
+`variable: condition ? trueValue : falseValue`.
+
+So a variable's value will change based on whether the condition is true or false. Not there will always be a value, because even if the condition is false the false value will be assigned. In this case, the condition is, if `Stack.isCurrentItem`.
