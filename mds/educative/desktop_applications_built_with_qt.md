@@ -1,6 +1,6 @@
 # Desktop Applications Built With Qt
 
-It will impress you to know that Qt powered both Blackberry and Nokia smartphones, and most apps on their app stores were built with Qt. 
+It will impress you to know that Qt powered both Blackberry and Nokia smartphones, and most apps on their app stores were built with Qt.
 
 Qt still powers big names in Desktop Application markets.
 
