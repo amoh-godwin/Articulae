@@ -208,3 +208,225 @@ def decorated(name, sister):
 
 decorated('John', 'Jane')
 ```
+
+## Multiple decorator
+
+Multiple decorators on a single function
+
+You can also stack up decorators on a single function.
+
+```python
+def decorator(func):
+    print("I am for decoration")
+    print(f"I have received {func.__name__} as a prameter")
+
+    def inner_function(*args, **kwargs):
+        return_val = func(*args, **kwargs)
+        print('I am done with all I want to do')
+
+    return inner_function
+
+
+def decorator2(func):
+
+    print(f"{func.__name__} is received")
+
+    def inner_function(*args, **kwargs):
+        func(*args, **kwargs)
+        print('Post processing done')
+
+    return inner_function
+
+
+@decorator2
+@decorator
+def decorated(name, sister):
+    print(f"Name is: {name}, My sister is: {sister}")
+
+
+decorated('Joseph', 'Josephine')
+```
+
+The underlying translation is as:
+
+```python
+decorated = decorator2(decorator(decorated))
+```
+
+Since python translates code from left to right, `decorator` will first run and then return its inner function to `decorator2`, which will run and return its `inner_function` to `decorated`. So when `decorated` is called, it will call the `inner_function` of `decorator2` which will call `inner_function` of `decorator` which will call the `func`.
+
+Decorating a class
+
+In decorating classes, if you decorate the class as a whole, only the instantiating of the class into an object is affected, all other methods are not affected.
+
+```python
+def decorator(func):
+
+    def inner_function(*args, **kwargs):
+        ret = func(*args, **kwargs)
+        print('Decorator ends here')
+        return ret
+
+    return inner_function
+
+
+@decorator
+class FileSystem():
+
+    def __init__(self):
+        print('Creating Class')
+        self.current_folder = "."
+        self.total_size = 0
+
+    def copy_files(self, source: str):
+        print('copying files')
+
+
+fs = FileSystem()
+fs.copy_files('.')
+```
+
+outputs
+
+```shellsession
+Creating Class
+Decorator ends here
+copying files
+```
+
+You can see that the decorator wasn't called for `fs.copy_files`
+
+Decorating each method with a function is the way to go
+
+```python
+...
+
+class FileSystem():
+
+    @decorator
+    def __init__(self):
+        print('Creating Class')
+        self.current_folder = "."
+        self.total_size = 0
+
+    @decorator
+    def copy_files(self, source: str):
+        print('copying files')
+
+
+fs = FileSystem()
+fs.copy_files('.')
+```
+
+outputs
+
+```shellsession
+Creating Class
+Decorator ends here
+copying files
+Decorator ends here
+```
+
+## Classes as decorators
+
+For classes, the `__init__` is called whenever a class is being initialised into an object, but the `__call__` method is fired whenever that object is called.
+
+```python
+class FileSystem():
+
+    def __init__(self):
+        print('Creating Class')
+        self.current_folder = "."
+        self.total_size = 0
+
+    def __call__(self):
+        print('I have been called')
+
+    def copy_files(self, source: str):
+        print('copying files')
+
+
+fs = FileSystem()
+print("checkpoint")
+fs()
+fs.copy_files('.')
+```
+
+this will output
+
+```shellsession
+Creating Class
+checkpoint
+I have been called
+copying files
+```
+
+You can see that the `__call__` method rather than the `__init__` method should be used to wrap the decorated function/class.
+
+```python
+class Decorator:
+
+    def __init__(self, func):
+        self.func = func
+
+    def __call__(self, *args, **kwargs):
+        print(f'preprocesses for {self.func.__name__}')
+        return self.func(*args, **kwargs)
+
+@Decorator
+class FileSystem():
+
+    def __init__(self):
+        print('Creating Class')
+        self.current_folder = "."
+        self.total_size = 0
+
+    def copy_files(self, source: str):
+        print('copying files')
+
+
+fs = FileSystem()
+fs.copy_files('.')
+```
+
+If classes are used as decorators on methods, the `self` will be the first argument passed to the `__call__`
+
+```python
+class Decorator:
+
+    def __init__(self, func):
+        self.func = func
+
+    def __call__(*args, **kwargs):
+        self = args[0]
+        print(f'preprocesses for {self.func.__name__}')
+        self.func(*args, **kwargs)
+
+
+class FileSystem():
+
+    @Decorator
+    def __init__(self):
+        print('Creating Class')
+        self.current_folder = "."
+        self.total_size = 0
+
+    @Decorator
+    def copy_files(self, source: str):
+        print('copying files')
+
+
+fs = FileSystem()
+fs.copy_files('.')
+```
+
+will output
+
+```shellsession
+preprocesses for __init__
+Creating Class
+preprocesses for copy_files
+copying files
+```
+
+The same goes for when a class has been used to decorate a function.
