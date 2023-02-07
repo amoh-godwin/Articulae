@@ -188,10 +188,10 @@ def decorator_wrapper(a, b):
 
     def decorator(func):
         print("I am for decoration")
-        print(f"I have received {func.__name__} as a prameter")
+        print(f"I have received {func.__name__} as a parameter")
 
         def inner_function(x, y):
-            print(f"we have our decorator params: {a, b}")
+            print(f"inner functions have access to: {a, b}")
             func(x, y)
             print('I am done with all I want to do')
 
@@ -201,9 +201,9 @@ def decorator_wrapper(a, b):
     return decorator
 
 
-@decorator_wrapper('Joseph', 'Josephine')
+@decorator_wrapper('Masculine', 'Feminine')
 def decorated(name, sister):
-    print(f"Name is: {name}, My sister is: {sister}")
+    print(f"Masculine name is: {name}, Feminine name is: {sister}")
 
 
 decorated('John', 'Jane')
