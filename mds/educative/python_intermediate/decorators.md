@@ -21,8 +21,6 @@ def timer(func):
 @timer
 def do_something():
     print('I am doing something')
-
-
 ```
 
 You can see that we have two functions `timer` and `do_something`.
@@ -83,13 +81,9 @@ def do_something():
 
 
 do_something()
-
-
 ```
 
 Now when we call `do_something` our inner function runs. And from within it we call the actual `do_something` function.
-
-
 
 If `do_something` has parameters it should be handled inside `inner` and passed on to `func`.
 
@@ -113,7 +107,6 @@ def do_something(x, y):
 
 
 do_something(4, 8)
-
 ```
 
 To make decorators more reusable, its best if parameters are handled using `*args` and `**kwargs`.
@@ -141,7 +134,6 @@ def do_something(x, y, z=''):
 
 
 do_something(4, 8, z='Add')
-
 ```
 
 If `do_something` returns a value too, you can return it from the inner function.
@@ -169,42 +161,50 @@ def do_something(x, y, z=''):
 total = do_something(4, 8, z='Add')
 
 print(f"{total=:}")
-
 ```
 
+## Passing arguments to Decorators themselves
 
-
-Decorators can be given parameters
+The syntax of decorators allows you to call them as if they were functions and its return value will function as a decorator, as:
 
 ```python
-from time import time
-
-
-def timer_wrapper(x):
-    print(f"We have the value that was passed in: {x}")
-
-    def timer(func):
-
-        def inner(*args, **kwargs):
-            start_t = time()
-            ret_val = func(*args, **kwargs)
-            end_t = time()
-            print(f"It took {end_t - start_t} secs. to run {func.__name__}")
-            return ret_val
-
-        return inner
-
-    return timer
-
-
-@timer_wrapper(7)
-def do_something(x, y, z=''):
-    return x + y
-
-
-total = do_something(4, 8, z='Add')
-
-print(f"{total=:}")
+@decorator_wrapper()
+def decorated():
+    pass
 ```
 
-This way `timer_wrapper` is returning a decorator. So there are two inner functions with this syntax.
+will be translated as
+
+```python
+returned_decorator = decorator_wrapper()
+decorated = returned_decorator(decorated)
+```
+
+With this you concept, no decorator is available yet, so no function gets passed into the `decorator_wrapper`, you are free to provide your own parameters as:
+
+```python
+def decorator_wrapper(a, b):
+
+
+    def decorator(func):
+        print("I am for decoration")
+        print(f"I have received {func.__name__} as a prameter")
+
+        def inner_function(x, y):
+            print(f"we have our decorator params: {a, b}")
+            func(x, y)
+            print('I am done with all I want to do')
+
+        return inner_function
+
+
+    return decorator
+
+
+@decorator_wrapper('Joseph', 'Josephine')
+def decorated(name, sister):
+    print(f"Name is: {name}, My sister is: {sister}")
+
+
+decorated('John', 'Jane')
+```
