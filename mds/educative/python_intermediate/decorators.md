@@ -430,3 +430,49 @@ copying files
 ```
 
 The same goes for when a class has been used to decorate a function.
+
+Stateful Decorators
+
+Function attributes can be used to store data on the inner function.
+
+```python
+def limit_retries(func):
+    limit = 3
+    limit_retries.retries = 0
+
+    def wrapper(*args, **kwargs):
+        limit_retries.retries += 1
+
+        if limit_retries.retries <= limit:
+            func(*args, **kwargs)
+        else:
+            print("You have reached the maximum allowed. Bye!")
+
+    return wrapper
+
+@limit_retries
+def answer(passcode):
+
+    if passcode == 'Guildo':
+        print('Welcome')
+    else:
+        print("Incorrect")
+
+
+print("Enter founder of Python's firstname to enter: ")
+
+answer("John")
+answer("Rahul")
+answer("Jin")
+answer("Tim")
+```
+
+will output
+
+```python
+Enter founder of Python's firstname to enter:
+Incorrect
+Incorrect
+Incorrect
+You have reached the maximum allowed. Bye!
+```
