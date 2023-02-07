@@ -284,14 +284,6 @@ fs = FileSystem()
 fs.copy_files('.')
 ```
 
-outputs
-
-```shellsession
-Creating Class
-Decorator ends here
-copying files
-```
-
 You can see that the decorator wasn't called for `fs.copy_files`
 
 Decorating each method with a function is the way to go
@@ -314,15 +306,6 @@ class FileSystem():
 
 fs = FileSystem()
 fs.copy_files('.')
-```
-
-outputs
-
-```shellsession
-Creating Class
-Decorator ends here
-copying files
-Decorator ends here
 ```
 
 ## Classes as decorators
@@ -348,15 +331,6 @@ fs = FileSystem()
 print("checkpoint")
 fs()
 fs.copy_files('.')
-```
-
-this will output
-
-```shellsession
-Creating Class
-checkpoint
-I have been called
-copying files
 ```
 
 You can see that the `__call__` method rather than the `__init__` method should be used to wrap the decorated function/class.
@@ -418,15 +392,6 @@ fs = FileSystem()
 fs.copy_files('.')
 ```
 
-will output
-
-```shellsession
-preprocesses for __init__
-Creating Class
-preprocesses for copy_files
-copying files
-```
-
 The same goes for when a class has been used to decorate a function.
 
 ## Saving state using Decorators
@@ -463,14 +428,4 @@ answer("John")
 answer("Rahul")
 answer("Jin")
 answer("Tim")
-```
-
-will output
-
-```python
-Enter founder of Python's firstname to enter:
-Incorrect
-Incorrect
-Incorrect
-You have reached the maximum allowed. Bye!
 ```
