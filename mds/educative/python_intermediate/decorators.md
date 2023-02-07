@@ -209,9 +209,7 @@ def decorated(name, sister):
 decorated('John', 'Jane')
 ```
 
-## Multiple decorator
-
-Multiple decorators on a single function
+## Multiple decorators
 
 You can also stack up decorators on a single function.
 
@@ -241,7 +239,7 @@ def decorator2(func):
 @decorator2
 @decorator
 def decorated(name, sister):
-    print(f"Name is: {name}, My sister is: {sister}")
+    print(f"Masculine name is: {name}, Feminine name is: {sister}")
 
 
 decorated('Joseph', 'Josephine')
@@ -255,7 +253,7 @@ decorated = decorator2(decorator(decorated))
 
 Since python translates code from left to right, `decorator` will first run and then return its inner function to `decorator2`, which will run and return its `inner_function` to `decorated`. So when `decorated` is called, it will call the `inner_function` of `decorator2` which will call `inner_function` of `decorator` which will call the `func`.
 
-Decorating a class
+## Decorating classes
 
 In decorating classes, if you decorate the class as a whole, only the instantiating of the class into an object is affected, all other methods are not affected.
 
@@ -431,7 +429,7 @@ copying files
 
 The same goes for when a class has been used to decorate a function.
 
-Stateful Decorators
+## Saving state using Decorators
 
 Function attributes can be used to store data on the inner function.
 
