@@ -123,8 +123,6 @@ ApplicationWindow {
 }
 ```
 
-There are also methods for setting the properties. SetX, SetY, setWidth, setHeight, setTitle.
-
 ## Signal Handler
 
 There are also signals, that can be handled using Javascript syntax. But such signal handlers must strictly be prefixed with on followed by the title case of the signal's name. For instance, there is a default signal for all components called completed. So the signal handlers name will be onCompleted. Lets use that to change the title of our window.
@@ -149,3 +147,28 @@ ApplicationWindow {
 ```
 
 Signal handlers are emitted after a property has been changed.
+
+## Methods
+
+There are also methods for setting the properties. `setX`, `setY`, `setWidth`, `setHeight`, `setTitle` for setting `x`, `y`, `width`, `height`, `title` properties respectively.
+
+```qml
+import QtQuick
+import QtQuick.Controls.Basic
+
+ApplicationWindow {
+    visible: true
+    width: 500
+    height: 500
+    title: "My very first window"
+
+    Component.onCompleted: {
+        setTitle("New Title")
+        setY(100)
+        setX(100)
+        setHeight(100)
+    }
+}
+```
+
+The `ApplicationWindow` has a lot more methods that can modify its state in various ways. We will see some of them later in this course.
