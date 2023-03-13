@@ -4,21 +4,25 @@ We can define our own properties for an object type, provided the properties wer
 
 ## Defining properties
 
-In defining our own custom types, we use the `property` keyword followed by the type and then by a name you would identify the property by. The type can be any of the Qml built-in Value types or other supported types. eg:
+In defining our own property, we use the `property` keyword followed by the type and then by a name you would like to call the property. The type can be any of the QML built-in value types or other supported types.
+
+It will be in the format of:
 
 ```qml
 property type name
 ```
 
-You can choose to initialise it with a value.
+You can choose to initialise it with a value, as.
 
 ```qml
 property type name: value
 ```
 
+Lets see how you create properties using various types.
+
 ### Type: int
 
-For negative and positive whole numbers.
+The type `int` refers to negative and positive whole numbers. If you use it on a property, the property can therefore only accept positive and negative whole numbers.
 
 ```qml
 import QtQuick
@@ -40,19 +44,19 @@ ApplicationWindow {
 
         width: 200
         height: 200
-        x: myOrigin
         myOrigin: -100
+        x: myOrigin
         color: "dodgerblue"
     }
 
 }
 ```
 
-You can see that for `myWidth` it was initialised, but `myOrigin` wasn't. `myOrigin` was later set to `-100`.
+In the code above, `myWidth` it was initialised, but `myOrigin` wasn't. `myOrigin` was later set to `-100`.
 
 ### Type: real
 
-For floating point numbers.
+Type `real` refers to floating point numbers, eg. 3.1413.
 
 ```qml
 import QtQuick
@@ -82,7 +86,7 @@ ApplicationWindow {
 
 ### Type: bool
 
-For boolean value. The value can be true or false.
+Type `bool` refers to boolean values. A boolean value can either be `true` or `false`.
 
 ```qml
 import QtQuick
@@ -113,6 +117,8 @@ ApplicationWindow {
 
 ### Type: QtObject
 
+A `QtObject` refers to object types. It can be used to define properties of any object type. 
+
 ```qml
 import QtQuick
 import QtQuick.Controls.Basic
@@ -141,7 +147,7 @@ ApplicationWindow {
 
 ### Type: List
 
-A list can be declared by specifying the type the list will contain.
+A `list` is a container for holding other types. Thereore lists are declared by specifying the type the list will contain.
 
 ```qml
 import QtQuick
@@ -176,7 +182,7 @@ But a list is decouraged by QML guidelines. The recommendation is that you use v
 
 ### Type: var
 
-var is equivalent to a JavaScript variable. It can hold any type.
+`var` is equivalent to a JavaScript variable. It can hold any type.
 
 ```qml
 import QtQuick
