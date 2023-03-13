@@ -114,6 +114,18 @@ ApplicationWindow {
 }
 ```
 
+## Color - new
+
+The color property, like I have stated, is not exclusive to a Rectangle and an ApplicationWindow. The `color` property takes a `color` type and not a string. You can set it to a SVG color name, a hexadecimal triplet, or quad code, or using any of `Qt.rgba`, `Qt.hsva`, `Qt.hsla`, `Qt.darker`, `Qt.lighter` or `Qt.tint` functions.
+
+* An SVG color name - These are 256 defined color names mainly for the web. It includes popular color names such as: red, green, blue and some other new names as teal and dodgerblue. Eg.: `color: "teal"`
+
+* A hexadecimal code - These are alphanumeric characters in the length of six, used to represent color. They are in batches of two. The first two will represent the type of red, the middle will represent the type of green and the last two would represent  the type of blue. The two numbers can be `00` - `99` or `aa` - `ff`. In QML, you begin writing them with a hash/number symbol (#). Eg.: `color: "#ff2800"`
+
+* A hexadecimal code with transparency percentage - You can begin the hexadecimal code with a transparency percentage. With `00` being 0 percent, `99` being 99 percent. You can remove them entirely to get a 100 percent. Eg. `color: "#97ff2800"`
+
+* The `Qt.rgba` method - This method accepts four `int` parameters, the first for red value, the second for the green value, the third for the blue value, and the last one is a value between zero and one for the alpha value. The alpha value is the transparency percentage written as a decimal, `0.0` as 0 percent, `0.50` as 50 percent and `1.0` as 100 percent. Eg.: `color: Qt.rgba(77, 43, 23, 0.85)`
+
 ## Radius
 
 Rectangle has a radius, that makes the edges round.
