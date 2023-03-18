@@ -313,7 +313,6 @@ Component {
         }
     }
 }
-
 ```
 
 [text]
@@ -349,7 +348,6 @@ ApplicationWindow {
 
 
 }
-
 ```
 
 Highlight draws behind the delegate. It has an z index of 0, so its either you change the z-index to be higher than the delegate, which has a z-index of 1 or you set the background of the delegate to be transparent, so important things like texts and icons show.
@@ -387,28 +385,51 @@ ApplicationWindow {
 
 
 }
-
 ```
 
-For now the highlight only responds to key movement buttons, up and down.
+In the code above, we have `focus: true`, this is what enables us to receive key input in the Listview. It should preferrably be the last property to be set for the Listview. The key input, the Listview is reacting to is just the key navigations. You can disable this by setting keyNavigation: false, you can disable both key and mouse input for the listview by setting interactive: false. For now the only mouse we respond to is just the flicking of the listview itself. Whiles key navigation is enabled, we can move the highlight from the first list entry at the top to the last entry at the bottom, but it doesn't warp back up when we reach the bottom and continue to press the down bottom. It also doesn't do the vice-versa. We can make it warp back by setting the property, keyNavigationWraps, this will make sure the current item selection moves past the end of the list to the start.
 
-if you use the selectByMouse
+`code3.txt`
 
-You can handle your own highlights without using the highlight
+`code3_filename.txt`
 
-## Header
+We can handle mouse inputs better using the MouseArea object, which we will study in the User Inputs chapter.
 
-[text]
+You can show which is the current item without using a highlight component.
 
-[text]
+`code4.txt`
 
-## Footer
-
-[text]
+`code4_filename.txt`
 
 [text]
 
-## Section
+## Header & Footer
+
+[text]
+
+`code5.txt`
+
+`code5_delegate.txt`
+
+`code5_header.txt`
+
+`code5_footer.txt`
+
+In the code above:
+
+- In **line 4444**, we have the clip set to true. If you set it to false, the listview will overflow its container, the footer will misbehave. You can change it in the code playground to see the effect. 
+
+## Orientation
+
+[text]
+
+`code6.txt`
+
+`code6_horizontal.txt`
+
+[text]
+
+## Snapmode/scrollview
 
 [text]
 
@@ -416,4 +437,4 @@ You can handle your own highlights without using the highlight
 
 ## Model
 
-[text]
+At this time you are feeling the limitation of our simple model.
