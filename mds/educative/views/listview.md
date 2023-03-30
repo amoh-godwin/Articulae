@@ -429,12 +429,34 @@ In the code above:
 
 [text]
 
-## Snapmode/scrollview
+## ListView as scrollview's alternative
 
 [text]
+
+`code7.txt`
+
+`code7.snapmode.txt`
 
 [text]
 
 ## Model
 
+So far we have only seen only the integer model.
+
 At this time you are feeling the limitation of our simple model.
+
+There are other types, a list, a listmodel, an object model, an xmllistModel.
+
+We won't be studying the object model and the xmllistModel because they the two most used model types.
+
+Models have attributes that we can use. We have already looked at one, the index attribute. This was available even for our integer model. Then there is also a modelData
+
+- Using a list as a model (not a listmodel)
+
+`code8.txt`
+
+`code8_modeldata.txt`
+
+[text]
+
+Lets discuss ListModels in the next lesson
