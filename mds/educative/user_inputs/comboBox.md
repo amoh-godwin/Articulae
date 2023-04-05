@@ -50,8 +50,6 @@ You can se the displayText
 
 ComboBox can be used as if it is a text field and comboBox combination. You can make the display editable and the model data of the combo will be used as some of sort suggestions as the user types.
 
-
-
 The editText property holds the text currently in the editable field, you can do whatever you want with it.
 
 `code5.txt`
@@ -71,8 +69,6 @@ The editText property holds the text currently in the editable field, you can do
 * activated
   
   The activated signal is emitted when the user clicks on an entry in the comboBox's popup which causes the popup to close.
-
-
 
 `code6.txt`
 
