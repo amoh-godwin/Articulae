@@ -18,15 +18,11 @@
 
 [text]
 
-
-
 We could have used Action instead of menuItem
 
 `code2.txt`
 
 [text]
-
-
 
 ## Handling Events
 
