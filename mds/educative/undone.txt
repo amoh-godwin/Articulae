@@ -1,0 +1,2 @@
+Swipe delegate
+table view
