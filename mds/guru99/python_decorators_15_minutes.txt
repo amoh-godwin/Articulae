@@ -1,2 +1,0 @@
-*args and **kwargs
-returning functions from decorators
