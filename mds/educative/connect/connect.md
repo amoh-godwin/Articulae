@@ -16,13 +16,13 @@ With this we can even modify QML properties from within Python.
 
 `code_py1.txt`
 
-If we attempt to update the value constantly the UI is going to freeze. The reason why most UI freeze when you click a button or try to interact with it is because threading hasn't been implemented for that function. We will implement threading for this function and then you can see, we will be able to update the value as and when we want.
+If we attempt to update the value constantly the UI is going to freeze. The reason why most UI freeze when you click a button or try to interact with it is because threading hasn't been implemented for that function. If we implemented threading for this function we would then be able to update the value as and when we want.
 
 
 
-## Real-life connection
+## Whole object connection
 
-[text]
+This method is used mostly.
 
 `code_py2.txt`
 
