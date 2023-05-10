@@ -1,0 +1,6 @@
+connection
+slots
+signals
+threading
+settings
+application icon
