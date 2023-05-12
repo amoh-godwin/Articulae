@@ -38,8 +38,6 @@ You can return values from slots as well.
 
 The result type can be of any python type or a string of a c++ type.
 
-
-
 ## Calling multiple slots by the same name
 
 The name parameter of the slot is the name that QML will call it by.
