@@ -1,4 +1,3 @@
-signals
 threading
 settings
 application icon
