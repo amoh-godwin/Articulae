@@ -1,0 +1,7 @@
+windows properties
+flags 1
+flags 2
+custom dragging
+custom resizing 1
+custom resizing 2
+quick launch
