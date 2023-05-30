@@ -32,11 +32,9 @@ With threading
 
 `code_pyfunc2.txt`
 
-`code_qml.txt`
+`code_qml2.txt`
 
 [text]
-
-
 
 ## Managing threads
 
