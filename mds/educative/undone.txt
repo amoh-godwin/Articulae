@@ -1,3 +1,9 @@
+direct key presses
+custom buttons
+custom textfields
+custom slider
+custom menu
+
 writing for 
 editing
 
