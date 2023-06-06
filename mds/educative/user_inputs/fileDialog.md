@@ -26,8 +26,6 @@ A FileDialog provides a popup that allows the user to select a file available on
 
 `code3.txt`
 
-
-
 For FileDialog.ReadFiles the `selectedFiles` property should be used to get the files, it is a list of urls.
 
 - nameFilters - You can restrict the files that can be selected by using the nameFilters property
@@ -36,16 +34,12 @@ For FileDialog.ReadFiles the `selectedFiles` property should be used to get the 
 
 This time the user will get a drop down to select either text files, image files or all files.
 
-
-
 ## Folder Dialog
 
 A FolderDialog is just like a FileDialog, the only difference is that allows a user to select directories instead of a file
 
 `code5.txt`
 
+![](E:\GitHub\Articulae\mds\educative\user_inputs\dialog6.png)
+
 A user can also create new directories and select them.
-
-
-
-
