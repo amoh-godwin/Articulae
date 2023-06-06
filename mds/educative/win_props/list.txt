@@ -1,3 +1,2 @@
-custom resizing 1
-custom resizing 2
-quick launch
+custom resizing 2 - replace with drag and drop
+quick launch - replace with repeater
