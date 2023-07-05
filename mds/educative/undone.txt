@@ -1,9 +1,17 @@
 direct key presses
-custom buttons
-custom textfields
-custom slider
-custom menu
 
-writing for 
+=== Releasing a library ===
+folder and file structure
+first build with minimal parameters
+more setup parameters
+make os dependent wheels
+making executable cli sripts
+make your first upload
+test using GitHub workflow
+publish using GitHub workflow
+make os dependent wheels using GH workflow
+
+
+writing for
 editing
 
