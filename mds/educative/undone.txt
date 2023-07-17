@@ -1,7 +1,6 @@
 direct key presses
 
 === Releasing a library ===
-first build with minimal parameters
 more setup parameters
 make os dependent wheels
 releasing addons on other developers libraries

@@ -23,3 +23,13 @@ inner packages
 `setup2.txt`
 
 Using find packages
+
+What we have is namespace package, so we have to use find_namespace_packages.
+
+`setup3.txt`
+
+And if we add all those `__init__.py` files we can do find_packages.
+
+`setup4.txt`
+
+Now we have a basic functioning build.
