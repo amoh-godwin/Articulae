@@ -1,10 +1,10 @@
 direct key presses
 
 === Releasing a library ===
-folder and file structure
 first build with minimal parameters
 more setup parameters
 make os dependent wheels
+releasing addons on other developers libraries
 making executable cli sripts
 make your first upload
 test using GitHub workflow
