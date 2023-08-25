@@ -1,0 +1,5 @@
+Building executables
+- building an executable
+- including additional files
+- using an installer
+- creating your own installer
