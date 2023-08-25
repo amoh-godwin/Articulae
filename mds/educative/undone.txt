@@ -1,7 +1,6 @@
 direct key presses
 
 === Releasing a library ===
-make os dependent wheels
 releasing addons on other developers libraries
 making executable cli sripts
 make your first upload
