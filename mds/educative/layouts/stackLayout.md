@@ -1,6 +1,12 @@
 # StackLayout
 
-Normally, visual object types not placed in any `Layout` type, stack on top of each other.
+Learn how to lay out items using a StackLayout.
+
+
+
+## Introduction
+
+Normally, visual object types not placed in any `Layout` type, stack on top of each 
 
 ```qml
 import QtQuick
@@ -49,9 +55,11 @@ ApplicationWindow {
 }
 ```
 
-Even though there is enough visual space to have had two items placed beside each other horizontally, the items are placed on top of each other. Since all items by default are placed at coordinates `x: 0`, `y: 0`.
+Even though there is enough visual space to have the items placed beside each other horizontally, the items are placed on top of each other. Since all items by default are placed at coordinates `x: 0`, and `y: 0`.
 
-`StackLayout` places items just like that. But with `StackLayout` the item that will be shown first it the one that is written first inside the `StackLayout`. You have control over the items through indexing. Otherwise you would have had to give each of the items, an `id` and then control them using the id. You can set which visual object type is shown by setting the `currrentIndex` property.
+## Basic use
+
+`StackLayout` places items just like that. But with `StackLayout` the item that will be shown first is the one that is written first inside the `StackLayout`. You have control over the items through indexing. Otherwise, you would have had to give each of the items, an `id` and then control them using the id. You can set which visual object type is shown by setting the `currrentIndex` property.
 
 ```qml
 import QtQuick
@@ -104,7 +112,9 @@ ApplicationWindow {
 }
 ```
 
-All of the properties can be set/changed dynamically, so there is an attached property that lets you know if the item is the one currently displayed, the property isCurrentItem
+## Attached properties
+
+All of the properties can be set/changed dynamically, so there is an attached property that lets you know if the item is the one currently displayed, the property `isCurrentItem`
 
 ```qml
 import QtQuick
@@ -155,8 +165,9 @@ ApplicationWindow {
     }
 
 }
-
 ```
+
+## The value-assignment statement
 
 The `?`, `:` is a shorthand conditional value-assignment statement. It is in the format of:
 
