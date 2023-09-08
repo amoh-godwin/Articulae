@@ -1,14 +1,28 @@
 direct key presses
+settings
+application icon
+custom resizing 2 - replace with drag'n'drop
+bundling of ui resources
+building an executable
+including additional files
+using an installer
+creating your own installer
 
 === Releasing a library ===
-releasing addons on other developers libraries
+first build with minimal parameters
+more setup parameters
+make os dependent wheels
 making executable cli sripts
 make your first upload
 test using GitHub workflow
 publish using GitHub workflow
 make os dependent wheels using GH workflow
 
+releasing addons on other developers libraries
 
-writing for
-editing
+=== Conclusion ===
+next steps
+conclusion
+appendix
+
 
