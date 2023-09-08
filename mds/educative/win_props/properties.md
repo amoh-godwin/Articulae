@@ -2,8 +2,6 @@
 
 [text]
 
-
-
 ## Declaring properties
 
 [text]
