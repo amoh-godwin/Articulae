@@ -2,11 +2,9 @@
 
 Learn how to lay out items using a StackLayout.
 
-
-
 ## Introduction
 
-Normally, visual object types not placed in any `Layout` type, stack on top of each 
+Normally, visual object types not placed in any `Layout` type, stack on top of each. They are not placed side by side or one on top and one below. They are all placed at cordinates `x:0` and `y:0` of the window. It can happen that this is what you want. You can use it to create a custom popup where a user is prompted to do something before he continues with the app. But to fully benefit from the advantages of using a well managed layout you can use a StackLayout.
 
 ```qml
 import QtQuick
@@ -55,11 +53,9 @@ ApplicationWindow {
 }
 ```
 
-Even though there is enough visual space to have the items placed beside each other horizontally, the items are placed on top of each other. Since all items by default are placed at coordinates `x: 0`, and `y: 0`.
-
 ## Basic use
 
-`StackLayout` places items just like that. But with `StackLayout` the item that will be shown first is the one that is written first inside the `StackLayout`. You have control over the items through indexing. Otherwise, you would have had to give each of the items, an `id` and then control them using the id. You can set which visual object type is shown by setting the `currrentIndex` property.
+With items that are not placed in any layout, the last last to be written will be shown on top. But with `StackLayout`, by default the item that will be shown on top is the one that is written first inside the `StackLayout`. StackLayout also offers you the opportunity to choose which item is shown through indexing. Without the StackLayout, you would have had to give each of the items an `id` and then toggle their visibility using later on. You can set which item is shown by setting the `currrentIndex` property Take a look at line 13 of the code below you can see that we have set the currentIndex to 2, which is the third Rectangle in the StackLayout. If you set the `currentIndex` to any index out of range nothing will not be drawn.
 
 ```qml
 import QtQuick
@@ -114,7 +110,7 @@ ApplicationWindow {
 
 ## Attached properties
 
-All of the properties can be set/changed dynamically, so there is an attached property that lets you know if the item is the one currently displayed, the property `isCurrentItem`
+All of the properties can be set/changed dynamically, so there is an attached property that lets you know if the item is the one currently displayed, the property `isCurrentItem`. In the code below you can see that it has been used in line 31.
 
 ```qml
 import QtQuick
