@@ -2,27 +2,23 @@
 
 Learn one of the most used view types in all of QML.
 
-
-
 `Stackview` is one of the most used view types. It provides stack-based navigation for the items, that is the pages are implemented as if they are in a stack. Items are pushed on or popped off the `Stackview`. The item at the top of the stack will be the one that will be shown. If we would like to show an item that is below another item in the stack, we would pop the item on top of it -- off, so the one we want to show will be on top.
 
 ## Basic use
 
-A `StackView` is found in the `QtQuick.Controls.Basic` package. You can use it by calling the `StackView` object. The items that will be in the `StackView` are not declared or written directly in it but are rather pushed onto the stack. The `StackView` however allows an initial item to be set, this is item will become the first item in the stack.
+A `StackView` is found in the `QtQuick.Controls.Basic` package. You can use it by calling the `StackView` object as can be seen in the code below  from **lines 11 to 15**. The items that will be in the `StackView` are not declared or written directly in it but are rather pushed onto the stack. The `StackView` however allows an initial item to be set, this item will become the first item in the stack.
 
-Lets see this in action in the code playground below. 
+Lets see this in action in the code playground below, an initialItem has been set in **line 14**.
 
 `code.txt`
 
 `An implementation of a StackView with an initialItem set`
 
-
-
 You do not use `anchors` on the item that will be display by the `StackView`, the `StackView` will set its dimension, as you can see from the code above. You can also see that the items have been wrapped in a `Component` type, this way they do not draw. Normally, just declaring a Rectangle will make it to draw, but when it has been wrapped in a `Component` type it will not draw.
 
-## Push and Pop
+## The push and pop methods
 
-The `push` and `pop` methods perform their namesake functions. The `push` method pushes items unto the stack whereas the `pop` method pops items off the stack. They each take an item as a parameter. The `pop` method however can be used without passing an item as a parameter.
+The `push` and `pop` methods perform their namesake functions. The `push` method add items to the stack whereas the `pop` method removes items from the stack. They each take an item as a parameter. The `pop` method however can be used without passing an item as a parameter. In the code below you can see that the push method has been  used on line 21. The parameter that was passed to it is the id, second. This means we will be pushing the Component with id second on to the stack.
 
 `code1.txt`
 
@@ -30,25 +26,19 @@ The `push` and `pop` methods perform their namesake functions. The `push` method
 
 When you run the code above you can see that the item with `id` as `second` was pushed onto the stack immediately after it started while the item width `id` as `first` was set as the stack's `initialItem`.
 
+An item just being declared doesn't make it a part of the stack, it has to be explicitly pushed on the stack.
+
 `StackView` stacks the items one on top of the other, any new item pushed on to the stack will be the topmost item and that will become the item that will be shown.
 
-`pop` will pop the most recently added item off the stack.
-
-An item just being declared doesn't make it a part of the stack, it has to be pushed on the stack.
-
-StackView stacks the item one on top of the other, any new item pushed on to the stack will be the topmost item.
-
-Pop will pop the most recently added item off the stack
+Pop will remove the most recently added item from the stack.
 
 `code2.txt`
 
 `A StackView with a Component that gets popped off the stack`
 
+When you use the `pop` method, you remove the most recently added item off the stack which is the one on top. However you can also pop off an item which isn’t at the top of the stack. With this, all the items lying on top of the item you want to pop will also get poped off the stack.
 
-
-When you use the `pop` method, you pop the most recently added item off the stack. However you can also pop and item which isn’t at the top of the stack. With this, all the items lying on top of the item you want to pop will also get poped off the stack.
-
-Which means you can pop back all the way to an item. The `pop` method does not accept a component, so if we have to do away with our `Component` wrappers, we can use the `StackView.index` to prevent the item or `Rectangle` in this case from showing until they have been added to the stack. There is also `StackView.visible`. It is buggy so prefer `StackView.index` instead.
+Which means you can pop back all the way to an item. The `pop` method does not accept a component, so we have to do away with our `Component` wrappers. We can use the `StackView.index` to prevent the item or `Rectangle` in this case from showing until they have been added to the stack. There is also `StackView.visible`. It is buggy so prefer `StackView.index` instead. We have used `StackView.index` in **lines 20, 32, 44, and 55** of the code below.
 
 `code3.txt`
 
