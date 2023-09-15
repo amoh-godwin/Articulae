@@ -19,17 +19,15 @@ ListModel {
 }
 ```
 
-When using ListModels and there is just one property defined in a `ListElement`, there will be a `modelData` for use by a view type, but where there is more there wouldn't be a `modelData` defined.
+When using `ListModel`s and there is just one property defined in a `ListElement`, there will be a `modelData` for use by a view type, but where there is more there wouldn't be a `modelData` defined.
 
 `code1.txt`
 
 `code1_listmodel.txt`
 
-A ListView that accesses a ListModel's attributes using the mdelData property
+A ListView that accesses a ListModel's attributes using the modelData property
 
-
-
-You can see from the code above that, we have only one property `folder_name` defined in **line 15** and **line 18**. This means that a delegate can access the value of these properties by just using the `modelData` property, as you can see it has been used in the file **ListModelDelegate.qml** in **line 17**.
+You can see from the code above that, we have only one property `folder_name` defined in **line 15** and **line 18**. This means that a delegate can access the value of these properties by just using the `modelData` property, as you can see it has been used in the file `ListModelDelegate.qml` in **line 17**.
 
 We can change the model to include two data roles to see the effect it has on the `modelData` property.
 
@@ -43,11 +41,7 @@ We can put the model in a file. In the case, where we have a lot of `ListElemen
 
 A Listview's delegate unsuccessfully attempts to access data from the ListModel using the modelData attribute.
 
-
-
-
-
-From the code above, we have placed our model in the separate file **FileListModel.qml** and simultaneously created a custom type. In **line 15**, we have set this new custom type `FileListModel` to the `model` attribute
+From the code above, we have placed our model in the separate file `FileListModel.qml` and simultaneously created a custom type. In **line 15**, we have set this new custom type `FileListModel` to the `model` attribute.
 
 Like we have be saying you can write as many `ListElement`s as you want and you can have as many data roles as you would want in a `ListElement`. But the data roles must be the same for all the elements and must not all be unique for every `ListElement`.
 
@@ -57,7 +51,7 @@ Like we have be saying you can write as many `ListElement`s as you want and you
 
 `code3_delegate.txt`
 
-A ListView that uses a ListModel with many data roles. A header and a footer has been added to give the data more clarity
+A ListView that uses a ListModel with many data roles with a header and a footer
 
 
 
@@ -68,6 +62,8 @@ A ListView that uses a ListModel with many data roles. A header and a footer has
 A `ListView` can group entries into sections. We can set which data role it should use for the grouping of the items.
 
 The name of the data role will be set to the property `section.property`. The `section.criteria` will tell QML how the value of the `section.property` should be interpreted. `ViewSection.FirstCharacter` means only the first character should be matched for the grouping. This way if the data role used was `name`, all the `ListElement`s whose `name` property begins with A will be grouped under a section named A, those that begin with B under a section name B, and so on. `ViewSection.FullString` means the entire string should be used for the grouping.
+
+In the code below we have used `VIewSection.FullString` in **line 36**.
 
 - using `section.criteria: ViewSection.FullString`
 
@@ -83,10 +79,6 @@ The name of the data role will be set to the property `section.property`. The 
 
 A ListModel that has been used to implement a ListView with sections
 
-
-
-
-
 If you want all entries under one section to be grouped under that section, then you should arranged them next to each other.
 
 ## Updating the model
@@ -100,7 +92,7 @@ The whole concept of a model is to be just that - a **model** (*imagine a real
 - `set` to change the data at a particular `index` and
 - `setProperty` to change a single property of an entry.
 
-Let’s take a look at the `append` method.
+Let’s take a look at the `append` method **in line 32**.
 
 `code5.txt`
 
@@ -108,7 +100,7 @@ Let’s take a look at the `append` method.
 
 A ListView model that gets updated using the ListModel's append method
 
-Lets also take a look at the `insert` method
+Lets also take a look at the `insert` method **used in line 38**.
 
 `code6.txt`
 
