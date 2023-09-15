@@ -2,7 +2,7 @@
 
 A `Button` is a visual item that responds to mouse events such as click and hover. It perform functions after it has been clicked.
 
-## Basic use[](https://www.educative.io/pageeditor/6586453712175104/6144552105934848/6610077336469504#Basic-use)
+## Basic use
 
 To get a button in your application all you have to do is to import it from the `QtQuick.Controls.Basic` package and call it as you would call any QML object type.
 
@@ -10,7 +10,7 @@ To get a button in your application all you have to do is to import it from the�
 
 From the code above, from **lines 9 to 17** we have a `Button` that prints “Button Clicked!” when the button has been clicked.
 
-## Changing its look and feel[](https://www.educative.io/pageeditor/6586453712175104/6144552105934848/6610077336469504#Changing-its-look-and-feel)
+## Changing its look and feel
 
 You can change the `width` and `height` of the button to suit your preference.
 
@@ -44,13 +44,13 @@ But its `color` and other properties can be changed only via its `background`
 
 You can see from the example above in **line 12** that the `radius` property was used to change the radius of the button.
 
-## Event handling[](https://www.educative.io/pageeditor/6586453712175104/6144552105934848/6610077336469504#Event-handling)
+## Event handling
 
 There are numerous events that take place with button. Events like when a button is `clicked`, `pressed`, `released`, and so. Signals get triggered or emitted when these events take place, so you respond to these events using their corresponding signal handlers.
 
 Lets see these events signals in action.
 
-- Handling `pressAndHold` and `doubleClicked` signals
+- Handling `pressAndHold` and `doubleClicked` signals. When a button is pressed down for more that a second a pressAndHold signal is emitted. Also when it is double clicked is less than a second a doubleClicked signal is emitted. Lets see how to handle these two signals. Take a look at the code below we have implement
 
 `code2.txt`
 
@@ -58,7 +58,7 @@ Lets see these events signals in action.
 
 `code3.txt`
 
-## Event properties[#](https://www.educative.io/pageeditor/6586453712175104/6144552105934848/6610077336469504#Event-properties)
+## Event properties
 
 Whereas there is no signal for the hover event, it makes up for it with the `hovered` property. We believe that this property is efficient in responding to hover events. There is also a property for the `pressed` event, this is so you can do the styling of the button to indicate that it has been pressed.
 
