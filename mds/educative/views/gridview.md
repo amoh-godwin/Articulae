@@ -1,6 +1,6 @@
 # GridView
 
-A GridView places items in a grid base a model.
+A GridView places items in a grid. It uses a model the same way a ListView does. The only difference is a ListView places items in a list whereas a GridView places items in a grid.
 
 ## Basic Use
 
