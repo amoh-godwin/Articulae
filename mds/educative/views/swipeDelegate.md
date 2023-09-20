@@ -2,7 +2,7 @@
 
 A `SwipeDelegate` provides a delegate with swipe functionality for a `ListView` or any other view that will require it.
 
-## Basic use[](https://www.educative.io/pageeditor/6586453712175104/6144552105934848/6374774852026368#Basic-use)
+## Basic use
 
 A `SwipeDelegate` is found in the `QtQuick.Controls`. It can be used, where you would place a delegate. The code below places a `Rectangle` at the left side of a `ListView` `delegate`. You can swipe from left to right on any of the entries of the `ListView` to see it.
 
@@ -14,7 +14,7 @@ In the code above, from **lines 19 to 28** the swipe item was placed at the le
 
 From the code above, you can see that the item which is set to the `swipe.right` property has been anchored to its `parent`, which is the `SwipeDelegate`.
 
-## Responding to a click event[](https://www.educative.io/pageeditor/6586453712175104/6144552105934848/6374774852026368#Responding-to-a-click-event)
+## Responding to a click event
 
 The swipe item can be clicked and provides a `SwipeDelegate.clicked` attached signal. Lets see this in action.
 
