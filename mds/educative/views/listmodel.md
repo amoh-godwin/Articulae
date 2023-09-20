@@ -53,10 +53,6 @@ Like we have be saying you can write as many `ListElement`s as you want and you
 
 A ListView that uses a ListModel with many data roles with a header and a footer
 
-
-
-
-
 #### Working with sections
 
 A `ListView` can group entries into sections. We can set which data role it should use for the grouping of the items.
@@ -113,8 +109,6 @@ In most cases, what you would want is a completely blank `ListModel` which you
 `code7_delegate.txt`
 
 An empty ListModel that get more all of its data added with the append method
-
-
 
 From the code above, we have a completely blank model like we have in **line 17** which we later append data to as you can see in **line 32**.
 
