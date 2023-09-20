@@ -88,7 +88,7 @@ A ListView's delegate that changes color based on the model's index property
 
 From the above code in **line 22**, you can see that the `index` property has been used in the `delegate` to choose between two colors for the `delegate`'s `Rectangle`.
 
-The `delegate` can be declared inline. That way, we would have no need to wrap it in a `Component` object. Take a look at the code below from lines 14 to 25, we have declared a delegate inline without the use of a `Component`.
+The `delegate` can be declared inline. That way, we would have no need to wrap it in a `Component` object. Take a look at the code below from **lines 14 to 25**, we have declared a delegate inline without the use of a `Component`.
 
 ```qml
 import QtQuick
@@ -125,7 +125,7 @@ ApplicationWindow {
 
 A delegate declared inline without the use of Component
 
-To fill the full width of a `ListView`, do not use the `width` property of the `ListView` directly, it isn’t available, use `ListView.view.width` instead (see line 55 of the code below).
+To fill the full width of a `ListView`, do not use the `width` property of the `ListView` directly, it isn’t available, use `ListView.view.width` instead (see **line 55** of the code below).
 
 ```qml
 import QtQuick
@@ -364,11 +364,11 @@ ApplicationWindow {
 
 A highlight item added to a ListView
 
-From lines 16-23 of the code, for the main.qml file, you can see that we have set the highlight property to a Rectangle.
+From **lines 16-23** of the code, for the `main.qml` file, you can see that we have set the `highlight` property to a `Rectangle`.
 
 `highlight` draws behind the `delegate`. It has an `z` index of `0`, so its either you change the z-index to be higher than the `delegate`, which has a z-index of `1` or you set the `background` of the `delegate` to be `transparent`, so important things like texts and icons show.
 
-If you prefer to you can set its z-index to `2` and then play with the `opacity` values to your preference.d We have done that in line 17 of the code below.
+If you prefer to you can set its z-index to `2` and then play with the `opacity` values to your preference.d We have done that in **line 17** of the code below.
 
 ```qml
 import QtQuick
