@@ -4,7 +4,7 @@ A `Button` is a visual item that responds to mouse events such as click and ho
 
 ## Basic use
 
-To get a button in your application all you have to do is to import it from the `QtQuick.Controls.Basic` package and call it as you would call any QML object type.
+To get a `Button` in your application all you have to do is to import it from the `QtQuick.Controls.Basic` package and call it as you would call any QML object type.
 
 `code.txt`
 
@@ -50,24 +50,22 @@ There are numerous events that take place with button. Events like when a button
 
 Lets see these events signals in action.
 
-- Handling `pressAndHold` and `doubleClicked` signals. When a button is pressed down for more that a second a pressAndHold signal is emitted. Also when it is double clicked is less than a second a doubleClicked signal is emitted. Lets see how to handle these two signals. Take a look at the code below we have implement
+- Handling `pressAndHold` and `doubleClicked` signals. When a `Button` is pressed down for more that a second a `pressAndHold` signal is emitted. Also when it is double clicked is less than a second a `doubleClicked` signal is emitted. Lets see how to handle these two signals. Take a look at the code below we have implement [text]
 
 `code2.txt`
 
-- Handling `pressed` and `released` events
+- Handling `pressed` and `released` events. When a `Button` is held down, before its released the `pressed` signal is emitted, and when the button is let go as in it has been released the `released` signal is emitted. Lets see how we handle these two signals also. See line [text] of the code below.
 
 `code3.txt`
 
 ## Event properties
 
-Whereas there is no signal for the hover event, it makes up for it with the `hovered` property. We believe that this property is efficient in responding to hover events. There is also a property for the `pressed` event, this is so you can do the styling of the button to indicate that it has been pressed.
+Whereas there is no signal for the hover event, it makes up for it with the `hovered` property. We believe that this property is efficient in responding to hover events. There is also a property for the `pressed` event, this is so you can do the styling of the `Button` to indicate that it has been pressed.
 
 `code4.txt`
 
-A `Button` can be disabled, meaning it will not respond to any event except that the `hovered` property will still respond to hovering.
+A `Button` can be disabled, meaning it will not respond to any event except that the `hovered` property will still respond to hovering events. We do this by setting `enabled` to `false`. See **line 24** of the code below.
 
 `code5.txt`
 
-If you do not wish for it to respond to hover events turn the visibility off completely, with `visible: false`. This way the button itself will not be visible.
-
-The customization of a `Button` will be studied in a later lesson
+If you do not wish for it to respond to hover events turn the visibility off completely, with `visible: false`. This way the `Button` itself will not be visible.
