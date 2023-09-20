@@ -1,20 +1,20 @@
 # GridView
 
-A GridView places items in a grid. It uses a model the same way a ListView does. The only difference is a ListView places items in a list whereas a GridView places items in a grid.
+A `GridView` places items in a grid. It uses a `model` the same way a `ListView` does. The only difference is a `ListView` places items in a list whereas a `GridView` places items in a grid.
 
 ## Basic Use
 
-A GridView is found in the QtQuick page. It uses a model like a ListView, but it needs cellWidth and cellHeight set.
+A `GridView` is found in the `QtQuick` package. It uses a `model` like a `ListView`, but it needs `cellWidth` and `cellHeight` set.
 
 `code.txt`
 
-From the above code, you can see that the delegate's width and height are set to the cellWidth and cellHeight. If you set it anything else, you might get undesirable effects.
+From the above code, you can see that the `delegate`'s `width` and `height` are set to the `cellWidth` and `cellHeight`. If you set it anything else, you might get undesirable effects.
 
-Gridview also doesn't have a spacing property, so you have to make up for that. You can use the direct child of the delegate as the parent container for whatever you want to place in the delegate.
+`GridView` also doesn't have a spacing property, so you have to make up for that. You can use the direct child of the delegate as the parent container for whatever you want to place in the delegate.
 
 ## Highlight
 
-Using the currentItem property we can show which item is the current item.
+Using the `currentItem` property we can show which item is the current item.
 
 [text]
 
