@@ -1,6 +1,6 @@
 # Text Input
 
-A `TextInput` is an editable one-liner of text.
+A `TextInput` is an editable one-liner of text. It is used to get text data from the user.
 
 ## Basic use
 
@@ -34,14 +34,14 @@ In the code above in **line 33**, we have set the `echoMode` to `TextInput.P
 
 ## Selecting text
 
-Normally you can select text in a `TextInput` by using shift and the arrow keys. By you can also activate a selection by mouse by setting the `selectByMouse` property to `true`. You can even control the color of the selected text and its background. See the code below.
+Normally you can select text in a `TextInput` by using shift and the arrow keys. But you can also activate a selection by mouse by setting the `selectByMouse` property to `true` (see line 34 of the code below). You can even control the color of the selected text and its background (See line 35 and 36 of the code below).
 
 `code4.txt`
 
-To get the selected text, use the `selectedText` property. It contains only the text that the use has selected.
+To get the selected text, use the `selectedText` property. It contains only the text that the use has selected. In the code below in line 50, we use the selectedText property to print the text to the output when the print button is clicked.
 
 * `code5.txt`
-- Modifying the cursor - The blinking cursor’s rectangle can also be modified. See the code below for an example of this.
+- Modifying the cursor - The blinking cursor’s rectangle can also be modified. In the code below from lines 33 to 37 we have done this by modifying the cursorDelegate.
 
 `code6.txt`
 
@@ -55,12 +55,12 @@ In the code above, in **lines 38 and 39**, we have used the `cursorVisible` p
 
 ## Restricted input
 
-We can restrict what kind of input a user can input into the `TextInput`. With this we use a `Validator` and set it to the `validator` property. In the code below, the user must first type in the “+” character or two zeros, before continuing with numbers only.
+We can restrict what kind of input a user can input into the `TextInput`. With this we use a `Validator` and set it to the `validator` property. In the code below in line 38 we have modified the validator property so the user must first type in the “+” character or two zeros, before continuing with numbers only.
 
 `code8.txt`
 
-You can see from the code above that we used a `RegularExpressionValidator`. We could have also used a `IntValidator` to accept only integers.
+You can see from the code above in line 38 that we used a `RegularExpressionValidator`. We could have also used a `IntValidator` to accept only integers.
 
 ## TextInput vs TextField
 
-The `TextField` is another visual item that has a border and a background. You can customize it just as we have customized the TextInput.
+The `TextField` is another visual item that has a border and a background. You can customize it just as we have customized the `TextInput`.
