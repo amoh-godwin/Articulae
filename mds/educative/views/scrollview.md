@@ -72,13 +72,7 @@ ApplicationWindow {
 
 A basic implementation of a ScrollView with an image as its child
 
-
-
-
-
-From the code above from lines 41 - 50, we have declared a ScrollView with an Image in it. When you run the code playground above, you may notice that the scrolling isn't really smooth. This is because the view you are seeing is coming from a virtual machine which is propably running a bunch of other applications which has put a stress on the graphics processor of the virtual machine for a smooth rendering of the scrolling functionality. On your user's computer, the scrolling will definetely be smooth.
-
-
+From the code above from l**ines 41 - 50**, we have declared a `ScrollView` with an `Image` in it. When you run the code playground above, you may notice that the scrolling isn't really smooth. This is because the view you are seeing is coming from a virtual machine which is propably running a bunch of other applications which has put a stress on the graphics processor of the virtual machine for a smooth rendering of the scrolling functionality. On your user's computer, the scrolling will definetely be smooth.
 
 If say, only the height of an item exceeds the `ScrollView`, a scroll bar will only show up for the height. If a scroll bar shows up for a width also, then the `width` also exceeds the `ScrollView`, other than that there wouldn’t be any scroll bar for that side.
 
@@ -222,4 +216,4 @@ A ScrollView with its scroll bars modified
 
 Notice scrolling still works for the view, because only the bars have been modified.
 
-You can set the horizontal bar not to show ever with: ScrollBar.horizontal.policy: ScrollBar.AlwaysOff(Line 50), and can also disable the interactiveness for the vertical bar with: ScrollBar.vertical.interactive: false (Line 51).
+You can set the horizontal bar not to show ever with: `ScrollBar.horizontal.policy: ScrollBar.AlwaysOff`(**Line 50**), and can also disable the interactiveness for the vertical bar with: `ScrollBar.vertical.interactive: false` (**Line 51**).
