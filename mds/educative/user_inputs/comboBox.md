@@ -2,13 +2,13 @@
 
 A `ComboBox` gives you sort of a dropdown of options that a user can select from.
 
-## Basic use[](https://www.educative.io/pageeditor/6586453712175104/6144552105934848/6630856455356416#Basic-use)
+## Basic use
 
-To use a `ComboBox`, you import the `QtQuick.Controls.Basic` package and then you call the `ComboBox` object.
+To use a `ComboBox`, you import the `QtQuick.Controls.Basic` package and then you call the `ComboBox` object (see lines 10 - 12 of the code below).
 
 `code.txt`
 
-#### Data roles[#](https://www.educative.io/pageeditor/6586453712175104/6144552105934848/6630856455356416#Data-roles)
+#### Data roles
 
 If the model that propagates a `ComboBox`'s is a list, the property that draws the text data is always the `modelData` property, or the ever present `index` property. But in some cases if you want what a user selects in a `ComboBox` to be a representative of a code or id which will later be put in a database or be used for further computation, then you can use a `Listmodel`. If you use a `Listmodel`, a `ComboBox` will work with two properties, `textRole` and the `valueRole`. The `textRole` will draw the text that will be shown in the popup of a `ComboBox`, its correspondence will be the `valueRole`. You have to set which of the properties or attributes in your `ListModel` you want to use as the `textRole`, and which of them you want as the `valueRole`.
 
@@ -16,11 +16,13 @@ If the model that propagates a `ComboBox`'s is a list, the property that draws 
 
 From the code above, from **lines 15 to 28** we have defined a model. In lines **12 and 13** we have set the `textRole` and `valueRole` of the `ComoboBox` to the properties `course` and `course_id` respectively.
 
-## Getting selected values[](https://www.educative.io/pageeditor/6586453712175104/6144552105934848/6630856455356416#Getting-selected-values)
+## Getting selected values
 
-When a user selects an entry from the options in the popup of the `ComboBox`, the selected entry will now become the current entry showing in the `ComboBox`, this event is known as `activated`. The `ComboBox` also sets two properties, `currentText` and `currentValue` to correspond to the `textRole` data and the `valueRole` data that is currently showing in the `ComboBox`. You can use the corresponding signal handler to respond to the `activated` signal.
+When a user selects an entry from the options in the popup of the `ComboBox`, the selected entry will now become the current entry showing in the `ComboBox`, this event is known as `activated`. The `ComboBox` also sets two properties, `currentText` and `currentValue` to correspond to the `textRole` data and the `valueRole` data that is currently showing in the `ComboBox`. You can use the onActivated signal handler to respond to the `activated` signal.
 
 `code2.txt`
+
+From the code above from lines 35 - 37 we have printed the currentValue of the ComboBox when the Apply button is clicked. You can also experiment with the activated signal on the ComboBox to see what happens.
 
 ## 
 
@@ -38,7 +40,7 @@ There is a `displayText` property which sets what text is shown in the `Combo
 
 `code4.txt`
 
-#### Making a ComboBox editable[#](https://www.educative.io/pageeditor/6586453712175104/6144552105934848/6630856455356416#Making-a-ComboBox-editable)
+#### Making a ComboBox editable
 
 `ComboBox` can be used as if it is a `TextInput` and `ComboBox` combination. You can make the display editable and the model data of the combo will be used as some of sort suggestions as the user types. To do this you set the `editable` property to `true`.
 
@@ -48,7 +50,9 @@ Lets see how we can make a `ComboBox` editable and so get access to its edited
 
 `code5.txt`
 
-#### Signals[#](https://www.educative.io/pageeditor/6586453712175104/6144552105934848/6630856455356416#Signals)
+From the code above in line 22, we have gotten access to the edited text via the editText property and have it to the output.text.
+
+#### Signals
 
 There are several signals that are emitted for a `ComboBox`
 
