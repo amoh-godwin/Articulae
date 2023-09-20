@@ -8,7 +8,7 @@ Learn one of the most used view types in all of QML.
 
 A `StackView` is found in the `QtQuick.Controls.Basic` package. You can use it by calling the `StackView` object as can be seen in the code below  from **lines 11 to 15**. The items that will be in the `StackView` are not declared or written directly in it but are rather pushed onto the stack. The `StackView` however allows an initial item to be set, this item will become the first item in the stack.
 
-Lets see this in action in the code playground below, an initialItem has been set in **line 14**.
+Lets see this in action in the code playground below, an `initialItem` has been set in **line 14**.
 
 `code.txt`
 
@@ -18,7 +18,7 @@ You do not use `anchors` on the item that will be display by the `StackView`, th
 
 ## The push and pop methods
 
-The `push` and `pop` methods perform their namesake functions. The `push` method add items to the stack whereas the `pop` method removes items from the stack. They each take an item as a parameter. The `pop` method however can be used without passing an item as a parameter. In the code below you can see that the push method has been  used on line 21. The parameter that was passed to it is the id, second. This means we will be pushing the Component with id second on to the stack.
+The `push` and `pop` methods perform their namesake functions. The `push` method add items to the stack whereas the `pop` method removes items from the stack. They each take an item as a parameter. The `pop` method however can be used without passing an item as a parameter. In the code below you can see that the `push` method has been  used on **line 21**. The parameter that was passed to it is the `id`, `second`. This means we will be pushing the `Component` with `id` `second` on to the stack.
 
 `code1.txt`
 
@@ -30,7 +30,7 @@ An item just being declared doesn't make it a part of the stack, it has to be ex
 
 `StackView` stacks the items one on top of the other, any new item pushed on to the stack will be the topmost item and that will become the item that will be shown.
 
-Pop will remove the most recently added item from the stack.
+`pop` will remove the most recently added item from the stack.
 
 `code2.txt`
 
