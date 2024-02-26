@@ -1,7 +1,6 @@
-direct key presses
 settings
 application icon
-custom resizing 2 - replace with drag'n'drop
+dropArea
 bundling of ui resources
 building an executable
 including additional files
