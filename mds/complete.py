@@ -39,6 +39,7 @@ def code_tag(md_path: str) -> str:
         
         with open(code_path, 'r') as code_file:
             code_conts = code_file.read()
+            print(code_conts)
     return replaced_content
 
 
