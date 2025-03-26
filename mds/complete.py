@@ -1,5 +1,5 @@
 import os
-
+import re
 
 ART_EDUCATIVE = './educative'
 COMPLETE = './complete'
@@ -27,6 +27,9 @@ def code_tag(md_path: str) -> str:
     # if code tag find the actual file in educative
     # replace content in educative with code tag
     replaced_content = ""
+    with open(os.path.join(ART_EDUCATIVE, md_path), 'r') as md_file:
+        md_conts = md_file.read()
+        code_tags = re.findall(r'', md_conts)
     return replaced_content
 
 
