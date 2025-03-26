@@ -12,8 +12,13 @@ EDUCATIVE = "C:/Users/amohgyebi/Documents/GitHub/educative"
 # contents of code from educative
 
 
-def is_dir(path: str):
-    pass
+def is_dir(path: str) -> bool:
+    items = os.listdir(path)
+    if items:
+        for item in items:
+            folder_handler(os.path.join(path, item))
+    else:
+        return False
 
 
 def scan_art_edu() -> list:
@@ -71,7 +76,7 @@ def complete_code():
     for item in art_edus:
         folder_handler(item)
 
+
 #art_edus = scan_art_edu()
 #print(art_edus)
-cont = code_tag('win_props/custom_resizing.md')
-print(cont)
+folder_handler(os.path.join(ART_EDUCATIVE, 'win_props'))
