@@ -21,5 +21,14 @@ def scan_art_edu() -> list:
     return conts
 
 
+def code_tag(md_path: str) -> str:
+    # open md
+    # find code tag
+    # if code tag find the actual file in educative
+    # replace content in educative with code tag
+    replaced_content = ""
+    return replaced_content
+
+
 art_edus = scan_art_edu()
 print(art_edus)
