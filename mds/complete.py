@@ -2,7 +2,7 @@ import os
 import re
 
 
-ART_EDUCATIVE = './educative'
+ART_EDUCATIVE = '.\\educative'
 COMPLETE = '.\\complete'
 EDUCATIVE = "C:/Users/amohgyebi/Documents/GitHub/educative"
 
@@ -61,10 +61,15 @@ def code_tag(md_path: str) -> str:
     return ''
 
 
+def folder_handler(path):
+    if not is_dir(path):
+        code_tag(path)
+
+
 def complete_code():
     art_edus = scan_art_edu()
     for item in art_edus:
-        pass
+        folder_handler(item)
 
 #art_edus = scan_art_edu()
 #print(art_edus)
