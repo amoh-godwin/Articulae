@@ -77,6 +77,6 @@ def complete_code():
         folder_handler(item)
 
 
-#art_edus = scan_art_edu()
-#print(art_edus)
+# art_edus = scan_art_edu()
+# print(art_edus)
 folder_handler(os.path.join(ART_EDUCATIVE, 'win_props'))
