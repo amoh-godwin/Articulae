@@ -3,7 +3,7 @@ import re
 
 
 ART_EDUCATIVE = './educative'
-COMPLETE = './complete'
+COMPLETE = '.\\complete'
 EDUCATIVE = "C:/Users/amohgyebi/Documents/GitHub/educative"
 
 # scan contents of art_educative folder
