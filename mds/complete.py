@@ -37,6 +37,8 @@ def code_tag(md_path: str) -> str:
         r_tag = tag.replace("`", "")
         code_path = '/'.join([EDUCATIVE, md_path_r, r_tag])
         
+        with open(code_path, 'r') as code_file:
+            code_conts = code_file.read()
     return replaced_content
 
 
