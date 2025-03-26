@@ -36,7 +36,6 @@ def code_tag(md_path: str) -> str:
     o_md_path, _ = os.path.split(com_md_path)
     if not os.path.exists(o_md_path):
         os.makedirs(o_md_path)
-    print(code_tags)
 
     for tag in code_tags:
         # find file in educative
@@ -52,9 +51,9 @@ def code_tag(md_path: str) -> str:
 
         md_conts = md_conts.replace(tag, code_mark+code_conts+"\n```")
 
-        # replace file
-        with open(com_md_path, 'w') as completed_file:
-            completed_file.write(md_conts)
+    # replace file
+    with open(com_md_path, 'w') as completed_file:
+        completed_file.write(md_conts)
     return ''
 
 
