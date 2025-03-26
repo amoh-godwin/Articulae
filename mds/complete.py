@@ -12,6 +12,10 @@ EDUCATIVE = "C:/Users/amohgyebi/Documents/GitHub/educative"
 # contents of code from educative
 
 
+def is_dir(path: str):
+    pass
+
+
 def scan_art_edu() -> list:
     conts = os.listdir(ART_EDUCATIVE)
     for a in ('quiz.txt', 'undone.txt'):
@@ -56,6 +60,11 @@ def code_tag(md_path: str) -> str:
         completed_file.write(md_conts)
     return ''
 
+
+def complete_code():
+    art_edus = scan_art_edu()
+    for item in art_edus:
+        pass
 
 #art_edus = scan_art_edu()
 #print(art_edus)
