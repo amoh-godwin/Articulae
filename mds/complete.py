@@ -1,6 +1,7 @@
 import os
 import re
 
+
 ART_EDUCATIVE = './educative'
 COMPLETE = './complete'
 EDUCATIVE = "C:/Users/amohgyebi/Documents/GitHub/educative"
@@ -30,6 +31,10 @@ def code_tag(md_path: str) -> str:
     with open(os.path.join(ART_EDUCATIVE, md_path), 'r') as md_file:
         md_conts = md_file.read()
         code_tags = re.findall(r'', md_conts)
+    for tag in code_tags:
+        # find file in educative
+        md_path_r = md_path.replace('.md', '')
+        code_path = '/'.join(md_path_r, tag)
     return replaced_content
 
 
