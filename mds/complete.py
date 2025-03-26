@@ -12,8 +12,14 @@ EDUCATIVE = "C:/Users/amohgyebi/Documents/GitHub/educative"
 
 
 def scan_art_edu() -> list:
-    conts = os.path.listdir(ART_EDUCATIVE)
+    conts = os.listdir(ART_EDUCATIVE)
+    for a in ('quiz.txt', 'undone.txt'):
+        try:
+            conts.remove(a)
+        except ValueError:
+            pass
     return conts
 
 
 art_edus = scan_art_edu()
+print(art_edus)
