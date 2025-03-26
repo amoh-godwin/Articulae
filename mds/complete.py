@@ -33,8 +33,11 @@ def code_tag(md_path: str) -> str:
         code_tags = re.findall(r"`code[0-9]?.txt`", md_conts)
 
     md_path_r = md_path.replace('.md', '')
-    com_md_path = '/'.join([COMPLETE, md_path])
-    os.makedirs(com_md_path)
+    com_md_path = os.path.join(COMPLETE, md_path)
+    o_md_path, _ = os.path.split(com_md_path)
+    if not os.path.exists(o_md_path):
+        os.makedirs(o_md_path)
+    print(code_tags)
 
     for tag in code_tags:
         # find file in educative
@@ -43,8 +46,12 @@ def code_tag(md_path: str) -> str:
 
         with open(code_path, 'r') as code_file:
             code_conts = code_file.read()
+            if 'QtQuick' in code_conts:
+                code_mark = "```qml\n"
+            else:
+                code_mark = "```\n"
 
-        md_conts = md_conts.replace(tag, "`"+code_conts+"`")
+        md_conts = md_conts.replace(tag, code_mark+code_conts+"\n```")
 
         # replace file
         with open(com_md_path, 'w') as t_wri:
