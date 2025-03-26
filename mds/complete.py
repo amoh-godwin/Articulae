@@ -38,7 +38,11 @@ def code_tag(md_path: str) -> str:
     # if code tag find the actual file in educative
     # replace content in educative with code tag
     with open(os.path.join(ART_EDUCATIVE, md_path), 'r') as md_file:
-        md_conts = md_file.read()
+        try:
+            md_conts = md_file.read()
+        except Exception as e:
+            print(e)
+            return ''
         code_tags = re.findall(r"`code[0-9]?.txt`", md_conts)
 
     md_path_r = md_path.replace('.md', '')
@@ -52,12 +56,16 @@ def code_tag(md_path: str) -> str:
         r_tag = tag.replace("`", "")
         code_path = '/'.join([EDUCATIVE, md_path_r, r_tag])
 
-        with open(code_path, 'r') as code_file:
-            code_conts = code_file.read()
-            if 'QtQuick' in code_conts:
-                code_mark = "```qml\n"
-            else:
-                code_mark = "```python\n"
+        try:
+            with open(code_path, 'r') as code_file:
+                code_conts = code_file.read()
+                if 'QtQuick' in code_conts:
+                    code_mark = "```qml\n"
+                else:
+                    code_mark = "```python\n"
+        except Exception as e:
+            print(e)
+            continue
 
         md_conts = md_conts.replace(tag, code_mark+code_conts+"\n```")
 
