@@ -14,9 +14,10 @@ EDUCATIVE = "C:/Users/amohgyebi/Documents/GitHub/educative"
 
 def is_dir(path: str) -> bool:
     try:
-        items = os.listdir(path)
+        items = os.listdir(os.path.join(ART_EDUCATIVE, path))
         for item in items:
             folder_handler(os.path.join(path, item))
+        return True
     except NotADirectoryError:
         return False
 
@@ -79,4 +80,5 @@ def complete_code():
 
 # art_edus = scan_art_edu()
 # print(art_edus)
-folder_handler(os.path.join(ART_EDUCATIVE, 'win_props'))
+# folder_handler('win_props')
+complete_code()
