@@ -27,7 +27,6 @@ def code_tag(md_path: str) -> str:
     # find code tag
     # if code tag find the actual file in educative
     # replace content in educative with code tag
-    replaced_content = ""
     with open(os.path.join(ART_EDUCATIVE, md_path), 'r') as md_file:
         md_conts = md_file.read()
         code_tags = re.findall(r"`code[0-9]?.txt`", md_conts)
