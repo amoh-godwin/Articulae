@@ -39,7 +39,10 @@ def code_tag(md_path: str) -> str:
         
         with open(code_path, 'r') as code_file:
             code_conts = code_file.read()
-            print(code_conts)
+
+        # replace file
+        with open('/'.join([COMPLETE, md_path_r, r_tag])+".md", 'w') as t_wri:
+            t_wri.write(code_conts)
     return replaced_content
 
 
