@@ -13,11 +13,11 @@ EDUCATIVE = "C:/Users/amohgyebi/Documents/GitHub/educative"
 
 
 def is_dir(path: str) -> bool:
-    items = os.listdir(path)
-    if items:
+    try:
+        items = os.listdir(path)
         for item in items:
             folder_handler(os.path.join(path, item))
-    else:
+    except NotADirectoryError:
         return False
 
 
