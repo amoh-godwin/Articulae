@@ -48,13 +48,13 @@ def code_tag(md_path: str) -> str:
             if 'QtQuick' in code_conts:
                 code_mark = "```qml\n"
             else:
-                code_mark = "```\n"
+                code_mark = "```python\n"
 
         md_conts = md_conts.replace(tag, code_mark+code_conts+"\n```")
 
         # replace file
-        with open(com_md_path, 'w') as t_wri:
-            t_wri.write(md_conts)
+        with open(com_md_path, 'w') as completed_file:
+            completed_file.write(md_conts)
     return ''
 
 
