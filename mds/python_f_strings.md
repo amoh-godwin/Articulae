@@ -30,9 +30,9 @@ print("The folder name is '" + folder + "' and the filename is '" + filename + "
 The folder name is '/home/user/john/movies' and the filename is 'Big Buck Bunny.mp4'
 ```
 
-## Using f-strings
+## Using the improved f-strings
 
-F-strings can replace both of them:
+Lets replace `str.format` in the examples above and see how easy **f-strings** are
 
 **1st example**
 
