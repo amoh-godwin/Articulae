@@ -1,10 +1,6 @@
-# Showig A Variable's Name And Value At The Same Time Using Python F-Strings
-
-
+# Efficient Python: F-Strings
 
 Python string formatting is a great tool to have in your toolbox. Python f-strings are updates on python string formatting. Its faster at runtime and its easier to write. Once you start using it, there is no going back.
-
-
 
 This is how `str.format()` code works:
 
@@ -13,8 +9,6 @@ brother = "John"
 sister = "Jane"
 
 print("Hello, {0} and {1}".format(brother, sister))
-
-
 ```
 
 Prints:
@@ -30,8 +24,6 @@ folder = "/home/user/john/movies"
 filename = "Big Buck Bunny.mp4"
 
 print("The folder name is '" + folder + "' and the filename is '" + filename + "' ")
-
-
 ```
 
 ```shell-session
@@ -58,7 +50,6 @@ Hello, John and Jane
 **2nd example**
 
 ```python
-
 folder = "/home/user/john/movies"
 filename = "Big Buck Bunny.mp4"
 
@@ -83,19 +74,15 @@ print(f'{os.path.dirname(fullpath)}')
 And if you would like to show the curly brackets, you have to escape the curly bracket you want to show with another curly bracket.
 
 ```python
-
 radius = 7
 center = 0.0
 
 print(f"center: {{{center}}}, radius: {{{{{radius}}}}}")
-
 ```
 
 ```shell-session
 center: {0.0}, radius: {{7}}
 ```
-
-
 
 ## Focus: Showing a variable name and Value
 
@@ -119,14 +106,11 @@ You can use f-strings and write:
 this_is_a_long_name = "sometext"
 
 print(f'{this_is_a_long_name = :}')
-
 ```
 
 ```shell-session
 this_is_a_long_name = sometext
 ```
-
-
 
 ### Integration of str.format() specifiers
 
@@ -170,11 +154,8 @@ print(f"{'End':^50}")
 ```
 
 ```shell-session
-
 **********************start***********************
 Next==============================================
 __________________________________________Previous
                        End
 ```
-
-
