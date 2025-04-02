@@ -30,9 +30,19 @@ print("The folder name is '" + folder + "' and the filename is '" + filename + "
 The folder name is '/home/user/john/movies' and the filename is 'Big Buck Bunny.mp4'
 ```
 
+And modular operator **%**
+
+```python
+"string %s is good" % (19)
+```
+
+And multiple tuple items.
+
 ## Using the improved f-strings
 
-Lets replace `str.format` in the examples above and see how easy **f-strings** are
+Lets replace `str.format` in the examples above and see how easy **f-strings** are.
+
+All string formats work with **f-strings**.
 
 **1st example**
 
@@ -70,6 +80,8 @@ fullpath = "/home/user/john/movies/Big Buck Bunny.mp4"
 
 print(f'{os.path.dirname(fullpath)}')
 ```
+
+[Add another example for math expressions.]
 
 And if you would like to show the curly brackets, you have to escape the curly bracket you want to show with another curly bracket.
 
@@ -114,7 +126,7 @@ this_is_a_long_name = sometext
 
 ### Integration of str.format() specifiers
 
-All string formatting specifiers for the `str.format()` works with f-strings
+All string formatting specifiers for the `str.format()` works with f-strings. Link to mini language.
 
 #### Printing Money figures
 
@@ -159,3 +171,17 @@ Next==============================================
 __________________________________________Previous
                        End
 ```
+
+repeated indices
+
+# String manipulation
+
+Show both !s and !r
+
+## Numbers manipulation
+
+blah
+
+### Comments in f-string
+
+blah
