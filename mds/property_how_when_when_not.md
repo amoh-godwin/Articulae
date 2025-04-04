@@ -146,7 +146,7 @@ You can see from the code above that we performed some housekeeping duties befor
 
 ## When not to use the property to achieve your needs
 
-In instances where you want to control a list or a dict, you can't achieve that with the property decorator. But that does not mean you can't control the property. You can still control the property by subclassing it.
+In instances where you want to control a list or a dict other than what is given, you can't achieve that with the property decorator. But should not prevent us. We are developers! We find solutions to every problem. Well the truth is Python allows you to control any type, simply by subclassing it. So we will subclass both the `list` and the `dict` and will add our modifications to them.
 
 ### Lists
 
