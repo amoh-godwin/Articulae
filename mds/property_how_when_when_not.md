@@ -112,7 +112,7 @@ If you do not intend to set it privately, you can choose to not to have a method
 
 ### You can control its deletion
 
-You can successfully prevent the deletion of a property entirely.
+You can control the deletion of a property. Consider the code below. 
 
 ```python
 class ProgressReport:
@@ -141,6 +141,8 @@ reporter = ProgressReport()
 del reporter.progress
 print(reporter.progress)
 ```
+
+You can see from the code above that we performed some housekeeping duties before we deleted the property. If we wanted, to we could have prevented its deletion all in all, by not including the `del self._progress` code.
 
 ## When not to use the property to achieve your needs
 
