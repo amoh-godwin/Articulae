@@ -43,12 +43,24 @@ reporter = ProgressReport()
 print(reporter.progress)
 ```
 
+Output
+
+```shell
+19
+```
+
 With the code above, progress will become the property. When you call it, it returns the  self._progress property. The self._progress has been utilised as a private property. *The underscore that begins it mostly deters people from setting it directly*.
 
 Printing doesn't show any trace that this is a method or some kind of a special property.
 
 ```python
 print(type(reporter.progress))
+```
+
+Output
+
+```shell
+<class 'int'>
 ```
 
 But the property classs offer much more. There is a setter, which gets called whenever you want to set a value to the property.
@@ -75,6 +87,18 @@ class ProgressReport:
 reporter = ProgressReport()
 reporter.progress = 500
 print(reporter.progress)
+```
+
+Output
+
+```shell
+Traceback (most recent call last):
+  File "C:\Users\Ampofo\property.py", line 19, in <module>
+    reporter.progress = 500
+    ^^^^^^^^^^^^^^^^^
+  File "C:\Users\Ampofo\property.py", line 16, in progress
+    raise Exception("progress accepts a value from 0 to 100")
+Exception: progress accepts a value from 0 to 100
 ```
 
 In the code above, we make sure the property will only be set if the value is from 1 to 100.
@@ -106,6 +130,19 @@ reporter = ProgressReport()
 reporter.update_progress(96)
 print(reporter.progress)
 reporter.progress = 99
+```
+
+Output
+
+```shell
+96
+Traceback (most recent call last):
+  File "C:\Users\ampofo\property.py", line 20, in <module>
+    reporter.progress = 99
+    ^^^^^^^^^^^^^^^^^
+  File "C:\Users\ampofo\property.py", line 12, in progress
+    raise Exception("progress is readonly")
+Exception: progress is readonly
 ```
 
 If you do not intend to set it privately, you can choose to not to have a method that sets it. So, for instance in our code above, the `update_progress` method will not have been written.
@@ -142,6 +179,20 @@ del reporter.progress
 print(reporter.progress)
 ```
 
+Output
+
+```shell
+Performing housekeeping before deletion
+Traceback (most recent call last):
+  File "C:\Users\ampofo\property.py", line 25, in <module>
+    print(reporter.progress)
+          ^^^^^^^^^^^^^^^^^
+  File "C:\Users\ampofo\property.py", line 8, in progress
+    return self._progress
+           ^^^^^^^^^^^^^^
+AttributeError: 'ProgressReport' object has no attribute '_progress'. Did you mean: 'progress'?
+```
+
 You can see from the code above that we performed some housekeeping duties before we deleted the property. If we wanted, to we could have prevented its deletion all in all, by not including the `del self._progress` code.
 
 ## When not to use the property to achieve your needs
@@ -155,6 +206,16 @@ Normally trying to create a list, is as simple as:
 ```python
 list1 = [1, 2, 3]
 print(list1[5])
+```
+
+Output
+
+```shell
+Traceback (most recent call last):
+  File "C:\Users\ampofo\property.py", line 2, in <module>
+    print(list1[5])
+          ~~~~~^^^
+IndexError: list index out of range
 ```
 
 But now, you subclass it and use your class to create your list.
@@ -177,6 +238,12 @@ class MyList(list):
 
 list2 = MyList([1, 2, 3])
 print(list2[5])
+```
+
+Output
+
+```shell
+None
 ```
 
 In the code above in line 1: We subclass the `list` by creating a `MyList` class from it. 
@@ -231,7 +298,12 @@ list2.append(4)
 print(list2)
 ```
 
+Output
 
+```shell
+This list only accepts integers
+[1, 2, 3, 4]
+```
 
 ### Dicts
 
@@ -263,7 +335,17 @@ class MyDict(dict):
 
 dict1 = MyDict({'admin': 'active'})
 print(dict1['johndoe'])
-dict1['janemaxwell'] = 'inactive'
+dict1['janeaustin'] = 'inactive'
 print(dict1)
 del dict1['admin']
+```
+
+Output
+
+```shell
+Key: johndoe doesn't exits
+None
+Inserting janeaustin
+{'admin': 'active', 'janeaustin': 'inactive'}
+You can't delete admin entry
 ```
