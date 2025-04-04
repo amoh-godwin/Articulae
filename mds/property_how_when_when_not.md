@@ -231,11 +231,11 @@ list2.append(4)
 print(list2)
 ```
 
-and all its other functions.
+
 
 ### Dicts
 
-You can do the same for dicts
+If our quest to modify the `dict`, our only option again is not to use the `@property` type but to modify the `dict` class by subclassing it and making our alterations.
 
 ```python
 class MyDict(dict):
