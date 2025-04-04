@@ -1,6 +1,6 @@
 # Controlling Properties like a Python Core Developer - When, How and When not.
 
-Python `property` is one you would know as an intermediate programmer, or you would go after if you were an intermediate developer and/or a big fan of Object oriented programming.
+Python `property` is one you would know as an intermediate programmer, or you would go after if you were an intermediate developer and/or a big fan of Object Oriented Programming (OOP).
 
 ## When would you want to use it
 
@@ -14,9 +14,9 @@ When,
 
 * You don't want your code to break because:
 
-* 1.  A property doesn't exist
+* 1. A property doesn't exist
   
-  2. The list is empty.
+  2. A list is empty.
 
 ## How would you do these
 
@@ -43,17 +43,13 @@ reporter = ProgressReport()
 print(reporter.progress)
 ```
 
-With the code above, progress will become the property. When you call it, it returns the  self._progress property. The self._progress has been utilised as a private property. The underscore that begins it mostly deters people from setting it directly.
+With the code above, progress will become the property. When you call it, it returns the  self._progress property. The self._progress has been utilised as a private property. *The underscore that begins it mostly deters people from setting it directly*.
 
-
-
-printing doesn't show any trace that this is a method or some kind of a special property.
+Printing doesn't show any trace that this is a method or some kind of a special property.
 
 ```python
 print(type(reporter.progress))
 ```
-
-
 
 But the property classs offer much more. There is a setter, which gets called whenever you want to set a value to the property.
 
@@ -81,11 +77,11 @@ reporter.progress = 500
 print(reporter.progress)
 ```
 
-In the code above, the property will only be set if the value is from 1 to 100.
+In the code above, we make sure the property will only be set if the value is from 1 to 100.
 
 ### Make a property readonly
 
-You can make a property readonly, you can prevent its value from being changed. However you can still set it privately.
+You can make a property readonly, you can prevent its value from being changed. *However you can still set it privately*.
 
 Here we create a method update_progress, that we use to update the value of the property.
 
@@ -112,7 +108,7 @@ print(reporter.progress)
 reporter.progress = 99
 ```
 
-If you do not intend to set it privately, you can choose to not to have such a function.
+If you do not intend to set it privately, you can choose to not to have a method that sets it. So, for instance in our code above, the `update_progress` method will not have been written.
 
 ### You can control its deletion
 
@@ -224,7 +220,7 @@ class MyDict(dict):
     def __setitem__(self, _key, _value) -> None:
         print(f"Inserting {_key}")
         return super().__setitem__(_key, _value)
-    
+
     def __getitem__(self, _key):
         length = super().__len__()
         if length < 0 or _key not in super().items():
@@ -244,5 +240,4 @@ print(dict1['johndoe'])
 dict1['janemaxwell'] = 'inactive'
 print(dict1)
 del dict1['admin']
-
 ```
