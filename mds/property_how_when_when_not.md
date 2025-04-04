@@ -1,4 +1,4 @@
-# Controlling Properties in Python like a python core developer - When, how and when not.
+# Controlling Properties like a Python Core Developer - When, How and When not.
 
 Python `property` is one you would know as an intermediate programmer, or you would go after if you were an intermediate developer and/or a big fan of Object oriented programming.
 
