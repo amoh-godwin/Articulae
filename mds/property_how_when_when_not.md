@@ -159,7 +159,7 @@ print(list1[5])
 
 But now, you subclass it and use your class to create your list.
 
-This way, you can prevent a break and return a None.
+This way, you can prevent a break in your code which occurs when you call and index that doesn't exist and  instead return a `None`, which won't break your code.
 
 ```python
 class MyList(list):
@@ -179,7 +179,31 @@ list2 = MyList([1, 2, 3])
 print(list2[5])
 ```
 
-You can control its append method
+In the code above in line 1: We subclass the `list` by creating a `MyList` class from it. 
+
+On line 3 we create an `__init__` method and pass in `self` and `items`. So now when someone calls our `MyList` class as:
+
+     `names = MyList(['John', 'Sarah'])`, 
+
+It will be the same as calling:
+
+     `names = list(['John', 'Sarah'])`. 
+
+**Remember you cannot create a list by doing** `names = list['John', 'Sarah']`. Rather you would do:
+
+    `names = list['John', 'Sarah']`
+
+In the `__init__` method, you can see `super().__init__(items)`, which simply means calling the `__init__` method of the originial class we are subclassing, in this case the `list` class.
+
+The `__getitem__` method is called whenever a member of the list is requested as:
+
+    `a = names[0]` or `print(names[0])`. You can see from the code above that we are overwriting this method to return a `None`, rather than throw an `IndexError` exception.
+
+
+
+
+
+You can further control the append method or every other method, for that matter, of a list if we so wish.
 
 ```python
 class MyList(list):
